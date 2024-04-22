@@ -1,19 +1,14 @@
 import Login from './pages/Login'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
-function Router() {
+function App() {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <Navigate to={'/app'} replace={true} />,
-        },
-        {
-            path: '/app',
             element: <Navigate to={'/app/login'} replace={true} />,
         },
-
         {
-            path: 'app/login',
+            path: '/app/login',
             element: <Login />,
         },
     ])
@@ -21,4 +16,4 @@ function Router() {
     return <RouterProvider router={router} />
 }
 
-export default Router
+export default App
