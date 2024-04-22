@@ -1,3 +1,4 @@
+import Proptypes from 'prop-types'
 export default function Loader({ height, width, borderWidth }) {
     return (
         <div
@@ -9,4 +10,10 @@ export default function Loader({ height, width, borderWidth }) {
             }}
         ></div>
     )
+}
+
+Loader.propTypes = {
+    height: Proptypes.number,
+    width: Proptypes.number,
+    borderWidth: Proptypes.number,
 }
