@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { STATUS } from '../constants'
 import { Input, Group, Error, Loader } from '../components/index'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
     const [status, setStatus] = useState(null)
@@ -60,6 +61,7 @@ export default function Login() {
                     <Loader width={16} height={16} borderWidth={4} />
                 ) : null}
                 <button disabled={status === 'pending'}>Login</button>
+                <Link to '/app/login'
             </form>
         </div>
     )
