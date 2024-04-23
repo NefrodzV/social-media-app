@@ -1,17 +1,16 @@
 import { useState } from 'react'
 import { STATUS } from '../constants'
-import { Input, Group, Error, Loader } from '../components/index'
+import { Input, Group, Loader, ErrorDisplay } from '../components/index'
 import { Link } from 'react-router-dom'
 
 export default function Login() {
     const [status, setStatus] = useState(null)
-    const [data, setData] = useState(null)
     const [errors, setErrors] = useState(null)
     async function login(data) {
         try {
             setStatus(STATUS.PENDING)
             const response = await fetch(
-                'http://localhost:3000/session/login',
+                `${import.meta.env.VITE_API_URL}/session/login`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -38,7 +37,7 @@ export default function Login() {
         login(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <div>
+        <main>
             <form onSubmit={loginHandler} noValidate>
                 <h1>Login</h1>
                 <Group>
@@ -47,7 +46,7 @@ export default function Login() {
                         type={'email'}
                         placeholder={'Email'}
                     />
-                    <Error message={errors?.email} />
+                    <ErrorDisplay message={errors?.email} />
                 </Group>
                 <Group>
                     <Input
@@ -55,14 +54,14 @@ export default function Login() {
                         type={'password'}
                         placeholder={'password'}
                     />
-                    <Error message={errors?.password} />
+                    <ErrorDisplay message={errors?.password} />
                 </Group>
                 {status === STATUS.PENDING ? (
                     <Loader width={16} height={16} borderWidth={4} />
                 ) : null}
                 <button disabled={status === 'pending'}>Login</button>
-                <Link to '/app/login'
+                <Link to={'/signup'}>Create an account</Link>
             </form>
-        </div>
+        </main>
     )
 }
