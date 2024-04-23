@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { STATUS } from '../constants'
-import { Input, Group } from '../components/index'
+import { Input, Group, Error, Loader } from '../components/index'
 
 export default function Login() {
     const [status, setStatus] = useState(null)
     const [data, setData] = useState(null)
+    const [errors, setErrors] = useState(null)
     async function login(data) {
         try {
             setStatus(STATUS.PENDING)
@@ -19,8 +20,11 @@ export default function Login() {
             const json = await response.json()
             if (!response.ok) {
                 setStatus(STATUS.ERROR)
-                return console.log(json)
+                console.log(json)
+                setErrors(json.errors)
+                return
             }
+            console.log(json)
             setStatus(STATUS.SUCCESS)
         } catch (e) {
             setStatus(STATUS.ERROR)
@@ -29,7 +33,7 @@ export default function Login() {
     }
     function loginHandler(e) {
         e.preventDefault()
-        login(new FormData(e.target))
+        login(Object.fromEntries(new FormData(e.target)))
     }
     return (
         <div>
@@ -41,6 +45,7 @@ export default function Login() {
                         type={'email'}
                         placeholder={'Email'}
                     />
+                    <Error message={errors?.email ? errors.email : null} />
                 </Group>
                 <Group>
                     <Input
@@ -48,7 +53,11 @@ export default function Login() {
                         type={'password'}
                         placeholder={'password'}
                     />
+                    <Error message={errors?.password} />
                 </Group>
+                {status === STATUS.PENDING ? (
+                    <Loader width={50} height={50} borderWidth={16} />
+                ) : null}
                 <button disabled={status === 'pending'}>Login</button>
             </form>
         </div>
