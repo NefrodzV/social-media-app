@@ -56,7 +56,7 @@ export default function Login() {
                     <Error message={errors?.password} />
                 </Group>
                 {status === STATUS.PENDING ? (
-                    <Loader width={50} height={50} borderWidth={16} />
+                    <Loader width={16} height={16} borderWidth={4} />
                 ) : null}
                 <button disabled={status === 'pending'}>Login</button>
             </form>
