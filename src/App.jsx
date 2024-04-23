@@ -1,15 +1,20 @@
-import Login from './pages/Login'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { Login, Home, Signup } from './pages/index'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 function App() {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <Navigate to={'/app/login'} replace={true} />,
+            element: <Home />,
         },
         {
-            path: '/app/login',
+            path: '/login',
             element: <Login />,
+            index: true,
+        },
+        {
+            path: '/signup',
+            element: <Signup />,
         },
     ])
 
