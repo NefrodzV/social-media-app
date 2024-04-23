@@ -1,3 +1,8 @@
+html, body, #root {
+    height: 100%;
+    box-sizing: border-box;
+}
+
 .loader {
     border-style: solid;
     border-top-style: solid;
@@ -5,7 +10,17 @@
     border-top-color: black;
     border-radius: 50%;
     animation: loading 2s linear infinite;
-} 
+}
+
+/* Must change this to use some type of transition */
+.error {
+    color: red;
+    display: none;
+}
+
+.show {
+    display: block;
+}
 
 @keyframes loading {
     from { 
