@@ -24,6 +24,7 @@ export default function Login() {
                 setErrors(json.errors)
                 return
             }
+            // TODO: Implement something to
             console.log(json)
             setStatus(STATUS.SUCCESS)
         } catch (e) {
@@ -45,7 +46,7 @@ export default function Login() {
                         type={'email'}
                         placeholder={'Email'}
                     />
-                    <Error message={errors?.email ? errors.email : null} />
+                    <Error message={errors?.email} />
                 </Group>
                 <Group>
                     <Input
