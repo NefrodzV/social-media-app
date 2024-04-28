@@ -1,11 +1,50 @@
+import { createContext, useEffect, useState } from 'react'
 import { Login, Home, Signup } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
+import { STATUS } from './constants'
+import { useLocalStorage } from './hooks'
 function App() {
+    const { get } = useLocalStorage()
+    const [isLoggedIn, setIsLoggedIn] = useState(get('isLoggedIn'))
+    const [status, setStatus] = useState(null)
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        async function getUser() {
+            try {
+                setStatus(STATUS.PENDING)
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/users/me`,
+                    {
+                        mode: 'cors',
+                        credentials: 'include',
+                    }
+                )
+                const json = await response.json()
+                if (!response.ok) {
+                    setStatus(STATUS.ERROR)
+                    return console.log(json)
+                }
+                setStatus(STATUS.SUCCESS)
+                setUser(json.user)
+            } catch (e) {
+                setStatus(STATUS.ERROR)
+                throw new Error('GET auth user error ' + e)
+            }
+        }
+
+        if (isLoggedIn && !user) getUser()
+    }, [isLoggedIn, user])
+
     const router = createBrowserRouter([
         {
             path: '/',
             element: <Home />,
+            children: [
+                {
+                    path: ':username',
+                },
+            ],
         },
         {
             path: '/login',
@@ -18,7 +57,11 @@ function App() {
         },
     ])
 
-    return <RouterProvider router={router} />
+    return (
+        <UserContext.Provider value={{ user }}>
+            <RouterProvider router={router} />
+        </UserContext.Provider>
+    )
 }
-
+export const UserContext = createContext(null)
 export default App

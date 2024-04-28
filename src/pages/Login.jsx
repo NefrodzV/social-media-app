@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { STATUS } from '../constants'
 import { Input, Group, Loader, ErrorDisplay } from '../components/index'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import { UserContext } from '../App'
+import { useLocalStorage } from '../hooks'
 
 export default function Login() {
+    const { user } = useContext(UserContext)
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
+    const { set } = useLocalStorage()
     async function login(data) {
         try {
             setStatus(STATUS.PENDING)
@@ -15,6 +19,8 @@ export default function Login() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
+                    mode: 'cors',
+                    credentials: 'include',
                 }
             )
             const json = await response.json()
@@ -25,8 +31,10 @@ export default function Login() {
                 return
             }
             // TODO: Implement something to
-            console.log(json)
+            // Cookies.set('authToken', json.token, { expires: 3 })
+            set('isLoggedIn', true)
             setStatus(STATUS.SUCCESS)
+            setErrors(null)
         } catch (e) {
             setStatus(STATUS.ERROR)
             throw new Error('Login action error: ' + e)
@@ -38,6 +46,7 @@ export default function Login() {
     }
     return (
         <main>
+            {user ? <Navigate to={'/'} replace={true} /> : null}
             <form onSubmit={loginHandler} noValidate>
                 <h1>Login</h1>
                 <Group>
