@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-
-export default function Error({ message }) {
+import PropTypes from 'prop-types'
+export default function ErrorDisplay({ message }) {
     const errorRef = useRef()
     useEffect(() => {
         if (message) {
@@ -14,4 +14,8 @@ export default function Error({ message }) {
             {message}
         </div>
     )
+}
+
+ErrorDisplay.propTypes = {
+    message: PropTypes.string,
 }
