@@ -5,7 +5,9 @@ import { STATUS } from './constants'
 import { useLocalStorage } from './hooks'
 function App() {
     const { get } = useLocalStorage()
-    const [isLoggedIn, setIsLoggedIn] = useState(get('isLoggedIn'))
+    const [isAuthenticated, setIsAuthenticated] = useState(
+        get('isAuthenticated')
+    )
     const [status, setStatus] = useState(null)
     const [user, setUser] = useState(null)
 
@@ -33,18 +35,19 @@ function App() {
             }
         }
 
-        if (isLoggedIn && !user) getUser()
-    }, [isLoggedIn, user])
+        if (isAuthenticated) getUser()
+        if (!isAuthenticated) setUser(null)
+    }, [isAuthenticated])
 
     const router = createBrowserRouter([
         {
             path: '/',
             element: <Home />,
-            children: [
-                {
-                    path: ':username',
-                },
-            ],
+            // children: [
+            //     {
+            //         path: ':username',
+            //     },
+            // ],
         },
         {
             path: '/login',
@@ -58,7 +61,9 @@ function App() {
     ])
 
     return (
-        <UserContext.Provider value={{ user }}>
+        <UserContext.Provider
+            value={{ user, isAuthenticated, setIsAuthenticated }}
+        >
             <RouterProvider router={router} />
         </UserContext.Provider>
     )
