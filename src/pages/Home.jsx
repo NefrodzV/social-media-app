@@ -2,15 +2,18 @@ import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../App'
 import { CreatePost, Loader } from '../components'
 import { useNavigate } from 'react-router-dom'
+import PostList from '../components/PostList'
+import PostItem from '../components/PostItem'
+import Navigation from '../components/Navigation'
 export default function Home() {
-    const { user } = useContext(UserContext)
-    const navigate = useNavigate()
+    const { user, isAuthenticated } = useContext(UserContext)
     const [posts, setPosts] = useState([])
 
+    const navigate = useNavigate()
     useEffect(() => {
-        if (!user) navigate('/login', { replace: true })
-    }, [user, navigate])
-
+        if (!isAuthenticated) navigate('/login', { replace: true })
+    }, [isAuthenticated, navigate])
+    console.log(user)
     useEffect(() => {
         async function getUserPosts() {
             try {
@@ -40,17 +43,15 @@ export default function Home() {
             {user ? (
                 <>
                     <h1>Welcome {user?.fullname}</h1>
-                    <h2>Follower</h2>
-                    <ul>
+                    <PostList>
                         {posts.map((post) => (
-                            <li key={post._id}>{post?.text}</li>
+                            <PostItem key={post?._id} post={post} />
                         ))}
-                    </ul>
+                    </PostList>
                     <CreatePost />
+                    <Navigation />
                 </>
-            ) : (
-                <Loader width={16} height={16} borderWidth={4} />
-            )}
+            ) : null}
         </div>
     )
 }
