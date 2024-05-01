@@ -4,9 +4,9 @@ import { UserContext } from '../App'
 import { useLocalStorage } from '../hooks'
 
 export default function Navigation({ style }) {
-    const { user } = useContext(UserContext)
-    const { remove } = useLocalStorage()
+    const { user, setIsAuthenticated } = useContext(UserContext)
     const navigate = useNavigate()
+    const { set } = useLocalStorage()
     async function logoutHandler() {
         try {
             const response = await fetch(
@@ -22,8 +22,8 @@ export default function Navigation({ style }) {
                 throw new Error(json)
             }
 
-            remove('isLoggedIn')
-            navigate('/login', { replace: true })
+            set('isAuthenticated', false)
+            setIsAuthenticated(false)
         } catch (e) {
             throw new Error('Error logging out: ' + e)
         }

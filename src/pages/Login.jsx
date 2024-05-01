@@ -1,15 +1,20 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { STATUS } from '../constants'
 import { Input, Group, Loader, ErrorDisplay } from '../components/index'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../App'
 import { useLocalStorage } from '../hooks'
 
 export default function Login() {
-    const { user } = useContext(UserContext)
+    const { isAuthenticated, setIsAuthenticated } = useContext(UserContext)
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const { set } = useLocalStorage()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isAuthenticated) navigate('/', { replace: true })
+    }, [isAuthenticated, navigate])
     async function login(data) {
         try {
             setStatus(STATUS.PENDING)
@@ -30,11 +35,10 @@ export default function Login() {
                 setErrors(json.errors)
                 return
             }
-            // TODO: Implement something to
-            // Cookies.set('authToken', json.token, { expires: 3 })
-            set('isLoggedIn', true)
+            // If the login response was successfull
             setStatus(STATUS.SUCCESS)
-            setErrors(null)
+            set('isAuthenticated', true)
+            setIsAuthenticated(true)
         } catch (e) {
             setStatus(STATUS.ERROR)
             throw new Error('Login action error: ' + e)
@@ -46,7 +50,6 @@ export default function Login() {
     }
     return (
         <main>
-            {user ? <Navigate to={'/'} replace={true} /> : null}
             <form onSubmit={loginHandler} noValidate>
                 <h1>Login</h1>
                 <Group>
