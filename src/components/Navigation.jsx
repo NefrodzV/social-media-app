@@ -1,11 +1,10 @@
 import { useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { UserContext } from '../App'
 import { useLocalStorage } from '../hooks'
 
 export default function Navigation({ style }) {
     const { user, setIsAuthenticated } = useContext(UserContext)
-    const navigate = useNavigate()
     const { set } = useLocalStorage()
     async function logoutHandler() {
         try {
