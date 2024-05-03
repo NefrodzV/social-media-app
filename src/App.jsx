@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { Login, Home, Signup } from './pages/index'
+import { Login, Home, Signup, Profile } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { STATUS } from './constants'
 import { useLocalStorage } from './hooks'
@@ -53,6 +53,8 @@ function App() {
             path: '/signup',
             element: <Signup />,
         },
+
+        { path: '/profile', element: <Profile /> },
     ])
 
     return (

@@ -34,7 +34,7 @@ export default function Navigation({ style }) {
                     <Link to={`/${user?.fullname}/posts`}>My posts</Link>
                 </li>
                 <li>
-                    <Link to={`/${user?.fullname}/profile`}>My profile</Link>
+                    <Link to={`/profile`}>My profile</Link>
                 </li>
                 <li>
                     <button onClick={logoutHandler}>Log out</button>
