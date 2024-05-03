@@ -3,6 +3,16 @@ html, body, #root {
     box-sizing: border-box;
 }
 
+header {
+    grid-column: span 3;
+}
+.layout {
+    height: 100%;
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr;
+    grid-template-rows: 2rem 1fr;
+}
+
 .loader {
     border-style: solid;
     border-top-style: solid;
