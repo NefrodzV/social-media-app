@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../App'
-import { CreatePost, Loader } from '../components'
+import { CreatePost, Loader, NavItem } from '../components'
 import { useNavigate } from 'react-router-dom'
 import { PostList, PostItem, Navigation, Header } from '../components'
 export default function Home() {
     const { user, isAuthenticated } = useContext(UserContext)
     const [posts, setPosts] = useState([])
 
+    const [show, setShow] = useState(false)
     const navigate = useNavigate()
     useEffect(() => {
         if (!isAuthenticated) navigate('/login', { replace: true })
@@ -36,13 +37,27 @@ export default function Home() {
         }
         if (user) getUserPosts()
     }, [user])
+
+    function openHandler() {
+        setShow(true)
+    }
+
+    function closeHandler() {
+        setShow(false)
+    }
     return (
         <div className="layout">
             {user ? (
                 <>
                     <Header />
                     {/* <h1>Welcome {user?.fullname}</h1> */}
-                    <Navigation />
+                    <Navigation>
+                        <NavItem>
+                            <button type="button" onClick={openHandler}>
+                                post
+                            </button>
+                        </NavItem>
+                    </Navigation>
                     <PostList>
                         {posts.map((post) => (
                             <PostItem key={post?._id} post={post} />
@@ -50,6 +65,7 @@ export default function Home() {
                     </PostList>
                     <h1>Followers</h1>
                     {/* <CreatePost /> */}
+                    <CreatePost show={show} close={closeHandler} />
                 </>
             ) : (
                 <Loader width={16} height={16} borderWidth={4} />

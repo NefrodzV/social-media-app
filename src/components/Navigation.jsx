@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../App'
 import { useLocalStorage } from '../hooks'
 
-export default function Navigation({ style }) {
+export default function Navigation({ style, children }) {
     const { user, setIsAuthenticated } = useContext(UserContext)
     const { set } = useLocalStorage()
     async function logoutHandler() {
@@ -36,6 +36,7 @@ export default function Navigation({ style }) {
                 <li>
                     <Link to={`/profile`}>My profile</Link>
                 </li>
+                {children}
                 <li>
                     <button onClick={logoutHandler}>Log out</button>
                 </li>

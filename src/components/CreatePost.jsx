@@ -1,12 +1,19 @@
-import { useContext, useState } from 'react'
-import { UserContext } from '../App'
+import { useEffect, useRef, useState } from 'react'
 import { STATUS } from '../constants'
-export default function NewPost() {
+import PropTypes from 'prop-types'
+export default function CreatePost({ show, close }) {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
+    const dialogRef = useRef()
+    useEffect(() => {
+        const dialog = dialogRef?.current
+        if (show) {
+            dialog.showModal()
+        } else {
+            dialog.close()
+        }
+    }, [show])
     async function post(data) {
-        console.log(JSON.stringify(data))
-        console.log(data)
         try {
             setStatus(STATUS.PENDING)
             const response = await fetch(
@@ -14,7 +21,6 @@ export default function NewPost() {
                 {
                     method: 'POST',
                     headers: {
-                        // authorization: 'Bearer ' + token,
                         'Content-Type': 'application/json',
                     },
                     mode: 'cors',
@@ -27,7 +33,6 @@ export default function NewPost() {
                 const json = await response.json()
                 setStatus(STATUS.ERROR)
                 setErrors(json.errors)
-                console.log(json)
                 return
             }
             setStatus(STATUS.SUCCESS)
@@ -40,7 +45,7 @@ export default function NewPost() {
         post(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <>
+        <dialog ref={dialogRef}>
             <h1>Make a new post</h1>
             <form noValidate onSubmit={onSubmitHandler}>
                 <textarea
@@ -63,8 +68,15 @@ export default function NewPost() {
                     }}
                 />
                 <label htmlFor="private">Set post as private</label>
-                <button>Submit</button>
+                <button>submit</button>
+                <button type="button" onClick={close}>
+                    cancel
+                </button>
             </form>
-        </>
+        </dialog>
     )
+}
+CreatePost.propTypes = {
+    show: PropTypes.bool,
+    close: PropTypes.func,
 }
