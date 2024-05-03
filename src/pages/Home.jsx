@@ -2,10 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../App'
 import { CreatePost, Loader } from '../components'
 import { useNavigate } from 'react-router-dom'
-import PostList from '../components/PostList'
-import PostItem from '../components/PostItem'
-import Navigation from '../components/Navigation'
-import Header from '../components/Header'
+import { PostList, PostItem, Navigation, Header } from '../components'
 export default function Home() {
     const { user, isAuthenticated } = useContext(UserContext)
     const [posts, setPosts] = useState([])
@@ -40,18 +37,19 @@ export default function Home() {
         if (user) getUserPosts()
     }, [user])
     return (
-        <div>
+        <div className="layout">
             {user ? (
                 <>
                     <Header />
-                    <h1>Welcome {user?.fullname}</h1>
+                    {/* <h1>Welcome {user?.fullname}</h1> */}
+                    <Navigation />
                     <PostList>
                         {posts.map((post) => (
                             <PostItem key={post?._id} post={post} />
                         ))}
                     </PostList>
-                    <CreatePost />
-                    <Navigation />
+                    <h1>Followers</h1>
+                    {/* <CreatePost /> */}
                 </>
             ) : (
                 <Loader width={16} height={16} borderWidth={4} />
