@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import PostList from '../components/PostList'
 import PostItem from '../components/PostItem'
 import Navigation from '../components/Navigation'
+import Header from '../components/Header'
 export default function Home() {
     const { user, isAuthenticated } = useContext(UserContext)
     const [posts, setPosts] = useState([])
@@ -13,7 +14,7 @@ export default function Home() {
     useEffect(() => {
         if (!isAuthenticated) navigate('/login', { replace: true })
     }, [isAuthenticated, navigate])
-    console.log(user)
+
     useEffect(() => {
         async function getUserPosts() {
             try {
@@ -42,6 +43,7 @@ export default function Home() {
         <div>
             {user ? (
                 <>
+                    <Header />
                     <h1>Welcome {user?.fullname}</h1>
                     <PostList>
                         {posts.map((post) => (
@@ -51,7 +53,9 @@ export default function Home() {
                     <CreatePost />
                     <Navigation />
                 </>
-            ) : null}
+            ) : (
+                <Loader width={16} height={16} borderWidth={4} />
+            )}
         </div>
     )
 }
