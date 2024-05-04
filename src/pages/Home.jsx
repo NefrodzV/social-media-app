@@ -14,10 +14,10 @@ export default function Home() {
     }, [isAuthenticated, navigate])
 
     useEffect(() => {
-        async function getUserPosts() {
+        async function getPosts() {
             try {
                 const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/users/me/posts`,
+                    `${import.meta.env.VITE_API_URL}/posts`,
                     {
                         mode: 'cors',
                         credentials: 'include',
@@ -26,17 +26,43 @@ export default function Home() {
 
                 const json = await response.json()
                 if (!response.ok) {
-                    console.log('Get auth user posts failed:' + json)
+                    console.log('GET public error response' + json)
                     return
                 }
-                console.log(json)
+                console.log('posts')
+                console.log(json.posts)
                 setPosts(json.posts)
             } catch (e) {
-                throw new Error('GET auth user posts failed: ' + e)
+                throw new Error('GET public posts error: ' + e)
             }
         }
-        if (user) getUserPosts()
-    }, [user])
+
+        getPosts()
+    }, [])
+    //     useEffect(() => {
+    //         async function getUserPosts() {
+    //             try {
+    //                 const response = await fetch(
+    //                     `${import.meta.env.VITE_API_URL}/users/me/posts`,
+    //                     {
+    //                         mode: 'cors',
+    //                         credentials: 'include',
+    //                     }
+    //                 )
+    //
+    //                 const json = await response.json()
+    //                 if (!response.ok) {
+    //                     console.log('Get auth user posts failed:' + json)
+    //                     return
+    //                 }
+    //                 console.log(json)
+    //                 setPosts(json.posts)
+    //             } catch (e) {
+    //                 throw new Error('GET auth user posts failed: ' + e)
+    //             }
+    //         }
+    //         if (user) getUserPosts()
+    //     }, [user])
 
     function openHandler() {
         setShow(true)
