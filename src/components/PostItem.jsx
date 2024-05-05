@@ -6,9 +6,9 @@ export default function PostItem({ post }) {
         <li data-id={post?._id}>
             <div>{post?.user?.firstName + ' ' + post?.user?.lastName}</div>
             <div>{post.text}</div>
-            <CommentList>
+            <CommentList postId={post?._id}>
                 {post.comments.map((comment) => (
-                    <CommentItem key={comment._id} comment={comment} />
+                    <CommentItem key={comment?._id} comment={comment} />
                 ))}
             </CommentList>
         </li>
