@@ -1,4 +1,23 @@
-export default function CommentList({ postId, children }) {
+import CommentItem from './CommentItem'
+export default function CommentList({ postId, comments }) {
+    function updateCommentHandler() {
+        console.log('update comment')
+    }
+    async function deleteCommentHandler(commentId) {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/posts/${postId}/comments/${commentId}`,
+                {
+                    method: 'DELETE',
+                    credentials: 'include',
+                    mode: 'cors',
+                }
+            )
+        } catch (e) {
+            throw new Error('DELETE comment error: ' + e)
+        }
+    }
+
     async function sendComment(data) {
         try {
             const response = await fetch(
@@ -19,7 +38,6 @@ export default function CommentList({ postId, children }) {
                 return
             }
             console.log('Success sending comment to post:' + postId)
-            console.log(await response.json())
         } catch (e) {
             throw new Error('POST comment error: ' + e)
         }
@@ -31,14 +49,23 @@ export default function CommentList({ postId, children }) {
     return (
         <>
             <div>Comments</div>
-            <ul>{children}</ul>
+            <ul>
+                {comments?.map((comment) => (
+                    <CommentItem
+                        key={comment._id}
+                        comment={comment}
+                        updateComment={updateCommentHandler}
+                        deleteComment={deleteCommentHandler}
+                    />
+                ))}
+            </ul>
             <form onSubmit={onSubmitHandler}>
                 <input type="hidden" name="postId" value={postId} />
                 <input
                     type="text"
                     name="text"
                     placeholder={
-                        children?.length
+                        comments?.length
                             ? 'Write a comment'
                             : 'Be the first one to comment'
                     }
