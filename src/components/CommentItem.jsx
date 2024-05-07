@@ -14,7 +14,13 @@ export default function CommentItem({ comment, updateComment, deleteComment }) {
                     display: comment.user.mine ? '' : 'none',
                 }}
             >
-                <button onClick={updateComment} type="button">
+                <button
+                    onClick={updateComment.bind('comment', {
+                        id: comment._id,
+                        text: comment.text,
+                    })}
+                    type="button"
+                >
                     update
                 </button>
                 <button onClick={() => setShow(true)} type="button">
