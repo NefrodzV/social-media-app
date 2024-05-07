@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { STATUS } from '../constants'
+import PropTypes from 'prop-types'
 export default function UpdateCommentForm({
     postId,
     comment,
@@ -51,4 +52,11 @@ export default function UpdateCommentForm({
             </button>
         </form>
     )
+}
+
+UpdateCommentForm.propTypes = {
+    postId: PropTypes.string,
+    comment: PropTypes.object,
+    cancel: PropTypes.func,
+    onChangeComment: PropTypes.func,
 }
