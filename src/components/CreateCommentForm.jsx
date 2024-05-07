@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 export default function CreateCommentForm({ postId, isFirstComment }) {
     async function sendComment(data) {
         try {
@@ -35,12 +36,15 @@ export default function CreateCommentForm({ postId, isFirstComment }) {
                 name="text"
                 placeholder={
                     isFirstComment
-                        ? 'Write a comment'
-                        : 'Be the first one to comment'
+                        ? 'Be the first one to comment'
+                        : 'Write a comment'
                 }
             />
             <button>submit</button>
         </form>
     )
 }
-CreateCommentForm.
+CreateCommentForm.propTypes = {
+    postId: PropTypes.string,
+    isFirstComment: PropTypes.bool,
+}
