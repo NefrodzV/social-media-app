@@ -1,7 +1,11 @@
 import CommentItem from './CommentItem'
+import { useState } from 'react'
+import CreateCommentForm from './CreateCommentForm'
 export default function CommentList({ postId, comments }) {
-    function updateCommentHandler() {
-        console.log('update comment')
+    const [mode, setMode] = useState('create')
+    const [text, setText] = useState('')
+    function updateCommentHandler(id, text) {
+        setText(text)
     }
     async function deleteCommentHandler(commentId) {
         try {
@@ -18,34 +22,6 @@ export default function CommentList({ postId, comments }) {
         }
     }
 
-    async function sendComment(data) {
-        try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`,
-                {
-                    method: 'POST',
-                    mode: 'cors',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                }
-            )
-
-            if (!response.ok) {
-                console.log('Error sending comment in post' + postId)
-                return
-            }
-            console.log('Success sending comment to post:' + postId)
-        } catch (e) {
-            throw new Error('POST comment error: ' + e)
-        }
-    }
-    function onSubmitHandler(e) {
-        e.preventDefault()
-        sendComment(Object.fromEntries(new FormData(e.target)))
-    }
     return (
         <>
             <div>Comments</div>
@@ -59,19 +35,7 @@ export default function CommentList({ postId, comments }) {
                     />
                 ))}
             </ul>
-            <form onSubmit={onSubmitHandler}>
-                <input type="hidden" name="postId" value={postId} />
-                <input
-                    type="text"
-                    name="text"
-                    placeholder={
-                        comments?.length
-                            ? 'Write a comment'
-                            : 'Be the first one to comment'
-                    }
-                />
-                <button>submit</button>
-            </form>
+            <CreateCommentForm postId={postId} />
         </>
     )
 }
