@@ -1,11 +1,21 @@
 import CommentItem from './CommentItem'
 import { useState } from 'react'
 import CreateCommentForm from './CreateCommentForm'
+import UpdateCommentForm from './UpdateCommentForm'
 export default function CommentList({ postId, comments }) {
-    const [mode, setMode] = useState('create')
-    const [text, setText] = useState('')
-    function updateCommentHandler(id, text) {
-        setText(text)
+    const [comment, setComment] = useState(null)
+
+    console.log(comment)
+    function updateCommentHandler(comment) {
+        setComment(comment)
+    }
+    function resetUpdateComment() {
+        setComment(null)
+    }
+
+    function onChangeCommentText(e) {
+        const updatedComment = { ...comment, text: e.target.value }
+        setComment(updatedComment)
     }
     async function deleteCommentHandler(commentId) {
         try {
@@ -35,7 +45,19 @@ export default function CommentList({ postId, comments }) {
                     />
                 ))}
             </ul>
-            <CreateCommentForm postId={postId} />
+            {comment ? (
+                <UpdateCommentForm
+                    postId={postId}
+                    comment={comment}
+                    cancel={resetUpdateComment}
+                    onChangeComment={onChangeCommentText}
+                />
+            ) : (
+                <CreateCommentForm
+                    postId={postId}
+                    isFirstComment={comments.length === 0}
+                />
+            )}
         </>
     )
 }
