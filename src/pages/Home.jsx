@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../App'
-import { CreatePost, Loader, NavItem } from '../components'
+import { CreatePost, Loader } from '../components'
 import { useNavigate } from 'react-router-dom'
-import { PostList, PostItem, Navigation, Header } from '../components'
+import { PostList, PostItem, Header } from '../components'
 export default function Home() {
     const { user, isAuthenticated } = useContext(UserContext)
     const [posts, setPosts] = useState([])
-
-    const [show, setShow] = useState(false)
     const navigate = useNavigate()
     useEffect(() => {
         if (!isAuthenticated) navigate('/login', { replace: true })
@@ -29,8 +27,6 @@ export default function Home() {
                     console.log('GET public error response' + json)
                     return
                 }
-                console.log('posts')
-                console.log(json.posts)
                 setPosts(json.posts)
             } catch (e) {
                 throw new Error('GET public posts error: ' + e)
@@ -64,13 +60,6 @@ export default function Home() {
     //         if (user) getUserPosts()
     //     }, [user])
 
-    function openHandler() {
-        setShow(true)
-    }
-
-    function closeHandler() {
-        setShow(false)
-    }
     return (
         <div className="layout">
             {user ? (
@@ -84,7 +73,7 @@ export default function Home() {
                         </PostList>
 
                         <div>Followers</div>
-                        <CreatePost show={show} close={closeHandler} />
+                        <CreatePost />
                     </main>
                 </>
             ) : (

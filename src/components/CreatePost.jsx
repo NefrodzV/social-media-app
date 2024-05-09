@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { STATUS } from '../constants'
 import PropTypes from 'prop-types'
-export default function CreatePost({ show, close }) {
+import { DialogContext } from '../App'
+export default function CreatePost() {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const dialogRef = useRef()
+    const { show, DIALOG_SHOW_STATE, close } = useContext(DialogContext)
     useEffect(() => {
         const dialog = dialogRef?.current
-        if (show) {
+        if (show === DIALOG_SHOW_STATE.CREATE_POST) {
             dialog.showModal()
         } else {
             dialog.close()

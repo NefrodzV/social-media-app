@@ -3,3 +3,10 @@ export const STATUS = {
     SUCCESS: 'success',
     ERROR: 'error',
 }
+
+// These constants are used to denote which dialog to open
+export const DIALOG_SHOW_STATE = {
+    CREATE_POST: 1,
+    COMMENT: 2,
+    VIEW_LIKES: 3,
+}

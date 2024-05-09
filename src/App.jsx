@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from 'react'
 import { Login, Home, Signup, Profile } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { STATUS } from './constants'
+import { STATUS, DIALOG_SHOW_STATE } from './constants'
 import { useLocalStorage } from './hooks'
+
 function App() {
     const { get } = useLocalStorage()
     const [isAuthenticated, setIsAuthenticated] = useState(
@@ -10,7 +11,7 @@ function App() {
     )
     const [status, setStatus] = useState(null)
     const [user, setUser] = useState(null)
-
+    const [show, setShow] = useState(null)
     useEffect(() => {
         async function getUser() {
             try {
@@ -25,7 +26,7 @@ function App() {
                 const json = await response.json()
                 if (!response.ok) {
                     setStatus(STATUS.ERROR)
-                    return console.log(json)
+                    return
                 }
                 setStatus(STATUS.SUCCESS)
                 setUser(json.user)
@@ -61,9 +62,19 @@ function App() {
         <UserContext.Provider
             value={{ user, isAuthenticated, setIsAuthenticated }}
         >
-            <RouterProvider router={router} />
+            <DialogContext.Provider
+                value={{
+                    show,
+                    setShow,
+                    DIALOG_SHOW_STATE,
+                    close: () => setShow(null),
+                }}
+            >
+                <RouterProvider router={router} />
+            </DialogContext.Provider>
         </UserContext.Provider>
     )
 }
 export const UserContext = createContext(null)
+export const DialogContext = createContext(null)
 export default App
