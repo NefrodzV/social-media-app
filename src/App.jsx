@@ -1,8 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
-import { Login, Home, Signup, Profile } from './pages/index'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { STATUS, DIALOG_SHOW_STATE } from './constants'
 import { useLocalStorage } from './hooks'
+import Router from './Router'
 
 function App() {
     const { get } = useLocalStorage()
@@ -40,24 +39,6 @@ function App() {
         if (!isAuthenticated) setUser(null)
     }, [isAuthenticated])
 
-    const router = createBrowserRouter([
-        {
-            path: '/',
-            element: <Home />,
-        },
-        {
-            path: '/login',
-            element: <Login />,
-            index: true,
-        },
-        {
-            path: '/signup',
-            element: <Signup />,
-        },
-
-        { path: '/profile', element: <Profile /> },
-    ])
-
     return (
         <UserContext.Provider
             value={{ user, isAuthenticated, setIsAuthenticated }}
@@ -70,7 +51,7 @@ function App() {
                     close: () => setShow(null),
                 }}
             >
-                <RouterProvider router={router} />
+                <Router />
             </DialogContext.Provider>
         </UserContext.Provider>
     )
