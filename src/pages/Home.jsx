@@ -76,22 +76,16 @@ export default function Home() {
             {user ? (
                 <>
                     <Header />
-                    {/* <h1>Welcome {user?.fullname}</h1> */}
-                    <Navigation>
-                        <NavItem>
-                            <button type="button" onClick={openHandler}>
-                                post
-                            </button>
-                        </NavItem>
-                    </Navigation>
-                    <PostList>
-                        {posts.map((post) => (
-                            <PostItem key={post?._id} post={post} />
-                        ))}
-                    </PostList>
-                    <h1>Followers</h1>
-                    {/* <CreatePost /> */}
-                    <CreatePost show={show} close={closeHandler} />
+                    <main>
+                        <PostList>
+                            {posts.map((post) => (
+                                <PostItem key={post?._id} post={post} />
+                            ))}
+                        </PostList>
+
+                        <div>Followers</div>
+                        <CreatePost show={show} close={closeHandler} />
+                    </main>
                 </>
             ) : (
                 <Loader width={16} height={16} borderWidth={4} />

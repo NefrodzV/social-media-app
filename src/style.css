@@ -3,14 +3,33 @@ html, body, #root {
     box-sizing: border-box;
 }
 
-header {
-    grid-column: span 3;
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+dialog { 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+dialog::backdrop {
+    background-color:black ;
 }
 .layout {
+    position: relative;
     height: 100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: .5fr 1fr .5fr;
-    grid-template-rows: 2rem 1fr;
+    grid-template-columns: 1fr 3fr;
+    max-width: 1280px;
+}
+main {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 2fr 1fr;
 }
 
 .loader {
@@ -31,7 +50,10 @@ header {
 .show {
     display: block;
 }
-
+.comment {
+    position: relative;
+    height: 5rem;
+}
 @keyframes loading {
     from { 
         transform: rotate(0);

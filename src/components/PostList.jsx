@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-export default function PostList({ children, title }) {
+export default function PostList({ children }) {
     return (
         <>
-            <h1 style={{ display: title ? '' : 'none' }}>{title}</h1>
-            <ul>{children}</ul>
+            <h1 style={{ display: 'none' }}>Posts</h1>
+            <section>{children}</section>
         </>
     )
 }
