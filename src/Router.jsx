@@ -1,22 +1,22 @@
-import { Login, Home, Signup, Profile } from './pages/index'
+import { LoginPage, HomePage, SignupPage } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 function Router() {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <Home />,
+            element: <HomePage />,
         },
         {
             path: '/login',
-            element: <Login />,
+            element: <LoginPage />,
             index: true,
         },
         {
             path: '/signup',
-            element: <Signup />,
+            element: <SignupPage />,
         },
 
-        { path: '/profile', element: <Profile /> },
+        // { path: '/profile', element: <Profile /> },
     ])
 
     return <RouterProvider router={router} />
