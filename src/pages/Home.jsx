@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../App'
-import { CreatePost, Loader } from '../components'
+import { Loader, PostList, PostItem, Layout } from '../components'
 import { useNavigate } from 'react-router-dom'
-import { PostList, PostItem, Header } from '../components'
 export default function Home() {
     const { user, isAuthenticated } = useContext(UserContext)
     const [posts, setPosts] = useState([])
@@ -61,24 +60,18 @@ export default function Home() {
     //     }, [user])
 
     return (
-        <div className="layout">
+        <>
             {user ? (
-                <>
-                    <Header />
-                    <main>
-                        <PostList>
-                            {posts.map((post) => (
-                                <PostItem key={post?._id} post={post} />
-                            ))}
-                        </PostList>
-
-                        <div>Followers</div>
-                        <CreatePost />
-                    </main>
-                </>
+                <Layout>
+                    <PostList>
+                        {posts.map((post) => (
+                            <PostItem key={post?._id} post={post} />
+                        ))}
+                    </PostList>
+                </Layout>
             ) : (
                 <Loader width={16} height={16} borderWidth={4} />
             )}
-        </div>
+        </>
     )
 }
