@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types'
 import Group from './Group'
+import { Link } from 'react-router-dom'
 export default function PostItem({ post }) {
+    const {
+        user: { firstName, lastName },
+    } = post
     return (
-        <article data-id={post?._id}>
+        <article className="post-item" data-id={post?._id}>
+            <Link
+                to={`/${firstName + lastName}/posts/${post?._id}`}
+                state={post}
+            >
+                Go to post by {firstName + ' ' + lastName}
+            </Link>
             <div>{post?.user?.firstName + ' ' + post?.user?.lastName}</div>
             <div>{post?.text}</div>
             <Group>
-                <button>
-                    Comment
-                    <span style={{ display: 'none' }}>Total comments</span>
-                    <span>{post?.commentCount}</span>
-                </button>
-                <button>Share</button>
+                <button>Comment</button>
                 <button>Like</button>
+                <button>Share</button>
                 <button>Bookmark</button>
             </Group>
         </article>
