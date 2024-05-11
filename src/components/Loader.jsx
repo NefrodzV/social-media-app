@@ -1,5 +1,5 @@
 import Proptypes from 'prop-types'
-export default function Loader({ height, width, borderWidth }) {
+export default function Loader({ height = 16, width = 16, borderWidth = 4 }) {
     return (
         <div
             className="loader"
