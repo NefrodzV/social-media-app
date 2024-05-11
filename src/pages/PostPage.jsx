@@ -1,6 +1,10 @@
-import { Layout } from '../components'
+import { Layout, Post } from '../components'
 import { useAuth } from '../hooks'
-export default function Post() {
+export default function PostPage() {
     useAuth()
-    return <Layout></Layout>
+    return (
+        <Layout>
+            <Post />
+        </Layout>
+    )
 }
