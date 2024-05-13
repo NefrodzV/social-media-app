@@ -4,6 +4,7 @@ import { useLocalStorage } from './hooks'
 import Router from './Router'
 
 function App() {
+    const [toasts, setToasts] = useState([])
     const { get } = useLocalStorage()
     const [isAuthenticated, setIsAuthenticated] = useState(
         get('isAuthenticated')
@@ -43,19 +44,22 @@ function App() {
         <UserContext.Provider
             value={{ user, isAuthenticated, setIsAuthenticated }}
         >
-            <DialogContext.Provider
-                value={{
-                    show,
-                    setShow,
-                    DIALOG_SHOW_STATE,
-                    close: () => setShow(null),
-                }}
-            >
-                <Router />
-            </DialogContext.Provider>
+            <ToastContext.Provider value={{ toasts, setToasts }}>
+                <DialogContext.Provider
+                    value={{
+                        show,
+                        setShow,
+                        DIALOG_SHOW_STATE,
+                        close: () => setShow(null),
+                    }}
+                >
+                    <Router />
+                </DialogContext.Provider>
+            </ToastContext.Provider>
         </UserContext.Provider>
     )
 }
+export const ToastContext = createContext(null)
 export const UserContext = createContext(null)
 export const DialogContext = createContext(null)
 export default App

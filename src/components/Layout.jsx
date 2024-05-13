@@ -1,4 +1,4 @@
-import { Header, CreatePost } from '../components'
+import { Header, CreatePost, ToastContainer } from '../components'
 export default function Layout({ children }) {
     // This is the main layout for the pages
     return (
@@ -9,6 +9,7 @@ export default function Layout({ children }) {
                 <div>Followers</div>
                 <CreatePost />
             </main>
+            <ToastContainer />
         </div>
     )
 }
