@@ -1,8 +1,18 @@
-import useToast from '../hooks/useToast'
+import { useEffect } from 'react'
+import { useToast } from '../hooks'
 import Toast from './Toast'
-import { useEffect, useState } from 'react'
 export default function ToastContainer() {
-    const { toasts } = useToast()
+    const { toasts, removeToast } = useToast()
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            removeToast(toasts[0].id)
+        }, 5000)
+
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [toasts])
     return (
         <div className="toast-container bottom">
             {toasts?.map((toast) => {
