@@ -17,9 +17,11 @@ dialog {
     bottom: 0;
     right: 0;
     left: 0;
+    animation: fade-in .5s;
 }
+
 dialog::backdrop {
-    background-color:black ;
+    background-color:rgba(0, 0, 0, 0.7) ;
 }
 .layout {
     height: 100%;
@@ -72,7 +74,6 @@ main {
     margin-bottom: 8px;
     border-radius: 5px;
     color: black;
-    /* height: 50px; */
     width: 300px;
     padding: 16px;
     box-shadow: 0 0 3px black;
@@ -86,6 +87,15 @@ main {
     animation: toast-in-right .7s;
 }
 
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 @keyframes toast-in-right {
     from {
         transform: translateX(100%);
