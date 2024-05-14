@@ -1,17 +1,17 @@
 import { createContext, useEffect, useState } from 'react'
-import { STATUS, DIALOG_SHOW_STATE } from './constants'
+import { STATUS, DIALOG_TYPE } from './constants'
 import { useLocalStorage } from './hooks'
 import Router from './Router'
 
 function App() {
     const [toasts, setToasts] = useState([])
+    const [dialog, setDialog] = useState(null)
     const { get } = useLocalStorage()
     const [isAuthenticated, setIsAuthenticated] = useState(
         get('isAuthenticated')
     )
     const [status, setStatus] = useState(null)
     const [user, setUser] = useState(null)
-    const [show, setShow] = useState(null)
     useEffect(() => {
         async function getUser() {
             try {
@@ -47,10 +47,9 @@ function App() {
             <ToastContext.Provider value={{ toasts, setToasts }}>
                 <DialogContext.Provider
                     value={{
-                        show,
-                        setShow,
-                        DIALOG_SHOW_STATE,
-                        close: () => setShow(null),
+                        dialog,
+                        setDialog,
+                        DIALOG_TYPE,
                     }}
                 >
                     <Router />
