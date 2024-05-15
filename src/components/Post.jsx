@@ -18,7 +18,7 @@ export default function Post() {
         navigate(-1)
     }
 
-    function editPostHandler() {
+    function deletePostHandler() {
         const dialog = {
             type: ALERT_DIALOG,
             title: 'Delete post confirmation',
@@ -59,8 +59,8 @@ export default function Post() {
                         <button onClick={backHandler}>Go back</button>
                         <h2>Post</h2>
                         <div className="controls">
-                            <button onClick={editPostHandler}>Edit</button>
-                            {/* <button onClick={activeHandler}>Delete</button> */}
+                            {/* <button onClick={editPostHandler}>Edit</button> */}
+                            <button onClick={deletePostHandler}>Delete</button>
                         </div>
                     </div>
 
