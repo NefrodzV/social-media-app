@@ -1,11 +1,10 @@
-import { useContext } from 'react'
 import Navigation from './Navigation'
 import NavItem from './NavItem'
-import { DialogContext } from '../App'
+import { useDialog } from '../hooks'
 export default function Header() {
-    const { setShow, DIALOG_SHOW_STATE } = useContext(DialogContext)
+    const { setDialog, DIALOG_TYPE } = useDialog()
     function openCreateDialog() {
-        setShow(DIALOG_SHOW_STATE.CREATE_POST)
+        setDialog(DIALOG_TYPE.CREATE_POST)
     }
     return (
         <header>
