@@ -1,20 +1,19 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { STATUS } from '../constants'
 import PropTypes from 'prop-types'
-import { DialogContext } from '../App'
+import { useDialog, useToast } from '../hooks'
+
 export default function CreatePost() {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const dialogRef = useRef()
-    const { show, DIALOG_SHOW_STATE, close } = useContext(DialogContext)
+    const { setDialog, closeDialog } = useDialog()
+    const { showToast } = useToast()
     useEffect(() => {
         const dialog = dialogRef?.current
-        if (show === DIALOG_SHOW_STATE.CREATE_POST) {
-            dialog.showModal()
-        } else {
-            dialog.close()
-        }
-    }, [show])
+        dialog.showModal()
+    }, [])
+
     async function post(data) {
         try {
             setStatus(STATUS.PENDING)
@@ -38,6 +37,8 @@ export default function CreatePost() {
                 return
             }
             setStatus(STATUS.SUCCESS)
+            showToast('New post created!')
+            closeDialog()
         } catch (e) {
             throw new Error('POST new post failed: ' + e)
         }
@@ -71,7 +72,7 @@ export default function CreatePost() {
                 />
                 <label htmlFor="private">Set post as private</label>
                 <button>submit</button>
-                <button type="button" onClick={close}>
+                <button type="button" onClick={closeDialog}>
                     cancel
                 </button>
             </form>
