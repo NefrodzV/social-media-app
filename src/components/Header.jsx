@@ -4,7 +4,7 @@ import { useDialog } from '../hooks'
 export default function Header() {
     const { setDialog, DIALOG_TYPE } = useDialog()
     function openCreateDialog() {
-        setDialog(DIALOG_TYPE.CREATE_POST)
+        setDialog({ type: DIALOG_TYPE.CREATE_POST })
     }
     return (
         <header>

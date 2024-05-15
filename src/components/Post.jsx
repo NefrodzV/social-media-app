@@ -1,36 +1,53 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useDeletePost, usePost } from '../hooks'
+import { useDeletePost, useDialog, usePost, useToast } from '../hooks'
 import { AlertDialog, Loader } from '../components'
-import { useState } from 'react'
 export default function Post() {
     const { postId } = useParams()
     const { post, loading } = usePost({ postId })
-    const { deleteStatus, deletePost } = useDeletePost({ postId })
-    const [editActive, setEditActive] = useState(false)
-    const [deleteActive, setDeleteActive] = useState(false)
+    const { deletePost } = useDeletePost({ postId })
+    const {
+        setDialog,
+        DIALOG_TYPE: { ALERT_DIALOG },
+        closeDialog,
+    } = useDialog()
+    // const [editActive, setEditActive] = useState(false)
+    // const [deleteActive, setDeleteActive] = useState(false)
     const navigate = useNavigate()
 
     function backHandler() {
         navigate(-1)
     }
 
-    function activeHandler(e) {
-        const id = e.target.id
-        switch (id) {
-            case 'editPost':
-                setEditActive(true)
-                break
-            case 'deletePost':
-                setDeleteActive(true)
-                break
-            default:
-                throw new Error('POST must provide a case for activeHandler')
+    function editPostHandler() {
+        const dialog = {
+            type: ALERT_DIALOG,
+            title: 'Delete post confirmation',
+            text: 'Are you sure you want to delete this post?',
+            onSubmitHandler: deletePost,
+            onCancelHandler: closeDialog,
         }
+
+        console.log(dialog)
+        setDialog(dialog)
     }
-    function deactive() {
-        if (editActive) setEditActive(false)
-        if (deleteActive) setDeleteActive(false)
-    }
+    // function activeHandler(e) {
+    //     const id = e.target.id
+    //     switch (id) {
+    //         case 'editPost':
+    //             showToast('My message from edit editing...', 'type')
+    //             // setEditActive(true)
+    //             break
+    //         case 'deletePost':
+    //             setDeleteActive(true)
+    //             break
+    //         default:
+    //             throw new Error('POST must provide a case for activeHandler')
+    //     }
+    // }
+    // function deactive() {
+    //     if (editActive) setEditActive(false)
+    //     if (deleteActive) setDeleteActive(false)
+    // }
 
     return (
         <>
@@ -42,12 +59,8 @@ export default function Post() {
                         <button onClick={backHandler}>Go back</button>
                         <h2>Post</h2>
                         <div className="controls">
-                            <button id="editPost" onClick={activeHandler}>
-                                Edit
-                            </button>
-                            <button id="deletePost" onClick={activeHandler}>
-                                Delete
-                            </button>
+                            <button onClick={editPostHandler}>Edit</button>
+                            {/* <button onClick={activeHandler}>Delete</button> */}
                         </div>
                     </div>
 
@@ -72,13 +85,13 @@ export default function Post() {
                     <section>
                         <h2>Post comments</h2>
                     </section>
-                    <AlertDialog
+                    {/* <AlertDialog
                         title={'Delete post confirmation'}
                         text={'Are you sure you want to delete this post?'}
                         onCancel={deactive}
                         onSubmit={deletePost}
                         isActive={deleteActive}
-                    />
+                    /> */}
                 </section>
             )}
         </>

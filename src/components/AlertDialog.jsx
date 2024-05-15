@@ -1,24 +1,12 @@
 import { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-export default function AlertDialog({
-    title,
-    text,
-    onSubmit,
-    onCancel,
-    isActive,
-}) {
+export default function AlertDialog({ title, text, onSubmit, onCancel }) {
     const dialogRef = useRef()
+
     useEffect(() => {
         const dialogEl = dialogRef?.current
-
-        console.log(dialogEl)
-        console.log(isActive)
-        if (isActive) {
-            dialogEl.showModal()
-        } else {
-            dialogEl.close()
-        }
-    }, [isActive])
+        dialogEl.showModal()
+    }, [])
 
     return (
         <dialog ref={dialogRef}>
