@@ -50,6 +50,9 @@ function App() {
                         dialog,
                         setDialog,
                         DIALOG_TYPE,
+                        closeDialog: () => {
+                            setDialog(null)
+                        },
                     }}
                 >
                     <Router />
