@@ -9,4 +9,5 @@ export const DIALOG_TYPE = {
     CREATE_POST: 1,
     COMMENT: 2,
     VIEW_LIKES: 3,
+    ALERT_DIALOG: 4,
 }
