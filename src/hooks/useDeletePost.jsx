@@ -9,6 +9,7 @@ export default function useDeletePost({ postId }) {
             setStatus(PENDING)
             const url = import.meta.env.VITE_API_URL
             const response = await fetch(url + '/posts/' + postId, {
+                method: 'DELETE',
                 credentials: 'include',
                 mode: 'cors',
             })
