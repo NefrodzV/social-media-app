@@ -10,4 +10,5 @@ export const DIALOG_TYPE = {
     COMMENT: 2,
     VIEW_LIKES: 3,
     ALERT_DIALOG: 4,
+    MODAL: 5,
 }
