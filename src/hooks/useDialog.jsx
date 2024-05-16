@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 import { DialogContext } from '../App'
 import { DIALOG_TYPE } from '../constants'
+
 export default function useDialog() {
     const {
         setDialog,
         dialog,
-        DIALOG_TYPE: { MODAL },
+        DIALOG_TYPE: { MODAL, ALERT_DIALOG },
         closeDialog,
     } = useContext(DialogContext)
 
@@ -20,6 +21,23 @@ export default function useDialog() {
 
         setDialog(dialog)
     }
-    
-    return { setDialog, dialog, showModal, DIALOG_TYPE, closeDialog }
+
+    function showAlertDialog(title, text, onSubmitHandler, onCancelHandler) {
+        const dialog = {
+            type: ALERT_DIALOG,
+            title,
+            text,
+            onSubmitHandler,
+            onCancelHandler,
+        }
+        setDialog(dialog)
+    }
+    return {
+        setDialog,
+        dialog,
+        showModal,
+        showAlertDialog,
+        DIALOG_TYPE,
+        closeDialog,
+    }
 }
