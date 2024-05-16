@@ -6,7 +6,7 @@ import Router from './Router'
 function App() {
     const [toasts, setToasts] = useState([])
     const [dialog, setDialog] = useState(null)
-    const { get } = useLocalStorage()
+    const { get, set } = useLocalStorage()
     const [isAuthenticated, setIsAuthenticated] = useState(
         get('isAuthenticated')
     )
@@ -32,6 +32,7 @@ function App() {
                 setUser(json.user)
             } catch (e) {
                 setStatus(STATUS.ERROR)
+                set('isAuthenticated', false)
                 throw new Error('GET auth user error ' + e)
             }
         }
@@ -42,7 +43,7 @@ function App() {
 
     return (
         <UserContext.Provider
-            value={{ user, isAuthenticated, setIsAuthenticated }}
+            value={{ user, status, isAuthenticated, setIsAuthenticated }}
         >
             <ToastContext.Provider value={{ toasts, setToasts }}>
                 <DialogContext.Provider
