@@ -6,12 +6,7 @@ export default function Post() {
     const { postId } = useParams()
     const { post, loading } = usePost({ postId })
     const { deleteStatus, deletePost } = useDeletePost({ postId })
-    const {
-        setDialog,
-        DIALOG_TYPE: { ALERT_DIALOG },
-        closeDialog,
-        showModal,
-    } = useDialog()
+    const { closeDialog, showModal, showAlertDialog } = useDialog()
     const navigate = useNavigate()
 
     if (deleteStatus === 'SUCCESS') backHandler()
@@ -20,20 +15,16 @@ export default function Post() {
     }
 
     function deletePostHandler() {
-        const dialog = {
-            type: ALERT_DIALOG,
-            title: 'Delete post confirmation',
-            text: 'Are you sure you want to delete this post?',
-            onSubmitHandler: deletePost,
-            onCancelHandler: closeDialog,
-        }
-        setDialog(dialog)
+        showAlertDialog(
+            'Delete post confirmation',
+            'Are you sure you want to delete this post?',
+            deletePost,
+            closeDialog
+        )
     }
-    function updatePost() {
-        console.log('update post')
-    }
+
     function editPostHandler() {
-        showModal(<EditPostForm postId={postId} />)
+        showModal(<EditPostForm post={post} />)
     }
 
     return (
