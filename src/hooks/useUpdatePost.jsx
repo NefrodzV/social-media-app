@@ -26,5 +26,5 @@ export default function useUpdatePost({ postId }) {
         [ERROR, PENDING, SUCCESS, postId]
     )
 
-    return { updateStatus: status, update: updatePostHandler }
+    return { status, update: updatePostHandler }
 }
