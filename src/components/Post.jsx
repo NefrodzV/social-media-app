@@ -1,19 +1,20 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useDeletePost, useDialog, usePost, useToast } from '../hooks'
-import { AlertDialog, Loader } from '../components'
+import { useDeletePost, useDialog, usePost } from '../hooks'
+import { Loader } from '../components'
+import EditPostForm from './EditPostForm'
 export default function Post() {
     const { postId } = useParams()
     const { post, loading } = usePost({ postId })
-    const { deletePost } = useDeletePost({ postId })
+    const { deleteStatus, deletePost } = useDeletePost({ postId })
     const {
         setDialog,
         DIALOG_TYPE: { ALERT_DIALOG },
         closeDialog,
+        showModal,
     } = useDialog()
-    // const [editActive, setEditActive] = useState(false)
-    // const [deleteActive, setDeleteActive] = useState(false)
     const navigate = useNavigate()
 
+    if (deleteStatus === 'SUCCESS') backHandler()
     function backHandler() {
         navigate(-1)
     }
@@ -26,28 +27,14 @@ export default function Post() {
             onSubmitHandler: deletePost,
             onCancelHandler: closeDialog,
         }
-
-        console.log(dialog)
         setDialog(dialog)
     }
-    // function activeHandler(e) {
-    //     const id = e.target.id
-    //     switch (id) {
-    //         case 'editPost':
-    //             showToast('My message from edit editing...', 'type')
-    //             // setEditActive(true)
-    //             break
-    //         case 'deletePost':
-    //             setDeleteActive(true)
-    //             break
-    //         default:
-    //             throw new Error('POST must provide a case for activeHandler')
-    //     }
-    // }
-    // function deactive() {
-    //     if (editActive) setEditActive(false)
-    //     if (deleteActive) setDeleteActive(false)
-    // }
+    function updatePost() {
+        console.log('update post')
+    }
+    function editPostHandler() {
+        showModal(<EditPostForm postId={postId} />)
+    }
 
     return (
         <>
@@ -59,7 +46,7 @@ export default function Post() {
                         <button onClick={backHandler}>Go back</button>
                         <h2>Post</h2>
                         <div className="controls">
-                            {/* <button onClick={editPostHandler}>Edit</button> */}
+                            <button onClick={editPostHandler}>Edit</button>
                             <button onClick={deletePostHandler}>Delete</button>
                         </div>
                     </div>
@@ -85,13 +72,6 @@ export default function Post() {
                     <section>
                         <h2>Post comments</h2>
                     </section>
-                    {/* <AlertDialog
-                        title={'Delete post confirmation'}
-                        text={'Are you sure you want to delete this post?'}
-                        onCancel={deactive}
-                        onSubmit={deletePost}
-                        isActive={deleteActive}
-                    /> */}
                 </section>
             )}
         </>
