@@ -1,10 +1,11 @@
 import Navigation from './Navigation'
 import NavItem from './NavItem'
 import { useDialog } from '../hooks'
+import PostForm from './PostForm'
 export default function Header() {
-    const { setDialog, DIALOG_TYPE } = useDialog()
+    const { showModal, DIALOG_TYPE } = useDialog()
     function openCreateDialog() {
-        setDialog({ type: DIALOG_TYPE.CREATE_POST })
+        showModal(<PostForm />)
     }
     return (
         <header>

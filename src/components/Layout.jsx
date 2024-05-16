@@ -1,4 +1,4 @@
-import { Header, CreatePost, ToastContainer, AlertDialog } from '../components'
+import { Header, ToastContainer, AlertDialog, Modal } from '../components'
 import { useDialog, useToast } from '../hooks'
 export default function Layout({ children }) {
     // This is the main layout for the pages
@@ -8,11 +8,8 @@ export default function Layout({ children }) {
     function dialogRenderHandler(dialog) {
         let component = null
         const type = dialog.type
-        const { CREATE_POST, COMMENT, ALERT_DIALOG } = DIALOG_TYPE
+        const { ALERT_DIALOG, MODAL } = DIALOG_TYPE
         switch (type) {
-            case CREATE_POST:
-                component = <CreatePost />
-                break
             case ALERT_DIALOG:
                 component = (
                     <AlertDialog
@@ -22,6 +19,10 @@ export default function Layout({ children }) {
                         onCancel={dialog.onCancelHandler}
                     />
                 )
+                break
+
+            case MODAL:
+                component = <Modal>{dialog.component}</Modal>
                 break
             default:
                 throw new Error('DIALOG TYPE NOT HANDLED' + type)

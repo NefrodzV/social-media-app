@@ -3,16 +3,11 @@ import { STATUS } from '../constants'
 import PropTypes from 'prop-types'
 import { useDialog, useToast } from '../hooks'
 
-export default function CreatePost() {
+export default function PostForm() {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
-    const dialogRef = useRef()
-    const { setDialog, closeDialog } = useDialog()
+    const { closeDialog } = useDialog()
     const { showToast } = useToast()
-    useEffect(() => {
-        const dialog = dialogRef?.current
-        dialog.showModal()
-    }, [])
 
     async function post(data) {
         try {
@@ -48,38 +43,32 @@ export default function CreatePost() {
         post(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <dialog ref={dialogRef}>
+        <form noValidate onSubmit={onSubmitHandler}>
             <h1>Make a new post</h1>
-            <form noValidate onSubmit={onSubmitHandler}>
-                <textarea
-                    name="text"
-                    id="text"
-                    cols="30"
-                    rows="10"
-                    placeholder="What are you thinking about?"
-                ></textarea>
-                <input
-                    type="checkbox"
-                    name="privatePost"
-                    onClick={(e) => {
-                        const checkbox = e.target
-                        if (checkbox.checked === true) {
-                            checkbox.value = true
-                        } else {
-                            checkbox.value = false
-                        }
-                    }}
-                />
-                <label htmlFor="private">Set post as private</label>
-                <button>submit</button>
-                <button type="button" onClick={closeDialog}>
-                    cancel
-                </button>
-            </form>
-        </dialog>
+            <textarea
+                name="text"
+                id="text"
+                cols="30"
+                rows="10"
+                placeholder="What are you thinking about?"
+            ></textarea>
+            <input
+                type="checkbox"
+                name="privatePost"
+                onClick={(e) => {
+                    const checkbox = e.target
+                    if (checkbox.checked === true) {
+                        checkbox.value = true
+                    } else {
+                        checkbox.value = false
+                    }
+                }}
+            />
+            <label htmlFor="private">Set post as private</label>
+            <button>submit</button>
+            <button type="button" onClick={closeDialog}>
+                cancel
+            </button>
+        </form>
     )
-}
-CreatePost.propTypes = {
-    show: PropTypes.bool,
-    close: PropTypes.func,
 }
