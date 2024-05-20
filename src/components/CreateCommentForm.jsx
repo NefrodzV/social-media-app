@@ -1,5 +1,12 @@
 import PropTypes from 'prop-types'
-export default function CreateCommentForm({ postId, isFirstComment }) {
+import { useDialog, useToast } from '../hooks'
+export default function CreateCommentForm({
+    postId,
+    isFirstComment,
+    onSuccessHandler,
+}) {
+    const { closeDialog } = useDialog()
+    const { showToast } = useToast()
     async function sendComment(data) {
         try {
             const response = await fetch(
@@ -20,6 +27,9 @@ export default function CreateCommentForm({ postId, isFirstComment }) {
                 return
             }
             console.log('Success sending comment to post:' + postId)
+            closeDialog()
+            onSuccessHandler ? onSubmitHandler() : null
+            showToast('Comment written successfully!')
         } catch (e) {
             throw new Error('POST comment error: ' + e)
         }
@@ -47,4 +57,5 @@ export default function CreateCommentForm({ postId, isFirstComment }) {
 CreateCommentForm.propTypes = {
     postId: PropTypes.string,
     isFirstComment: PropTypes.bool,
+    onSuccessHandler: PropTypes.func,
 }
