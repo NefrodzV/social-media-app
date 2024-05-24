@@ -1,63 +1,27 @@
+import { useComments, useDialog, useDeleteComment } from '../hooks'
 import CommentItem from './CommentItem'
-import { useState } from 'react'
-import CreateCommentForm from './CreateCommentForm'
-import UpdateCommentForm from './UpdateCommentForm'
-export default function CommentList({ postId, comments }) {
-    const [comment, setComment] = useState(null)
-
-    console.log(comment)
-    function updateCommentHandler(comment) {
-        setComment(comment)
+export default function CommentList({ postId }) {
+    const { comments, removeComment } = useComments({ postId })
+    const { showModal, showAlertDialog, closeDialog } = useDialog()
+    const { deleteComment } = useDeleteComment(postId, removeComment)
+    function deleteHandler(id) {
+        showAlertDialog(
+            'Delete comment',
+            'Are you sure you want to delete this comment?',
+            deleteComment.bind('id', id),
+            closeDialog
+        )
     }
-    function resetUpdateComment() {
-        setComment(null)
-    }
-
-    function onChangeCommentText(e) {
-        const updatedComment = { ...comment, text: e.target.value }
-        setComment(updatedComment)
-    }
-    async function deleteCommentHandler(commentId) {
-        try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/posts/${postId}/comments/${commentId}`,
-                {
-                    method: 'DELETE',
-                    credentials: 'include',
-                    mode: 'cors',
-                }
-            )
-        } catch (e) {
-            throw new Error('DELETE comment error: ' + e)
-        }
-    }
-
     return (
-        <>
-            <div>Comments</div>
-            <ul>
-                {comments?.map((comment) => (
-                    <CommentItem
-                        key={comment._id}
-                        comment={comment}
-                        updateComment={updateCommentHandler}
-                        deleteComment={deleteCommentHandler}
-                    />
-                ))}
-            </ul>
-            {comment ? (
-                <UpdateCommentForm
-                    postId={postId}
+        <section>
+            <h2>Post comments</h2>
+            {comments?.map((comment) => (
+                <CommentItem
+                    key={comment._id}
                     comment={comment}
-                    cancel={resetUpdateComment}
-                    onChangeComment={onChangeCommentText}
+                    deleteHandler={deleteHandler}
                 />
-            ) : (
-                <CreateCommentForm
-                    postId={postId}
-                    isFirstComment={comments.length === 0}
-                />
-            )}
-        </>
+            ))}
+        </section>
     )
 }
