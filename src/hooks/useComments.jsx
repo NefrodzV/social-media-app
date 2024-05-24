@@ -5,6 +5,7 @@ export default function useComments({ postId }) {
     const [status, setStatus] = useState(null)
     const { ERROR, SUCCESS, PENDING } = STATUS
     const [loading, setLoading] = useState(false)
+
     useEffect(() => {
         async function getComments() {
             try {
@@ -27,6 +28,7 @@ export default function useComments({ postId }) {
                 throw new Error('GET comments error:' + e)
             }
         }
+        if (postId) getComments()
     }, [postId])
 
     useEffect(() => {
@@ -34,5 +36,10 @@ export default function useComments({ postId }) {
         setLoading(false)
     }, [status])
 
-    return { comments, loading }
+    function removeComment(id) {
+        const filter = comments.filter((comment) => comment._id !== id)
+        setComments(filter)
+    }
+
+    return { comments, loading, removeComment }
 }
