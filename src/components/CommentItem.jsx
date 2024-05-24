@@ -12,10 +12,7 @@ export default function CommentItem({ comment, deleteHandler, updateHandler }) {
                 }}
             >
                 <button
-                    // onClick={updateComment.bind('comment', {
-                    //     id: comment._id,
-                    //     text: comment.text,
-                    // })}
+                    onClick={updateHandler.bind('comment', comment)}
                     type="button"
                 >
                     update

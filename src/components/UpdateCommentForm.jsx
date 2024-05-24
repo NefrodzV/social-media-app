@@ -1,53 +1,36 @@
-import { useState } from 'react'
-import { STATUS } from '../constants'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+
 export default function UpdateCommentForm({
-    postId,
     comment,
-    cancel,
-    onChangeComment,
+    onSubmitHandler,
+    onCancelHandler,
 }) {
-    const [status, setStatus] = useState(null)
+    console.log(comment)
+    const [text, setText] = useState('')
 
-    async function updateComment(data) {
-        try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/posts/${postId}/comments/${comment.id}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    mode: 'cors',
-                    credentials: 'include',
-                    body: JSON.stringify(data),
-                }
-            )
+    useEffect(() => {
+        setText(comment?.text)
+    }, [comment])
 
-            if (!response.ok) {
-                setStatus(STATUS.ERROR)
-                return
-            }
-            setStatus(STATUS.SUCCESS)
-        } catch (e) {
-            setStatus(STATUS.ERROR)
-            throw new Error('PUT update comment error: ' + e)
-        }
-    }
-    function onSubmitHandler(e) {
+    function onSubmit(e) {
         e.preventDefault()
-        updateComment(Object.fromEntries(new FormData(e.target)))
+        onSubmitHandler(comment._id, Object.fromEntries(new FormData(e.target)))
+    }
+    function onChangeText(e) {
+        setText(e.target.value)
     }
     return (
-        <form onSubmit={onSubmitHandler}>
+        <form onSubmit={onSubmit}>
+            Update comment
             <input
                 type="text"
                 name="text"
-                value={comment?.text}
-                onChange={onChangeComment}
+                value={text}
+                onChange={onChangeText}
             />
             <button>update</button>
-            <button onClick={cancel} type="button">
+            <button onClick={onCancelHandler} type="button">
                 cancel
             </button>
         </form>
@@ -55,8 +38,7 @@ export default function UpdateCommentForm({
 }
 
 UpdateCommentForm.propTypes = {
-    postId: PropTypes.string,
     comment: PropTypes.object,
-    cancel: PropTypes.func,
-    onChangeComment: PropTypes.func,
+    onSubmitHandler: PropTypes.func,
+    onCancelHandler: PropTypes.func,
 }

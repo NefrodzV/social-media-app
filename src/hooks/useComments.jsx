@@ -27,6 +27,7 @@ export default function useComments({ postId }) {
                 throw new Error('GET comments error:' + e)
             }
         }
+        if (postId) getComments()
     }, [postId])
 
     useEffect(() => {
@@ -34,5 +35,19 @@ export default function useComments({ postId }) {
         setLoading(false)
     }, [status])
 
-    return { comments, loading }
+    function removeComment(id) {
+        const filter = comments.filter((comment) => comment._id !== id)
+        setComments(filter)
+    }
+    function updateCommentText(id, text) {
+        const map = comments.map((comment) => {
+            if (comment._id === id) {
+                comment.text = text
+            }
+            return comment
+        })
+        setComments(map)
+    }
+
+    return { comments, loading, removeComment, updateCommentText }
 }
