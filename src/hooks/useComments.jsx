@@ -5,28 +5,9 @@ export default function useComments({ postId }) {
     const [status, setStatus] = useState(null)
     const { ERROR, SUCCESS, PENDING } = STATUS
     const [loading, setLoading] = useState(false)
+
     useEffect(() => {
-        async function getComments() {
-            try {
-                setStatus(PENDING)
-                const url = import.meta.env.VITE_API_URL
-                const response = await fetch(
-                    `${url}/posts/${postId}/comments`,
-                    {
-                        credentials: 'include',
-                        mode: 'cors',
-                    }
-                )
-                const json = await response.json()
-                if (!response.ok) {
-                    return setStatus(ERROR)
-                }
-                setStatus(SUCCESS)
-                setComments(json.comments)
-            } catch (e) {
-                throw new Error('GET comments error:' + e)
-            }
-        }
+        if (postId) getComments()
     }, [postId])
 
     useEffect(() => {
@@ -34,5 +15,28 @@ export default function useComments({ postId }) {
         setLoading(false)
     }, [status])
 
-    return { comments, loading }
+    async function getComments() {
+        try {
+            setStatus(PENDING)
+            const url = import.meta.env.VITE_API_URL
+            const response = await fetch(`${url}/posts/${postId}/comments`, {
+                credentials: 'include',
+                mode: 'cors',
+            })
+            const json = await response.json()
+            if (!response.ok) {
+                return setStatus(ERROR)
+            }
+            setStatus(SUCCESS)
+            setComments(json.comments)
+        } catch (e) {
+            throw new Error('GET comments error:' + e)
+        }
+    }
+    function removeComment(id) {
+        const filter = comments.filter((comment) => comment._id !== id)
+        setComments(filter)
+    }
+
+    return { comments, loading, removeComment }
 }
