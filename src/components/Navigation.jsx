@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../App'
-import { useLocalStorage } from '../hooks'
+import { useLocalStorage, useUtils } from '../hooks'
 
 export default function Navigation({ style, children }) {
     const { user, setIsAuthenticated } = useContext(UserContext)
     const { set } = useLocalStorage()
+    const { formatFullname } = useUtils()
     async function logoutHandler() {
         try {
             const response = await fetch(
@@ -34,12 +35,16 @@ export default function Navigation({ style, children }) {
                     <Link to={`/${user?.fullname}/posts`}>My posts</Link>
                 </li>
                 <li>
-                    <Link to={`/profile`}>My profile</Link>
+                    <Link
+                        to={`/${formatFullname(user)}`}
+                        state={{
+                            id: user._id,
+                        }}
+                    >
+                        My profile
+                    </Link>
                 </li>
                 {children}
-                <li>
-                    <button onClick={logoutHandler}>Log out</button>
-                </li>
             </ul>
         </nav>
     )
