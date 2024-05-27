@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 export default function PostList({ children }) {
+    console.log(children)
     return (
-        <>
-            <h1 style={{ display: 'none' }}>Posts</h1>
-            <section>{children}</section>
-        </>
+        <section>
+            <h1>Posts</h1>
+            {children}
+        </section>
     )
 }
 PostList.propTypes = {
