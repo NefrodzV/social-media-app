@@ -1,4 +1,10 @@
-import { LoginPage, HomePage, SignupPage, PostPage } from './pages/index'
+import {
+    LoginPage,
+    HomePage,
+    SignupPage,
+    PostPage,
+    UserPage,
+} from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 function Router() {
     const router = createBrowserRouter([
@@ -20,7 +26,10 @@ function Router() {
             path: '/:user/posts/:postId',
             element: <PostPage />,
         },
-
+        {
+            path: '/:user',
+            element: <UserPage />,
+        },
         // { path: '/profile', element: <Profile /> },
     ])
 
