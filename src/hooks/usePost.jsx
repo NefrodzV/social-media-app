@@ -25,12 +25,12 @@ export default function usePost({ postId }) {
             }
         }
         if (postId) getPost()
-    }, [postId])
+    }, [ERROR, PENDING, SUCCESS, postId])
 
     useEffect(() => {
         if (status === PENDING) return setLoading(true)
         setLoading(false)
-    }, [status, setLoading])
+    }, [status, setLoading, PENDING])
 
     return { post, loading }
 }
