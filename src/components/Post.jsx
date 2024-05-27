@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeletePost, useDialog, usePost } from '../hooks'
-import { Loader } from '../components'
+import { CommentList, Loader } from '../components'
 import EditPostForm from './EditPostForm'
 export default function Post() {
     const { postId } = useParams()
@@ -60,9 +60,7 @@ export default function Post() {
                         </div>
                         <p className="body">{post?.text}</p>
                     </article>
-                    <section>
-                        <h2>Post comments</h2>
-                    </section>
+                    <CommentList postId={post?._id} />
                 </section>
             )}
         </>
