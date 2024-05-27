@@ -26,9 +26,8 @@ export default function CreateCommentForm({
                 console.log('Error sending comment in post' + postId)
                 return
             }
-            console.log('Success sending comment to post:' + postId)
             closeDialog()
-            onSuccessHandler ? onSubmitHandler() : null
+            onSuccessHandler ? onSuccessHandler() : null
             showToast('Comment written successfully!')
         } catch (e) {
             throw new Error('POST comment error: ' + e)
