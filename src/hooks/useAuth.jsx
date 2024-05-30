@@ -1,10 +1,9 @@
-import { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
+import { useContext } from 'react'
+import { AuthContext } from '../contexts'
 export default function useAuth() {
-    const { isAuthenticated } = useContext(UserContext)
-    const navigate = useNavigate()
-    useEffect(() => {
-        if (!isAuthenticated) navigate('/login', { replace: true })
-    }, [isAuthenticated, navigate])
+    const authContext = useContext(AuthContext)
+    if (!authContext) {
+        throw new Error('useAuth not initialized in AuthContext Provider')
+    }
+    return authContext
 }
