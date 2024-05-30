@@ -1,10 +1,14 @@
+import { useEffect } from 'react'
 import { Loader, PostList, PostItem, Layout } from '../components'
-import { useAuth, usePosts, useAuthUser } from '../hooks'
+import { useAuth, usePosts } from '../hooks'
+import { useNavigate } from 'react-router-dom'
 export default function Home() {
-    const { user } = useAuthUser()
+    const { user } = useAuth()
     const { posts } = usePosts()
-    useAuth()
-
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!user) navigate('/login')
+    }, [user, navigate])
     return (
         <>
             {user ? (
