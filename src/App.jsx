@@ -43,7 +43,13 @@ function App() {
 
     return (
         <UserContext.Provider
-            value={{ user, status, isAuthenticated, setIsAuthenticated }}
+            value={{
+                user,
+                status,
+                isAuthenticated,
+                setIsAuthenticated,
+                setUser,
+            }}
         >
             <ToastContext.Provider value={{ toasts, setToasts }}>
                 <DialogContext.Provider

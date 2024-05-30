@@ -5,5 +5,10 @@ export default function useAuthUser() {
     const userContext = useContext(UserContext)
     if (!userContext) throw new Error('User context giving null')
 
-    return userContext
+    const { user, setUser } = userContext
+    function updateUserImage(url) {
+        const updatedUser = { ...user, imgUrl: url }
+        setUser(updatedUser)
+    }
+    return { user, updateUserImage }
 }

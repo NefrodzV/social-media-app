@@ -31,5 +31,8 @@ export default function useUser(id) {
         if (id) getUser()
     }, [ERROR, PENDING, SUCCESS, id])
 
-    return { user, status }
+    function updateImage(url) {
+        setUser({ ...user, imgUrl: url })
+    }
+    return { user, status, updateImage }
 }
