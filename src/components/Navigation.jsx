@@ -1,32 +1,32 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../App'
-import { useLocalStorage } from '../hooks'
+import { useAuth, useLocalStorage } from '../hooks'
 
 export default function Navigation({ style, children }) {
-    const { user, setIsAuthenticated } = useContext(UserContext)
-    const { set } = useLocalStorage()
-    async function logoutHandler() {
-        try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/session/logout`,
-                {
-                    method: 'POST',
-                    credentials: 'include',
-                }
-            )
-
-            if (!response.ok) {
-                const json = await response.json()
-                throw new Error(json)
-            }
-
-            set('isAuthenticated', false)
-            setIsAuthenticated(false)
-        } catch (e) {
-            throw new Error('Error logging out: ' + e)
-        }
-    }
+    // TODO IMPLEMENT LOGOUT HERE
+    const { user, logout } = useAuth()
+    //     async function logoutHandler() {
+    //         try {
+    //             const response = await fetch(
+    //                 `${import.meta.env.VITE_API_URL}/session/logout`,
+    //                 {
+    //                     method: 'POST',
+    //                     credentials: 'include',
+    //                 }
+    //             )
+    //
+    //             if (!response.ok) {
+    //                 const json = await response.json()
+    //                 throw new Error(json)
+    //             }
+    //
+    //             set('isAuthenticated', false)
+    //             setIsAuthenticated(false)
+    //         } catch (e) {
+    //             throw new Error('Error logging out: ' + e)
+    //         }
+    //     }
     return (
         <nav>
             <ul>
@@ -37,7 +37,7 @@ export default function Navigation({ style, children }) {
                     <Link
                         to={`/${user?.fullname}`}
                         state={{
-                            id: user._id,
+                            id: user?._id,
                         }}
                     >
                         My profile
