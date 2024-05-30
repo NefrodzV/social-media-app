@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react'
 import { STATUS, DIALOG_TYPE } from './constants'
 import { useLocalStorage } from './hooks'
 import Router from './Router'
+import { AuthProvider } from './providers'
 
 function App() {
     const [toasts, setToasts] = useState([])
@@ -42,15 +43,7 @@ function App() {
     }, [isAuthenticated])
 
     return (
-        <UserContext.Provider
-            value={{
-                user,
-                status,
-                isAuthenticated,
-                setIsAuthenticated,
-                setUser,
-            }}
-        >
+        <AuthProvider>
             <ToastContext.Provider value={{ toasts, setToasts }}>
                 <DialogContext.Provider
                     value={{
@@ -65,7 +58,7 @@ function App() {
                     <Router />
                 </DialogContext.Provider>
             </ToastContext.Provider>
-        </UserContext.Provider>
+        </AuthProvider>
     )
 }
 export const ToastContext = createContext(null)
