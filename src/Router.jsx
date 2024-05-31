@@ -4,6 +4,7 @@ import {
     SignupPage,
     PostPage,
     UserPage,
+    ProfilePage,
 } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 function Router() {
@@ -30,7 +31,7 @@ function Router() {
             path: '/:user',
             element: <UserPage />,
         },
-        // { path: '/profile', element: <Profile /> },
+        { path: '/profile', element: <ProfilePage /> },
     ])
 
     return <RouterProvider router={router} />
