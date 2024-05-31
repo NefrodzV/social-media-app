@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { STATUS } from '../constants'
 import PropTypes from 'prop-types'
-import { useDialog, useToast } from '../hooks'
+import { useDialog, useNotification } from '../hooks'
 
 export default function PostForm() {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const { closeDialog } = useDialog()
-    const { showToast } = useToast()
+    const { showToast } = useNotification()
 
     async function post(data) {
         try {

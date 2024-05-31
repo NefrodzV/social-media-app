@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
-import { useDialog, useToast } from '../hooks'
+import { useDialog, useNotification } from '../hooks'
 export default function CreateCommentForm({
     postId,
     isFirstComment,
     onSuccessHandler,
 }) {
     const { closeDialog } = useDialog()
-    const { showToast } = useToast()
+    const { showToast } = useNotification()
     async function sendComment(data) {
         try {
             const response = await fetch(

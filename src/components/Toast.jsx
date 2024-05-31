@@ -1,6 +1,6 @@
-import useToast from '../hooks/useToast'
+import { useNotification } from '../hooks'
 export default function Toast({ id, message, type }) {
-    const { removeToast } = useToast()
+    const { removeToast } = useNotification()
 
     return (
         <div className={`toast bottom`} role="alert">

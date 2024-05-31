@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useDialog, useToast, useUpdatePost } from '../hooks'
+import { useDialog, useNotification, useUpdatePost } from '../hooks'
 import { STATUS } from '../constants'
 export default function EditPostForm({ post }) {
     const { closeDialog } = useDialog()
     const [text, setText] = useState('')
     const { status, update } = useUpdatePost(post?._id)
-    const { showToast } = useToast()
+    const { showToast } = useNotification()
 
     useEffect(() => {
         setText(post?.text)

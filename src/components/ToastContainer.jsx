@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useToast } from '../hooks'
+import { useNotification } from '../hooks'
 import Toast from './Toast'
 export default function ToastContainer() {
-    const { toasts, removeToast } = useToast()
+    const { toasts, removeToast } = useNotification()
 
     useEffect(() => {
         const timeout = setTimeout(() => {

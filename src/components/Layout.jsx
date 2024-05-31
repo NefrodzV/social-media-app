@@ -1,8 +1,8 @@
 import { Header, ToastContainer, AlertDialog, Modal } from '../components'
-import { useDialog, useToast } from '../hooks'
+import { useDialog, useNotification } from '../hooks'
 export default function Layout({ children }) {
     // This is the main layout for the pages
-    const { toasts } = useToast()
+    const { toasts } = useNotification()
     const { dialog, DIALOG_TYPE } = useDialog()
 
     function dialogRenderHandler(dialog) {
