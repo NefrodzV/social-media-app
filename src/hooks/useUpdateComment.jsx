@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { STATUS } from '../constants'
-import useToast from './useToast'
+import useToast from './useNotification'
 import useDialog from './useDialog'
 export default function useUpdateComment(postId, updateHandler) {
     const [status, setStatus] = useState(null)
@@ -35,5 +35,5 @@ export default function useUpdateComment(postId, updateHandler) {
         }
     }
 
-    return { updateComment }
+    return { updateComment, status }
 }
