@@ -30,8 +30,8 @@ export default function useUserPosts(id) {
                 setStatus(ERROR)
                 throw new Error('GET User posts with user id error: ' + e)
             }
-            if (id) getPostsWithUserId()
         }
+        if (id) getPostsWithUserId()
     }, [ERROR, PENDING, SUCCESS, id])
     return { posts, status }
 }
