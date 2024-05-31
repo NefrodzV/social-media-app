@@ -1,49 +1,17 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { STATUS } from '../constants'
 import { Input, Group, Loader, ErrorDisplay } from '../components/index'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
-import { useLocalStorage } from '../hooks'
+import { useAuth } from '../hooks'
 
 export default function Login() {
-    const { isAuthenticated, setIsAuthenticated } = useContext(UserContext)
-    const [status, setStatus] = useState(null)
-    const [errors, setErrors] = useState(null)
-    const { set } = useLocalStorage()
+    const { user, status, errors, login } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (isAuthenticated) navigate('/', { replace: true })
-    }, [isAuthenticated, navigate])
-    async function login(data) {
-        try {
-            setStatus(STATUS.PENDING)
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/session/login`,
-                {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                    mode: 'cors',
-                    credentials: 'include',
-                }
-            )
-            const json = await response.json()
-            if (!response.ok) {
-                setStatus(STATUS.ERROR)
-                console.log(json)
-                setErrors(json.errors)
-                return
-            }
-            // If the login response was successfull
-            setStatus(STATUS.SUCCESS)
-            set('isAuthenticated', true)
-            setIsAuthenticated(true)
-        } catch (e) {
-            setStatus(STATUS.ERROR)
-            throw new Error('Login action error: ' + e)
-        }
-    }
+        if (user) navigate('/')
+    }, [user, navigate])
+
     function loginHandler(e) {
         e.preventDefault()
         login(Object.fromEntries(new FormData(e.target)))
