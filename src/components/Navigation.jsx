@@ -1,32 +1,9 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../App'
-import { useAuth, useLocalStorage } from '../hooks'
+import { useAuth } from '../hooks'
 
 export default function Navigation({ style, children }) {
     // TODO IMPLEMENT LOGOUT HERE
     const { user, logout } = useAuth()
-    //     async function logoutHandler() {
-    //         try {
-    //             const response = await fetch(
-    //                 `${import.meta.env.VITE_API_URL}/session/logout`,
-    //                 {
-    //                     method: 'POST',
-    //                     credentials: 'include',
-    //                 }
-    //             )
-    //
-    //             if (!response.ok) {
-    //                 const json = await response.json()
-    //                 throw new Error(json)
-    //             }
-    //
-    //             set('isAuthenticated', false)
-    //             setIsAuthenticated(false)
-    //         } catch (e) {
-    //             throw new Error('Error logging out: ' + e)
-    //         }
-    //     }
     return (
         <nav>
             <ul>
