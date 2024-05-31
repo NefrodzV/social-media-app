@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { STATUS } from '../constants'
-import useToast from './useToast'
+import useNotification from './useNotification'
 import useDialog from './useDialog'
 
 export default function useDeleteComment(postId, removeHandler) {
     const { SUCCESS, ERROR, PENDING } = STATUS
     const [status, setStatus] = useState(null)
-    const { showToast } = useToast()
+    const { showToast } = useNotification()
     const { closeDialog } = useDialog()
     async function deleteComment(id) {
         try {
