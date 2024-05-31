@@ -1,11 +1,12 @@
-import { UserContext } from '../App'
 import { useContext } from 'react'
+import { AuthContext } from '../contexts'
 
 export default function useAuthUser() {
-    const userContext = useContext(UserContext)
-    if (!userContext) throw new Error('User context giving null')
+    const authContext = useContext(AuthContext)
+    if (!authContext) throw new Error('User context giving null')
 
-    const { user, setUser } = userContext
+    const { user, setUser } = authContext
+
     function updateUserImage(url) {
         const updatedUser = { ...user, imgUrl: url }
         setUser(updatedUser)
