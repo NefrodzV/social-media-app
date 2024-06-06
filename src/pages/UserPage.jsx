@@ -1,4 +1,4 @@
-import { Layout, PostList, PostItem, Loader } from '../components'
+import { Layout, PostList, PostItem, Loader, FollowerList } from '../components'
 import userIcon from '../assets/example-user.jpg'
 import { useLocation } from 'react-router-dom'
 import { useUser, useUserPosts } from '../hooks'
@@ -15,7 +15,7 @@ export default function UserPage() {
                         <div>
                             <h2>{user.fullname}</h2>
                             <img
-                                src={user?.imgUrl ? user.imgUrl : userIcon}
+                                src={user?.imgUrl ? user?.imgUrl : userIcon}
                                 alt="user profile picture"
                                 width={50}
                                 height={50}
@@ -27,6 +27,12 @@ export default function UserPage() {
                             ))}
                         </PostList>
                     </div>
+                    <FollowerList
+                        followers={user?.followers}
+                        enableAdd={true}
+                        enableDelete={false}
+                        enableEdit={false}
+                    />
                 </Layout>
             ) : (
                 <Loader />

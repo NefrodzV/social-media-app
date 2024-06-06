@@ -1,4 +1,11 @@
-import { Layout, ImageForm, PostList, PostItem, Loader } from '../components'
+import {
+    Layout,
+    ImageForm,
+    PostList,
+    PostItem,
+    Loader,
+    FollowerList,
+} from '../components'
 import { useAuth, useAuthUser, useAuthUserPosts, useDialog } from '../hooks'
 import basicUserIcon from '../assets/example-user.jpg'
 export default function ProfilePage() {
@@ -35,6 +42,11 @@ export default function ProfilePage() {
                             ))}
                         </PostList>
                     </div>
+                    <FollowerList
+                        followers={user?.followers}
+                        enableAdd={true}
+                        enableDelete={true}
+                    />
                 </Layout>
             ) : (
                 <Loader />
