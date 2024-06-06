@@ -33,10 +33,7 @@ export default function Layout({ children }) {
     return (
         <div className="layout">
             <Header />
-            <main>
-                {children}
-                <div>Followers</div>
-            </main>
+            <main>{children}</main>
             {dialog && dialogRenderHandler(dialog)}
             {toasts.length !== 0 && <ToastContainer />}
         </div>
