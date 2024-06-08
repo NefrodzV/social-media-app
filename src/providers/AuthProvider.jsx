@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { STATUS } from '../constants'
 import { AuthContext } from '../contexts'
 export function AuthProvider({ children }) {
@@ -6,6 +6,10 @@ export function AuthProvider({ children }) {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const { SUCCESS, PENDING, ERROR } = STATUS
+
+    useEffect(() => {
+        if (user) getUser()
+    }, [user])
 
     const login = async (data) => {
         try {
@@ -17,6 +21,7 @@ export function AuthProvider({ children }) {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
                     mode: 'cors',
+                    credentials: 'include',
                 }
             )
             const json = await response.json()
@@ -28,10 +33,28 @@ export function AuthProvider({ children }) {
             // If the login response was successfull
             setStatus(SUCCESS)
             setUser(json.user)
-            console.log(json)
         } catch (e) {
             setStatus(ERROR)
             throw new Error('Login action error: ' + e)
+        }
+    }
+    async function getUser() {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/users/me`,
+                {
+                    credentials: 'include',
+                    mode: 'cors',
+                }
+            )
+            const json = await response.json()
+            if (!response.ok) {
+                console.log('Error trying to get user details')
+                console.log(response)
+            }
+            console.log(json)
+        } catch (e) {
+            throw new Error('Get user details error: ' + e)
         }
     }
     async function logout() {
