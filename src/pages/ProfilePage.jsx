@@ -12,7 +12,7 @@ export default function ProfilePage() {
     const { user } = useAuth()
     const { updateImage } = useAuthUser()
     const { showModal } = useDialog()
-    const { posts } = useAuthUserPosts()
+    // const { posts } = useAuthUserPosts()
     return (
         <>
             {user ? (
@@ -37,7 +37,7 @@ export default function ProfilePage() {
                             Change image
                         </button>
                         <PostList>
-                            {posts.map((post) => (
+                            {user?.posts.map((post) => (
                                 <PostItem key={post?._id} post={post} />
                             ))}
                         </PostList>
