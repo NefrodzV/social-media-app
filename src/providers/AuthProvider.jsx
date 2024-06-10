@@ -10,11 +10,12 @@ export function AuthProvider({ children }) {
     const { set, get } = useLocalStorage()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
+        // If there is already a user no need to look for this
+        if (user) return
         const auth = get('auth')
         if (auth === undefined || auth === null) {
             return
         }
-        if (user) return
         setIsLoggedIn(true)
         setUser(auth.user)
     }, [get, set, user])
@@ -32,7 +33,6 @@ export function AuthProvider({ children }) {
                 if (!response.ok) {
                     throw new Error('GET user details error ' + json)
                 }
-                console.log('json')
                 console.log(json)
                 setUser({ ...user, requests: json.user.requests })
                 setIsLoggedIn(true)
