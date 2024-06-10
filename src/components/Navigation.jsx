@@ -11,14 +11,7 @@ export default function Navigation({ style, children }) {
                     <Link to={`/${user?.fullname}/posts`}>My posts</Link>
                 </li>
                 <li>
-                    <Link
-                        to={`/${user?.fullname}`}
-                        state={{
-                            id: user?._id,
-                        }}
-                    >
-                        My profile
-                    </Link>
+                    <Link to={`/profile`}>My profile</Link>
                 </li>
                 {children}
             </ul>
