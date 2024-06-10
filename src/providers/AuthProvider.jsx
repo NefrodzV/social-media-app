@@ -1,15 +1,49 @@
 import { useEffect, useState } from 'react'
 import { STATUS } from '../constants'
 import { AuthContext } from '../contexts'
+import { useLocalStorage } from '../hooks'
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const { SUCCESS, PENDING, ERROR } = STATUS
-
+    const { set, get } = useLocalStorage()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
-        if (user) getUser()
-    }, [user])
+        const auth = get('auth')
+        if (auth === undefined || auth === null) {
+            return
+        }
+        if (user) return
+        setIsLoggedIn(true)
+        setUser(auth.user)
+    }, [get, set, user])
+    useEffect(() => {
+        async function getUser() {
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_URL}/users/me`,
+                    {
+                        credentials: 'include',
+                        mode: 'cors',
+                    }
+                )
+                const json = await response.json()
+                if (!response.ok) {
+                    throw new Error('GET user details error ' + json)
+                }
+                console.log('json')
+                console.log(json)
+                setUser({ ...user, requests: json.user.requests })
+                setIsLoggedIn(true)
+                set('auth', { user: json.user })
+            } catch (e) {
+                throw new Error('Get user details error: ' + e)
+            }
+        }
+        if (user && !isLoggedIn) getUser()
+        if (!user) setIsLoggedIn(false)
+    }, [isLoggedIn, set, user])
 
     const login = async (data) => {
         try {
@@ -30,7 +64,6 @@ export function AuthProvider({ children }) {
                 setErrors(json.errors)
                 return
             }
-            // If the login response was successfull
             setStatus(SUCCESS)
             setUser(json.user)
         } catch (e) {
@@ -38,25 +71,7 @@ export function AuthProvider({ children }) {
             throw new Error('Login action error: ' + e)
         }
     }
-    async function getUser() {
-        try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/users/me`,
-                {
-                    credentials: 'include',
-                    mode: 'cors',
-                }
-            )
-            const json = await response.json()
-            if (!response.ok) {
-                console.log('Error trying to get user details')
-                console.log(response)
-            }
-            console.log(json)
-        } catch (e) {
-            throw new Error('Get user details error: ' + e)
-        }
-    }
+
     async function logout() {
         try {
             const response = await fetch(
