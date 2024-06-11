@@ -12,10 +12,15 @@ export default function useAddFollower() {
                 mode: 'cors',
                 credentials: 'include',
                 body: JSON.stringify({ userId: id }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
             if (!response.ok) {
+                const err = await response.json()
+                console.log(err)
                 setStatus(ERROR)
-                throw new Error('POST add follower error')
+                throw new Error(err)
             }
 
             setStatus(SUCCESS)
