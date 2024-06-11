@@ -1,18 +1,19 @@
-export default function FollowerItem({
-    user,
-    addFollower,
-    deleteFollower,
-    isAddEnabled,
-    isDeleteEnabled,
-    editing,
-}) {
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+export default function FollowerItem({ user, addFollower, deleteFollower }) {
     return (
         <article>
+            <Link to={`/${user?.fullname}`}>Go view follower profile </Link>
             {user?.fullname}
-            {editing && isDeleteEnabled && (
-                <button onClick={deleteFollower}>Remove</button>
+            {deleteFollower && <button onClick={deleteFollower}>Remove</button>}
+            {addFollower && (
+                <button onClick={addFollower.bind('id', user?._id)}>Add</button>
             )}
-            {isAddEnabled && <button onClick={addFollower}>Add</button>}
         </article>
     )
+}
+FollowerItem.propTypes = {
+    user: PropTypes.object,
+    addFollower: PropTypes.func,
+    deleteFollower: PropTypes.func,
 }
