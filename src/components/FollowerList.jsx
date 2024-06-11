@@ -8,8 +8,6 @@ export default function FollowerList({
     deleteFollowerHandler,
 }) {
     const [editing, setEditing] = useState(false)
-    // const { addFollowerHandler } = useAddFollower()
-    // const { deleteFollowerHandler } = useDeleteFollower()
     return (
         <section>
             <h1>{title}</h1>
