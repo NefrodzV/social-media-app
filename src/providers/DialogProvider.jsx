@@ -32,7 +32,7 @@ export function DialogProvider({ children }) {
     }
     return (
         <DialogContext.Provider
-            value={(dialog, showAlertDialog, showModal, closeDialog)}
+            value={{ dialog, showAlertDialog, showModal, closeDialog }}
         >
             {children}
         </DialogContext.Provider>
