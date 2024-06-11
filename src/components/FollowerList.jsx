@@ -1,29 +1,22 @@
 import { useState } from 'react'
 import FollowerItem from './FollowerItem'
-import {
-    useAddFollower,
-    useDeleteFollower,
-    useUpdateFollowerStatus,
-} from '../hooks'
 import PropTypes from 'prop-types'
 export default function FollowerList({
+    title,
     followers,
-    enableAdd,
-    enableEdit,
-    enableDelete,
+    addFollowerHandler,
+    deleteFollowerHandler,
 }) {
     const [editing, setEditing] = useState(false)
-    const { addFollowerHandler } = useAddFollower()
-    const { deleteFollowerHandler } = useDeleteFollower()
+    // const { addFollowerHandler } = useAddFollower()
+    // const { deleteFollowerHandler } = useDeleteFollower()
     return (
         <section>
-            <h1>Follower Recomendations</h1>
-            {followers?.map((follower) => (
+            <h1>{title}</h1>
+            {followers?.map((user) => (
                 <FollowerItem
-                    key={follower._id}
-                    user={follower}
-                    isAddEnabled={enableAdd}
-                    enableDelete={enableDelete}
+                    key={user._id}
+                    user={user}
                     addFollower={addFollowerHandler}
                     deleteFollower={deleteFollowerHandler}
                 />
@@ -32,5 +25,8 @@ export default function FollowerList({
     )
 }
 FollowerList.propTypes = {
+    title: PropTypes.string,
     followers: PropTypes.array,
+    addFollowerHandler: PropTypes.func,
+    deleteFollowerHandler: PropTypes.func,
 }
