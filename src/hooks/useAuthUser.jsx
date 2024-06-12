@@ -11,5 +11,14 @@ export default function useAuthUser() {
         const updatedUser = { ...user, imgUrl: url }
         setUser(updatedUser)
     }
-    return { user, updateUserImage }
+
+    function removeSentRequest(id) {
+        const sentRequests = user?.requests?.sent
+        const filteredSentRequests = sentRequests.filter(
+            (request) => request._id !== id
+        )
+        const updatedRequests = { ...user.requests, sent: filteredSentRequests }
+        setUser({ ...user, requests: updatedRequests })
+    }
+    return { user, updateUserImage, removeSentRequest }
 }
