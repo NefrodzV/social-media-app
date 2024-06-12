@@ -10,17 +10,20 @@ export default function Inbox() {
                     <div>No pending requests</div>
                 )}
                 {user?.requests?.pending.map((request) => (
-                    <li
-                        key={request._id}
-                    >{`sender: ${request.sender} , reciever: ${request.reciever}`}</li>
+                    <li key={request._id}>
+                        {`sender: ${request.sender} , reciever: ${request.reciever}`}
+                        <button>accept</button>
+                        <button>reject</button>
+                    </li>
                 ))}
             </ul>
             <h2>Sent requests</h2>
             <ul>
                 {user?.requests?.sent.map((request) => (
-                    <li
-                        key={request._id}
-                    >{`sender: ${request.sender} , reciever: ${request.reciever}`}</li>
+                    <li key={request._id}>
+                        {`sender: ${request.sender} , reciever: ${request.reciever}`}
+                        <button>delete</button>
+                    </li>
                 ))}
             </ul>
         </div>
