@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Loader, PostList, PostItem, Layout, FollowerList } from '../components'
+import { Loader, PostList, PostItem, Layout, UserList } from '../components'
 import { useAuth, usePosts, useFollowers } from '../hooks'
 import { useNavigate } from 'react-router-dom'
 export default function Home() {
@@ -19,10 +19,11 @@ export default function Home() {
                             <PostItem key={post?._id} post={post} />
                         ))}
                     </PostList>
-                    <FollowerList
+
+                    <UserList
                         title={'Followers Recommendations'}
-                        followers={followers}
-                        addFollowerHandler={addFollower}
+                        users={followers}
+                        sendRequest={addFollower}
                     />
                 </Layout>
             ) : (
