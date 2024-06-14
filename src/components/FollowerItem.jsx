@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-export default function FollowerItem({ user, addFollower, deleteFollower }) {
+export default function FollowerItem({ follower, deleteFollower }) {
+    const { user } = follower
     return (
         <article>
             <Link to={`/${user?.fullname}`}>Go view follower profile </Link>
             {user?.fullname}
-            {deleteFollower && <button onClick={deleteFollower}>Remove</button>}
-            {addFollower && (
-                <button onClick={addFollower.bind('id', user?._id)}>Add</button>
+            {deleteFollower && (
+                <button onClick={deleteFollower.bind('id', follower?._id)}>
+                    Remove
+                </button>
             )}
         </article>
     )

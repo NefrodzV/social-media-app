@@ -1,21 +1,14 @@
 import { useState } from 'react'
 import FollowerItem from './FollowerItem'
 import PropTypes from 'prop-types'
-export default function FollowerList({
-    title,
-    followers,
-    addFollowerHandler,
-    deleteFollowerHandler,
-}) {
-    const [editing, setEditing] = useState(false)
+export default function FollowerList({ followers, deleteFollowerHandler }) {
     return (
         <section>
-            <h1>{title}</h1>
-            {followers?.map((user) => (
+            <h1>My followers</h1>
+            {followers?.map((follower) => (
                 <FollowerItem
-                    key={user._id}
-                    user={user}
-                    addFollower={addFollowerHandler}
+                    key={follower._id}
+                    follower={follower}
                     deleteFollower={deleteFollowerHandler}
                 />
             ))}
