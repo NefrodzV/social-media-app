@@ -28,7 +28,7 @@ export default function Inbox() {
                 )}
                 {user?.requests?.pending.map((request) => (
                     <li key={request._id}>
-                        {`sender: ${request.sender} , reciever: ${request.reciever}`}
+                        {`user: ${request.user.fullname}`}
                         <button>accept</button>
                         <button>reject</button>
                     </li>
@@ -41,7 +41,7 @@ export default function Inbox() {
                 )}
                 {user?.requests?.sent.map((request) => (
                     <li key={request._id}>
-                        {`sender: ${request.sender} , reciever: ${request.reciever}`}
+                        {`user: ${request.user.fullname}`}
                         <button
                             onClick={deleteFollowerRequest.bind(
                                 'id',
