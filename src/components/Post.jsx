@@ -46,6 +46,7 @@ export default function Post() {
                         <div className="author">
                             <Link
                                 to={`/${post?.user?.firstName}${post?.user?.lastName}`}
+                                state={{ id: post?.user?._id }}
                             >
                                 Go to
                                 {post?.user?.firstName} {post?.user?.lastName}
