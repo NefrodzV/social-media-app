@@ -4,6 +4,7 @@ export default function UserList({ title, users, sendRequest }) {
     return (
         <section>
             <h1>{title}</h1>
+            {!users && <div>No users</div>}
             {users?.map((user) => (
                 <UserItem
                     key={user?._id}
