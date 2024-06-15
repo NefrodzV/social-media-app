@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 export default function FollowerItem({ follower, deleteFollower }) {
     const { user } = follower
-    console.log(follower)
-    console.log(user)
     return (
         <article>
             <Link to={`/${user?.fullname}`} state={{ id: user?._id }}>
