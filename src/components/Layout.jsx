@@ -1,10 +1,16 @@
-import { Header, ToastContainer, AlertDialog, Modal } from '../components'
-import { useDialog, useNotification } from '../hooks'
+import {
+    Header,
+    ToastContainer,
+    AlertDialog,
+    Modal,
+    FollowerList,
+} from '../components'
+import { useDialog, useNotification, useAuthUser } from '../hooks'
 export default function Layout({ children }) {
     // This is the main layout for the pages
     const { toasts } = useNotification()
     const { dialog, DIALOG_TYPE } = useDialog()
-
+    const { user } = useAuthUser()
     function dialogRenderHandler(dialog) {
         let component = null
         const type = dialog.type
@@ -33,7 +39,10 @@ export default function Layout({ children }) {
     return (
         <div className="layout">
             <Header />
-            <main>{children}</main>
+            <main>
+                {children}
+                <FollowerList followers={user?.followers} />
+            </main>
             {dialog && dialogRenderHandler(dialog)}
             {toasts.length !== 0 && <ToastContainer />}
         </div>
