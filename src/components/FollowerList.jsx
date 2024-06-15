@@ -5,6 +5,7 @@ export default function FollowerList({ followers, deleteFollowerHandler }) {
     return (
         <section>
             <h1>My followers</h1>
+            {followers.length === 0 && <div> You have no followers</div>}
             {followers?.map((follower) => (
                 <FollowerItem
                     key={follower._id}
