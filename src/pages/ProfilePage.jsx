@@ -42,11 +42,6 @@ export default function ProfilePage() {
                             ))}
                         </PostList>
                     </div>
-                    <FollowerList
-                        followers={user?.followers}
-                        enableAdd={true}
-                        enableDelete={true}
-                    />
                 </Layout>
             ) : (
                 <Loader />
