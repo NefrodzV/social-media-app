@@ -14,7 +14,7 @@ export default function FollowerList({ followers, deleteFollowerHandler }) {
                 )}
             </div>
 
-            {followers.length === 0 && <div> You have no followers</div>}
+            {followers?.length === 0 && <div> You have no followers</div>}
             {followers?.map((follower) => (
                 <FollowerItem
                     key={follower._id}
