@@ -4,8 +4,6 @@ import { useImages } from '../hooks'
 export default function FollowerItem({ follower, deleteFollower, isEditing }) {
     const { user } = follower
     const { userSolidSvg } = useImages()
-    console.log(user)
-    console.log(user?.imgUrl)
     return (
         <article>
             <Link to={`/${user?.fullname}`} state={{ id: user?._id }}>
@@ -28,7 +26,7 @@ export default function FollowerItem({ follower, deleteFollower, isEditing }) {
     )
 }
 FollowerItem.propTypes = {
-    user: PropTypes.object,
-    addFollower: PropTypes.func,
+    follower: PropTypes.object,
     deleteFollower: PropTypes.func,
+    isEditing: PropTypes.bool,
 }
