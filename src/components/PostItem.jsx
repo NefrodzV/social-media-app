@@ -17,7 +17,7 @@ export default function PostItem({ post }) {
     }
     return (
         <article
-            onMouseLeave={() => setIsCommentsOpen(false)}
+            // onMouseLeave={() => setIsCommentsOpen(false)}
             className="post-item"
             data-id={post?._id}
         >
