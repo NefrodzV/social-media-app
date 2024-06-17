@@ -38,6 +38,8 @@ export function AuthProvider({ children }) {
                 setIsLoggedIn(true)
                 set('auth', { user: json.user })
             } catch (e) {
+                set('auth', null)
+                setIsLoggedIn(false)
                 throw new Error('Get user details error: ' + e)
             }
         }
