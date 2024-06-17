@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import UserItem from './UserItem'
-export default function UserList({ title, users, sendRequest }) {
+export default function UserList({ users, sendRequest }) {
     return (
         <section>
-            <h1>{title}</h1>
+            <h1>Users</h1>
             {!users && <div>No users</div>}
             {users?.map((user) => (
                 <UserItem

@@ -18,6 +18,9 @@ export default function Navigation({ style, children }) {
                     <Link to={`/profile`}>My profile</Link>
                 </li>
                 <li>
+                    <Link to={'/users'}>Users</Link>
+                </li>
+                <li>
                     <button onClick={openInbox}>inbox</button>
                 </li>
                 {children}

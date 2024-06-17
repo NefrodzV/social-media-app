@@ -5,6 +5,7 @@ import {
     PostPage,
     UserPage,
     ProfilePage,
+    UsersPage,
 } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 function Router() {
@@ -32,6 +33,10 @@ function Router() {
             element: <UserPage />,
         },
         { path: '/profile', element: <ProfilePage /> },
+        {
+            path: '/users',
+            element: <UsersPage />,
+        },
     ])
 
     return <RouterProvider router={router} />
