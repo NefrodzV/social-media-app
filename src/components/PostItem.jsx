@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'
 import Group from './Group'
 import { Link } from 'react-router-dom'
-import { useDialog } from '../hooks'
+import { useDialog, useImages } from '../hooks'
 import CreateCommentForm from './CreateCommentForm'
 import CommentList from './CommentList'
 import { useState } from 'react'
 export default function PostItem({ post }) {
     const {
-        user: { firstName, lastName },
+        user: { firstName, lastName, imgUrl },
     } = post
     const { showModal } = useDialog()
-
+    const { userSolidSvg } = useImages()
     const [isCommentsOpen, setIsCommentsOpen] = useState(false)
     function showCommentForm() {
         showModal(<CreateCommentForm postId={post?._id} />)
@@ -21,7 +21,16 @@ export default function PostItem({ post }) {
             className="post-item"
             data-id={post?._id}
         >
-            <div>{post?.user?.firstName + ' ' + post?.user?.lastName}</div>
+            {firstName && lastName && (
+                <div>
+                    <img
+                        src={imgUrl || userSolidSvg}
+                        style={{ width: 50 }}
+                        alt="user profile image"
+                    />
+                    {post?.user?.firstName + ' ' + post?.user?.lastName}
+                </div>
+            )}
             <div>{post?.text}</div>
             <Group>
                 <button onClick={showCommentForm}>Comment</button>
