@@ -1,6 +1,7 @@
-import { useAuthUser } from '../hooks'
+import { useAuthUser, useNotification } from '../hooks'
 export default function Inbox() {
-    const { user, removeSentRequest } = useAuthUser()
+    const { user, removeSentRequest, updateFollowers } = useAuthUser()
+    const { showToast } = useNotification()
     async function deleteFollowerRequest(id) {
         try {
             const url = import.meta.env.VITE_API_URL
@@ -18,6 +19,31 @@ export default function Inbox() {
             throw new Error('DELETE follower request: ' + e)
         }
     }
+
+    async function updateRequest(request, isAccepted) {
+        try {
+            const url = import.meta.env.VITE_API_URL
+            const response = await fetch(
+                url + 'users/me/followers/' + request._id,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'cors',
+                    credentials: 'include',
+                    body: JSON.stringify({ accepted: isAccepted }),
+                }
+            )
+            if (!response.ok) {
+                throw new Error(response.status)
+            }
+            updateFollowers(request)
+        } catch (e) {
+            showToast('Some error occurred with request update')
+            throw new Error('PUT accept or reject follower request error: ' + e)
+        }
+    }
     return (
         <div>
             <h1>Inbox</h1>
@@ -29,8 +55,12 @@ export default function Inbox() {
                 {user?.requests?.pending.map((request) => (
                     <li key={request._id}>
                         {`user: ${request.user.fullname}`}
-                        <button>accept</button>
-                        <button>reject</button>
+                        <button onClick={() => updateRequest(request, true)}>
+                            accept
+                        </button>
+                        <button onClick={() => updateRequest(request, false)}>
+                            reject
+                        </button>
                     </li>
                 ))}
             </ul>

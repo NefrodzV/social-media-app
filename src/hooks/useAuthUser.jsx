@@ -20,5 +20,10 @@ export default function useAuthUser() {
         const updatedRequests = { ...user.requests, sent: filteredSentRequests }
         setUser({ ...user, requests: updatedRequests })
     }
-    return { user, updateUserImage, removeSentRequest }
+
+    function updateFollowers(follower) {
+        const updatedFollowers = [...user.followers, { follower }]
+        setUser({ ...user, followers: updatedFollowers })
+    }
+    return { user, updateUserImage, removeSentRequest, updateFollowers }
 }
