@@ -19,33 +19,36 @@ export function AuthProvider({ children }) {
         setIsLoggedIn(true)
         setUser(auth.user)
     }, [get, set, user])
+
     useEffect(() => {
-        async function getUser() {
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API_URL}/users/me`,
-                    {
-                        credentials: 'include',
-                        mode: 'cors',
-                    }
-                )
-                const json = await response.json()
-                if (!response.ok) {
-                    throw new Error('GET user details error ' + json)
-                }
-                console.log(json)
-                setUser({ ...user, requests: json.user.requests })
-                setIsLoggedIn(true)
-                set('auth', { user: json.user })
-            } catch (e) {
-                set('auth', null)
-                setIsLoggedIn(false)
-                throw new Error('Get user details error: ' + e)
-            }
-        }
-        if (user && !isLoggedIn) getUser()
+        // if (user && !isLoggedIn) getUser()
         if (!user) setIsLoggedIn(false)
-    }, [isLoggedIn, set, user])
+    }, [isLoggedIn, user])
+
+    useEffect(() => {
+        getUser()
+    }, [])
+    async function getUser() {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/users/me`,
+                {
+                    credentials: 'include',
+                    mode: 'cors',
+                }
+            )
+            const json = await response.json()
+            if (!response.ok) {
+                throw new Error('GET user details error ' + json)
+            }
+            setUser(json.user)
+            setIsLoggedIn(true)
+        } catch (e) {
+            set('auth', null)
+            setIsLoggedIn(false)
+            console.error(e)
+        }
+    }
 
     const login = async (data) => {
         try {
@@ -68,6 +71,7 @@ export function AuthProvider({ children }) {
             }
             setStatus(SUCCESS)
             setUser(json.user)
+            getUser()
         } catch (e) {
             setStatus(ERROR)
             throw new Error('Login action error: ' + e)
