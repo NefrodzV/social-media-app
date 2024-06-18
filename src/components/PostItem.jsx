@@ -1,19 +1,32 @@
 import PropTypes from 'prop-types'
 import Group from './Group'
 import { Link } from 'react-router-dom'
-import { useDialog, useImages } from '../hooks'
+import { useDeletePost, useDialog, useImages } from '../hooks'
 import CreateCommentForm from './CreateCommentForm'
 import CommentList from './CommentList'
 import { useState } from 'react'
+import EditPostForm from './EditPostForm'
 export default function PostItem({ post }) {
     const {
         user: { firstName, lastName, imgUrl },
     } = post
-    const { showModal } = useDialog()
+    const { showModal, showAlertDialog } = useDialog()
     const { userSolidSvg } = useImages()
     const [isCommentsOpen, setIsCommentsOpen] = useState(false)
+    const { deletePost } = useDeletePost({ postId: post?._id })
     function showCommentForm() {
         showModal(<CreateCommentForm postId={post?._id} />)
+    }
+    function deletePostHandler() {
+        showAlertDialog(
+            'Delete post confirmation',
+            'Are you sure you want to delete this post?',
+            deletePost
+        )
+    }
+
+    function editPostHandler() {
+        showModal(<EditPostForm post={post} />)
     }
     return (
         <article
@@ -21,6 +34,11 @@ export default function PostItem({ post }) {
             className="post-item"
             data-id={post?._id}
         >
+            <div className="controls">
+                <button onClick={editPostHandler}>Edit</button>
+                <button onClick={deletePostHandler}>Delete</button>
+            </div>
+
             {firstName && lastName && (
                 <div>
                     <img
