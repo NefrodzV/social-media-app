@@ -25,5 +25,22 @@ export default function useAuthUser() {
         const updatedFollowers = [...user.followers, { follower }]
         setUser({ ...user, followers: updatedFollowers })
     }
-    return { user, updateUserImage, removeSentRequest, updateFollowers }
+
+    function updatePost(postId, text) {
+        const updatedPosts = user?.posts?.map((post) => {
+            if (post?._id === postId) {
+                post.text = text
+            }
+            return post
+        })
+
+        setUser({ ...user, posts: updatedPosts })
+    }
+    return {
+        user,
+        updateUserImage,
+        removeSentRequest,
+        updateFollowers,
+        updatePost,
+    }
 }
