@@ -37,7 +37,7 @@ export default function ProfilePage() {
                             Change image
                         </button>
                         <PostList>
-                            {user?.posts.map((post) => (
+                            {user?.posts?.map((post) => (
                                 <PostItem key={post?._id} post={post} />
                             ))}
                         </PostList>
