@@ -71,6 +71,7 @@ export function AuthProvider({ children }) {
             }
             setStatus(SUCCESS)
             setUser(json.user)
+            set('auth', { user: json.user })
             getUser()
         } catch (e) {
             setStatus(ERROR)
