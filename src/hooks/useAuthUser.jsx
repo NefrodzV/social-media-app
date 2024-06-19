@@ -36,11 +36,17 @@ export default function useAuthUser() {
 
         setUser({ ...user, posts: updatedPosts })
     }
+
+    function removePost(postId) {
+        const updatedPosts = user?.posts.filter((post) => post._id !== postId)
+        setUser({ ...user, posts: updatedPosts })
+    }
     return {
         user,
         updateUserImage,
         removeSentRequest,
         updateFollowers,
         updatePost,
+        removePost,
     }
 }
