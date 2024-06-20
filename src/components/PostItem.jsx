@@ -34,10 +34,12 @@ export default function PostItem({ post }) {
             className="post-item"
             data-id={post?._id}
         >
-            <div className="controls">
-                <button onClick={editPostHandler}>Edit</button>
-                <button onClick={deletePostHandler}>Delete</button>
-            </div>
+            {post?.isMine && (
+                <div className="controls">
+                    <button onClick={editPostHandler}>Edit</button>
+                    <button onClick={deletePostHandler}>Delete</button>
+                </div>
+            )}
 
             {firstName && lastName && (
                 <div>
@@ -52,11 +54,11 @@ export default function PostItem({ post }) {
             <div>{post?.text}</div>
             <Group>
                 <button onClick={showCommentForm}>Comment</button>
-                <button>Like</button>
+                {post?.isMine && <button>Like</button>}
                 <button>Share</button>
                 {!isCommentsOpen && (
                     <button onClick={() => setIsCommentsOpen(true)}>
-                        See comments
+                        Comments
                     </button>
                 )}
             </Group>
