@@ -25,5 +25,33 @@ export default function usePosts() {
 
         getPosts()
     }, [])
-    return { posts }
+    async function likePost(postId, likeExists) {
+        try {
+            const url = import.meta.env.VITE_API_URL
+            const response = await fetch(url + '/posts/' + postId + '/likes', {
+                method: likeExists ? 'DELETE' : 'POST',
+                mode: 'cors',
+                credentials: 'include',
+            })
+
+            if (!response.ok) {
+                throw new Error(
+                    'Update post has some errors ' + (await response.json()) ||
+                        response.status
+                )
+            }
+            // Now update the posts
+            const updatedPosts = posts.map((post) => {
+                if (post._id) {
+                    post.iLiked = !likeExists
+                }
+                return post
+            })
+
+            setPosts(updatedPosts)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+    return { posts, likePost }
 }

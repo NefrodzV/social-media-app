@@ -6,7 +6,7 @@ import CreateCommentForm from './CreateCommentForm'
 import CommentList from './CommentList'
 import { useState } from 'react'
 import EditPostForm from './EditPostForm'
-export default function PostItem({ post }) {
+export default function PostItem({ post, likeHandler }) {
     const {
         user: { firstName, lastName, imgUrl },
     } = post
@@ -54,8 +54,12 @@ export default function PostItem({ post }) {
             <div>{post?.text}</div>
             <Group>
                 <button onClick={showCommentForm}>Comment</button>
-                {post?.isMine && <button>Like</button>}
-                <button>Share</button>
+                {!post?.isMine && (
+                    <button onClick={() => likeHandler(post._id, post?.iLiked)}>
+                        Like
+                    </button>
+                )}
+                {/* <button>Share</button> */}
                 {!isCommentsOpen && (
                     <button onClick={() => setIsCommentsOpen(true)}>
                         Comments

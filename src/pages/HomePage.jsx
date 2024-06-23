@@ -4,7 +4,7 @@ import { useAuth, usePosts } from '../hooks'
 import { useNavigate } from 'react-router-dom'
 export default function Home() {
     const { user } = useAuth()
-    const { posts } = usePosts()
+    const { posts, likePost } = usePosts()
     const navigate = useNavigate()
     useEffect(() => {
         if (!user) navigate('/login')
@@ -15,7 +15,11 @@ export default function Home() {
                 <Layout>
                     <PostList>
                         {posts.map((post) => (
-                            <PostItem key={post?._id} post={post} />
+                            <PostItem
+                                key={post?._id}
+                                post={post}
+                                likeHandler={likePost}
+                            />
                         ))}
                     </PostList>
                 </Layout>
