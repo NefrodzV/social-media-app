@@ -25,25 +25,28 @@ export default function usePosts() {
 
         getPosts()
     }, [])
-    async function likePost(postId, likeExists) {
+
+    async function deleteLike(post) {
         try {
             const url = import.meta.env.VITE_API_URL
-            const response = await fetch(url + '/posts/' + postId + '/likes', {
-                method: likeExists ? 'DELETE' : 'POST',
-                mode: 'cors',
-                credentials: 'include',
-            })
+            const response = await fetch(
+                url + '/posts/' + post?._id + '/likes',
+                {
+                    method: 'DELETE',
+                    mode: 'cors',
+                    credentials: 'include',
+                }
+            )
 
             if (!response.ok) {
                 throw new Error(
-                    'Update post has some errors ' + (await response.json()) ||
+                    'DELETE like errors: ' + (await response.json()) ||
                         response.status
                 )
             }
-            // Now update the posts
             const updatedPosts = posts.map((post) => {
                 if (post._id) {
-                    post.iLiked = !likeExists
+                    delete post.myLike
                 }
                 return post
             })
@@ -51,6 +54,46 @@ export default function usePosts() {
             setPosts(updatedPosts)
         } catch (e) {
             console.error(e)
+        }
+    }
+
+    async function createLike(post) {
+        try {
+            const url = import.meta.env.VITE_API_URL
+            const response = await fetch(
+                url + '/posts/' + post?._id + '/likes',
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'include',
+                }
+            )
+
+            if (!response.ok) {
+                throw new Error(
+                    'POST like errors: ' + (await response.json()) ||
+                        response.status
+                )
+            }
+            const updatedPosts = posts.map((post) => {
+                if (post._id) {
+                    post.myLike = true
+                }
+                return post
+            })
+            setPosts(updatedPosts)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+    function likePost(post) {
+        console.log(post)
+        if (!post?.myLike) {
+            console.log('create like')
+            createLike(post)
+        } else {
+            console.log('deleting like')
+            deleteLike(post)
         }
     }
     return { posts, likePost }

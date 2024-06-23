@@ -55,9 +55,7 @@ export default function PostItem({ post, likeHandler }) {
             <Group>
                 <button onClick={showCommentForm}>Comment</button>
                 {!post?.isMine && (
-                    <button onClick={() => likeHandler(post._id, post?.iLiked)}>
-                        Like
-                    </button>
+                    <button onClick={() => likeHandler(post)}>Like</button>
                 )}
                 {/* <button>Share</button> */}
                 {!isCommentsOpen && (
