@@ -4,6 +4,7 @@ export default function Input({ type, placeholder, label, name }) {
         <>
             <label htmlFor={name}>{label}</label>
             <input
+                className="default"
                 type={type}
                 name={name}
                 id={name}

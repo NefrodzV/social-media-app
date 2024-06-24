@@ -17,9 +17,15 @@ export default function Login() {
         login(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <main>
-            <form onSubmit={loginHandler} noValidate>
-                <h1>Login</h1>
+        <main className="fullscreen login-page">
+            <form className="login-form" onSubmit={loginHandler} noValidate>
+                <h1
+                    style={{
+                        fontSize: '3rem',
+                    }}
+                >
+                    Login
+                </h1>
                 <Group>
                     <Input
                         name={'email'}
@@ -39,7 +45,9 @@ export default function Login() {
                 {status === STATUS.PENDING ? (
                     <Loader width={16} height={16} borderWidth={4} />
                 ) : null}
-                <button disabled={status === 'pending'}>Login</button>
+                <button type={'submit'} disabled={status === 'pending'}>
+                    Login
+                </button>
                 <Link to={'/signup'}>Create an account</Link>
             </form>
         </main>
