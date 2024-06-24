@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('./assets/fonts/IbarraRealNova-Regular.ttf');
+}
+:root {
+    --text: #0F0F0F;
+    --background: #fbfbfe;
+    --primary: #005B41;
+    --secondary: #008170;
+    --accent: #232D3F;
+    --font: 'CustomFont';
+
+}
 html, body, #root {
     height: 100%;
     box-sizing: border-box;
@@ -5,8 +18,11 @@ html, body, #root {
 body {
     position: relative;
     overflow: hidden;
+    font-family:var(--font);
+    background-color: var(--background);
 }
 #root {
+    color: var(--text);
     display: flex;
     justify-content: center;
 }
@@ -127,6 +143,7 @@ input.default {
     box-sizing: border-box;
     height: 3rem;
     width: 100%;
+
 }
 
 button[type='submit'] {
