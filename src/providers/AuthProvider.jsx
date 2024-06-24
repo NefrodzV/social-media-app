@@ -13,11 +13,12 @@ export function AuthProvider({ children }) {
         // If there is already a user no need to look for this
         if (user) return
         const auth = get('auth')
-        if (auth === undefined || auth === null) {
+        if (auth === undefined || auth === null || auth === false) {
             return
         }
+        const authUser = get('user')
         setIsLoggedIn(true)
-        setUser(auth.user)
+        setUser(authUser)
     }, [get, set, user])
 
     useEffect(() => {
@@ -26,7 +27,8 @@ export function AuthProvider({ children }) {
     }, [isLoggedIn, user])
 
     useEffect(() => {
-        getUser()
+        const userHasLoggedIn = get('auth')
+        if (userHasLoggedIn) getUser()
     }, [])
     async function getUser() {
         try {
@@ -37,14 +39,15 @@ export function AuthProvider({ children }) {
                     mode: 'cors',
                 }
             )
-            const json = await response.json()
+
             if (!response.ok) {
-                throw new Error('GET user details error ' + json)
+                throw new Error('GET user details error ' + response.status)
             }
+            const json = await response.json()
             setUser(json.user)
             setIsLoggedIn(true)
         } catch (e) {
-            set('auth', null)
+            set('auth', false)
             setIsLoggedIn(false)
             console.error(e)
         }
@@ -71,7 +74,8 @@ export function AuthProvider({ children }) {
             }
             setStatus(SUCCESS)
             setUser(json.user)
-            set('auth', { user: json.user })
+            set('user', { user: json.user })
+            set('auth', true)
             getUser()
         } catch (e) {
             setStatus(ERROR)
@@ -95,6 +99,8 @@ export function AuthProvider({ children }) {
             }
 
             setUser(null)
+            set('user', null)
+            set('auth', false)
         } catch (e) {
             throw new Error('Error logging out: ' + e)
         }
