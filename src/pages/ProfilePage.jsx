@@ -6,12 +6,18 @@ import {
     Loader,
     FollowerList,
 } from '../components'
-import { useAuth, useAuthUser, useAuthUserPosts, useDialog } from '../hooks'
-import basicUserIcon from '../assets/example-user.jpg'
+import {
+    useAuth,
+    useAuthUser,
+    useAuthUserPosts,
+    useDialog,
+    useImages,
+} from '../hooks'
 export default function ProfilePage() {
     const { user } = useAuth()
     const { updateImage } = useAuthUser()
     const { showModal } = useDialog()
+    const { userSolidSvg } = useImages()
     // const { posts } = useAuthUserPosts()
     return (
         <>
@@ -21,7 +27,7 @@ export default function ProfilePage() {
                         <div>
                             <h2>{user?.fullname}</h2>
                             <img
-                                src={user?.imgUrl ? user.imgUrl : basicUserIcon}
+                                src={user?.imgUrl || userSolidSvg}
                                 alt="user profile picture"
                                 width={50}
                                 height={50}

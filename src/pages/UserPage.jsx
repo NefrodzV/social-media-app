@@ -1,7 +1,6 @@
 import { Layout, PostList, PostItem, Loader, UserList } from '../components'
-import userIcon from '../assets/example-user.jpg'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useUser, useUserPosts } from '../hooks'
+import { useUser, useUserPosts, useImages } from '../hooks'
 export default function UserPage() {
     const navigate = useNavigate()
     const location = useLocation()
@@ -9,6 +8,7 @@ export default function UserPage() {
     // Update the api so the user returns their posts
     const { user } = useUser(id)
     const { posts } = useUserPosts(id)
+    const { userSolidSvg } = useImages()
     return (
         <>
             {user ? (
@@ -20,7 +20,7 @@ export default function UserPage() {
                             </button>
                             <h2>{user.fullname}</h2>
                             <img
-                                src={user?.imgUrl ? user?.imgUrl : userIcon}
+                                src={user?.imgUrl || userSolidSvg}
                                 alt="user profile picture"
                                 width={50}
                                 height={50}
