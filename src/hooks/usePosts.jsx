@@ -89,14 +89,11 @@ export default function usePosts() {
     function likePost(post) {
         console.log(post)
         if (!post?.myLike) {
-            console.log('create like')
             createLike(post)
         } else {
-            console.log('deleting like')
             deleteLike(post)
         }
     }
 
-    console.log(posts)
     return { posts, likePost }
 }
