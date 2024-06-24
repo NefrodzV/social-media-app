@@ -1,4 +1,4 @@
-import UserSolidSvg from '../assets/user-solid.svg'
+import UserSolidSvg from '../assets/svgs/user-solid.svg'
 
 export default function useImages() {
     return {
