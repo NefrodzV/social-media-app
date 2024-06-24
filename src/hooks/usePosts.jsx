@@ -69,15 +69,15 @@ export default function usePosts() {
                 }
             )
 
+            const json = await response.json()
             if (!response.ok) {
                 throw new Error(
-                    'POST like errors: ' + (await response.json()) ||
-                        response.status
+                    'POST like errors: ' + json.errors || response.status
                 )
             }
             const updatedPosts = posts.map((post) => {
                 if (post._id) {
-                    post.myLike = true
+                    post.myLike = json.likeId
                 }
                 return post
             })
@@ -96,5 +96,7 @@ export default function usePosts() {
             deleteLike(post)
         }
     }
+
+    console.log(posts)
     return { posts, likePost }
 }
