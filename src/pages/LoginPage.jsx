@@ -30,6 +30,7 @@ export default function Login() {
                         name={'email'}
                         type={'email'}
                         placeholder={'Email'}
+                        hasError={errors?.email ? true : false}
                     />
                     <ErrorDisplay message={errors?.email} />
                 </Group>
@@ -38,6 +39,7 @@ export default function Login() {
                         name={'password'}
                         type={'password'}
                         placeholder={'Password'}
+                        hasError={errors?.password ? true : false}
                     />
                     <ErrorDisplay message={errors?.password} />
                 </Group>

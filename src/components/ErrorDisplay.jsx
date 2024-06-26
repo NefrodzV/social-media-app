@@ -10,7 +10,7 @@ export default function ErrorDisplay({ message }) {
         }
     }, [message])
     return (
-        <div ref={errorRef} className="error">
+        <div ref={errorRef} className="error-text">
             {message}
         </div>
     )

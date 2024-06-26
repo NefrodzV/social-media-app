@@ -11,7 +11,7 @@ export default function Input({
         <>
             <label htmlFor={name}>{label}</label>
             <input
-                className={className}
+                className={`${className} ${hasError ? 'error' : ''}`}
                 type={type}
                 name={name}
                 id={name}
