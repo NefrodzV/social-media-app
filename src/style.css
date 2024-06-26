@@ -55,6 +55,7 @@ body {
     background-color: var(--background);
 }
 #root {
+    background-color: var(--text);
     color: var(--text);
     display: flex;
     justify-content: center;
@@ -115,9 +116,10 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
 }
 input {
-    font-size: 18px;
+    font-size: 1.175rem;
     box-sizing: border-box;
-    height: 3rem;
+    /* height: 3rem; */
+    padding: 16px 14px;
     width: 100%;
     border: 1px solid var(--text);
     border-radius: 5px;
@@ -181,7 +183,6 @@ input.error {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--text);
 }
 
 .login-form {
@@ -220,12 +221,25 @@ hr {
     text-decoration: none;
     color: var(--secondary)
 }
+.signin-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signin-form {
+    border-radius:5px;
+    padding: 16px;
+    width: min(600px, 80%);
+    background-color: var(--background);
+}
 .group {
     width: 100%;
 }
 
-
-
+form label {
+    display: inline-block;
+    margin-block: 8px;
+}
 
 button {
     cursor: pointer;
@@ -234,6 +248,7 @@ button {
     /* padding: 8px 16px; */
     height: 3rem;
     border: none;
+    width: 100%;
     border-radius: 5px;
     font-size: x-large;
     font-weight: bold;
@@ -309,4 +324,24 @@ button[type='submit'] {
 
 .text-right {
     text-align: right;
+}
+
+.margin-tp{ 
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    input{
+        /* height: 1.5rem; */
+        font-size: 1rem;
+        padding: 12px 10px;
+    }
+
+    form label {
+        margin-block: 2px;
+    }
+
+    .margin-tp { 
+        margin-top: .5rem;
+    }
 }
