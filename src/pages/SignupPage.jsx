@@ -40,25 +40,33 @@ export default function Signup() {
         signup(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <main>
-            <form noValidate onSubmit={signupHandler}>
-                <h1>Create a account</h1>
+        <main className="signin-page">
+            <form className="signin-form" noValidate onSubmit={signupHandler}>
+                <h1>Create an account</h1>
                 <Group>
                     <Input
                         name={'firstName'}
                         label={'First name:'}
                         type={'text'}
+                        hasError={errors?.firstName ? true : false}
                     />
+                    <ErrorDisplay message={errors?.firstName} />
                     <Input
                         name={'lastName'}
                         label={'Last name:'}
                         type={'text'}
+                        hasError={errors?.lastName ? true : false}
                     />
-                    <ErrorDisplay message={errors?.firstName} />
+
                     <ErrorDisplay message={errors?.lastName} />
                 </Group>
                 <Group>
-                    <Input name={'email'} label={'Email:'} type={'text'} />
+                    <Input
+                        name={'email'}
+                        label={'Email:'}
+                        type={'text'}
+                        hasError={errors?.email ? true : false}
+                    />
                     <ErrorDisplay message={errors?.email} />
                 </Group>
                 <Group>
@@ -66,20 +74,25 @@ export default function Signup() {
                         name={'password'}
                         label={'Password:'}
                         type={'password'}
+                        hasError={errors?.password ? true : false}
                     />
                     <ErrorDisplay message={errors?.password} />
                     <Input
                         name={'confirmPassword'}
                         label={'Confirm password:'}
                         type={'password'}
+                        hasError={errors?.confirmPassword ? true : false}
                     />
                     <ErrorDisplay message={errors?.confirmPassword} />
                 </Group>
                 {status === 'pending' ? (
                     <Loader width={16} height={16} borderWidth={4} />
                 ) : null}
-                <button>Submit</button>
-                <Link to={'/login'}>Already have an account? </Link>
+                <button className="margin-tp-1r" type="submit">
+                    Submit
+                </button>
+                <hr />
+                <Link to={'/login'}>Go login</Link>
             </form>
         </main>
     )
