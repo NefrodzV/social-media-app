@@ -8,13 +8,46 @@
     --primary: #005B41;
     --secondary: #008170;
     --accent: #232D3F;
+    --error: #ff0000;
+    --success: 	#89ff77;
+    --info: #54b4d3;
     --font: 'CustomFont';
 
+    /* heading size */
+    --heading-big: 2.125rem;
+    --heading-extra-large: 1.775rem;
+    --heading-large: 1.5rem;
+    --heading-medium: 1.25rem;
+    --heading-small: 1.125rem;
+    --heading-extra-small: 1rem;
 }
 html, body, #root {
     height: 100%;
     box-sizing: border-box;
 }
+h1,h2,h3,h4,h5,h6 {
+    font-weight: bold;
+}
+h1 {
+    font-size: var(--heading-big);
+    font-weight: bold;
+}
+h2 {
+    font-size: var(--heading-extra-large);
+}
+h3 {
+    font-size: var(--heading-large);
+}
+h4 {
+    font-size: var(--heading-medium);
+}
+h5 {
+    font-size: var(--heading-small);
+}
+h6 {
+    font-size: var(--heading-extra-small);
+}
+
 body {
     position: relative;
     overflow: hidden;
@@ -67,6 +100,25 @@ main {
 .error {
     color: red;
     display: none;
+    animation: fade-in 1s;
+}
+input {
+    font-size: 18px;
+    box-sizing: border-box;
+    height: 3rem;
+    width: 100%;
+    border: 1px solid var(--text);
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: 3px solid var(--primary);
+    border:none;
+}
+
+input.error {
+    outline: 3px solid var(--error);;
+    animation: shake 1s;
 }
 
 .show {
@@ -95,6 +147,10 @@ main {
     box-shadow: 0 0 3px black;
 }
 
+.border {
+    border-radius: 5px;
+}
+
 .toast button {
     float: right;
 }
@@ -109,55 +165,101 @@ main {
 }
 
 .login-page {
-    /* background-image:  radial-gradient(circle at top, #9db4ff  35%,#baccff  45%, #000 75%); */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--text);
 }
 
-
-
 .login-form {
+    position: relative;
     background-color: white;
     box-shadow: 0px 0px 6px #000;
-    font-size: 2rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
-    /* border:  1px solid black; */
-    width: 600px;
-    height: 500px;
-    /* padding: 16px; */
+    border-radius: 10px;
+    width: min(600px, 90%);
+    height: min(500px, 70%);
     box-sizing: border-box;
     padding: 16px;
    
 }
+form a {
+    border: 3px solid var(--primary);
+    height: 3rem;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--secondary);
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+hr {
+    width: 100%;
+    color: var(--accent);
+    background-color: var(--accent);
+}
+.login-form a {
+    text-decoration: none;
+    color: var(--secondary)
+}
 .group {
     width: 100%;
-    
 }
-input.default {
-    font-size: inherit;
-    box-sizing: border-box;
+
+
+
+
+button {
+    cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--background);
+    /* padding: 8px 16px; */
     height: 3rem;
-    width: 100%;
-
+    border: none;
+    border-radius: 5px;
+    font-size: x-large;
+    font-weight: bold;
+}
+button:active {
+    transform: translateY(2px);
+}
+button[type='submit'] {
+    /* font-size: 20px; */
 }
 
-button[type='submit'] {
-
-    font-size: inherit;
+@keyframes shake {
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translate(2%);
+    }
+    
+    20%,
+    40%,
+    60%,
+    80%,
+    100% {
+        transform: translate(0);
+    }
 }
 
 @keyframes fade-in {
     from {
         opacity: 0;
+        display: none;
     }
 
     to {
         opacity: 1;
+        display: block;
     }
 }
 @keyframes toast-in-right {
@@ -177,4 +279,22 @@ button[type='submit'] {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* helpers */
+
+.text-opaque {
+    opacity: 0.6;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
 }
