@@ -105,9 +105,21 @@ export function AuthProvider({ children }) {
             throw new Error('Error logging out: ' + e)
         }
     }
+
+    function resetErrors() {
+        setErrors(null)
+    }
     return (
         <AuthContext.Provider
-            value={{ user, status, errors, setUser, login, logout }}
+            value={{
+                user,
+                status,
+                errors,
+                setUser,
+                login,
+                logout,
+                resetErrors,
+            }}
         >
             {children}
         </AuthContext.Provider>
