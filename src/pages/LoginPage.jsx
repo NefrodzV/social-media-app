@@ -1,17 +1,20 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { STATUS } from '../constants'
-import { Input, Group, Loader, ErrorDisplay } from '../components/index'
+import { Input, Group, ErrorDisplay, LoaderOverlay } from '../components/index'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks'
+import { useAuth, useImages } from '../hooks'
 
 export default function Login() {
-    const { user, status, errors, login } = useAuth()
+    const { user, status, errors, login, resetErrors } = useAuth()
     const navigate = useNavigate()
-
     useEffect(() => {
         if (user) navigate('/')
     }, [user, navigate])
-
+    useEffect(() => {
+        return () => {
+            resetErrors()
+        }
+    }, [])
     function loginHandler(e) {
         e.preventDefault()
         login(Object.fromEntries(new FormData(e.target)))
@@ -19,15 +22,11 @@ export default function Login() {
     return (
         <main className="fullscreen login-page">
             <form className="login-form" onSubmit={loginHandler} noValidate>
-                <h1
-                    style={{
-                        fontSize: '3rem',
-                    }}
-                >
-                    Login
-                </h1>
+                <h1>Login</h1>
+                <h2 className="text-opaque">Welcome back!</h2>
                 <Group>
                     <Input
+                        className={'primary'}
                         name={'email'}
                         type={'email'}
                         placeholder={'Email'}
@@ -38,16 +37,15 @@ export default function Login() {
                     <Input
                         name={'password'}
                         type={'password'}
-                        placeholder={'password'}
+                        placeholder={'Password'}
                     />
                     <ErrorDisplay message={errors?.password} />
                 </Group>
-                {status === STATUS.PENDING ? (
-                    <Loader width={16} height={16} borderWidth={4} />
-                ) : null}
+                {status === STATUS.PENDING ? <LoaderOverlay /> : null}
                 <button type={'submit'} disabled={status === 'pending'}>
                     Login
                 </button>
+                <hr />
                 <Link to={'/signup'}>Create an account</Link>
             </form>
         </main>
