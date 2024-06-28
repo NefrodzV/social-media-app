@@ -20,6 +20,14 @@
     --heading-medium: 1.25rem;
     --heading-small: 1.125rem;
     --heading-extra-small: 1rem;
+
+    --padding-small: 8px;
+    --padding-medium: 12px;
+    --padding-big: 16px;
+
+    --text-small: .8rem;
+    --text-normal: 1rem;
+    --text-big: 1.2rem;
 }
 html, body, #root {
     height: 100%;
@@ -47,6 +55,7 @@ h5 {
 h6 {
     font-size: var(--heading-extra-small);
 }
+
 
 body {
     position: relative;
@@ -87,11 +96,7 @@ main {
     width: 100%;
     grid-template-columns: 2fr 1fr;
 }
-/* header {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-} */
+
 .loader {
     border-style: solid;
     border-top-style: solid;
@@ -103,8 +108,9 @@ main {
 
 /* Must change this to use some type of transition */
 .error-text {
-    margin-top: 8px;
+    margin-top: 2px;
     color: red;
+    font-size: var(--text-small);
     animation: fade-in 1s;
 }
 
@@ -120,10 +126,9 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
 }
 input {
-    font-size: 1.175rem;
+    font-size: var(--text-normal);
     box-sizing: border-box;
-    /* height: 3rem; */
-    padding: 16px 14px;
+    padding: var(--padding-medium) var(--padding-small);
     width: 100%;
     border: 1px solid var(--text);
     border-radius: 5px;
@@ -212,7 +217,6 @@ header > * {
     color: var(--background);
 }
 .nav-item a, .nav-item button {
-    
     width: 100%;
     gap: 16px;
     cursor: pointer;
@@ -260,26 +264,21 @@ header > * {
     padding: 16px;
    
 }
-form a {
-    border: 3px solid var(--primary);
-    height: 3rem;
-    border-radius: 5px;
-    text-decoration: none;
-    color: var(--secondary);
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 hr {
     width: 100%;
     color: var(--accent);
     background-color: var(--accent);
 }
-.login-form a {
+.primary-button-border {
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
     text-decoration: none;
-    color: var(--secondary)
+    color: var(--secondary);
+    padding-block: var(--padding-small);
+    font-size: var(--text-big);
+    border: 3px solid var(--primary);
 }
 .signin-page {
     display: flex;
@@ -290,6 +289,7 @@ hr {
     border-radius:5px;
     padding: 16px;
     width: min(600px, 80%);
+    
     background-color: var(--background);
 }
 .group {
@@ -297,31 +297,28 @@ hr {
 }
 
 form label {
+    font-size: var(--text-normal);
     display: inline-block;
     margin-block: 8px;
 }
 
 button {
     font-family: var(--font);
+    font-size: var(--text-big);
 }
 
-.primary {
+button.primary {
+    padding-block: var(--padding-small);
     cursor: pointer;
     background-color: var(--secondary);
     color: var(--background);
-    /* padding: 8px 16px; */
-    height: 3rem;
     border: none;
     width: 100%;
     border-radius: 5px;
-    font-size: x-large;
     font-weight: bold;
 }
-.primary {
+button.primary:active {
     transform: translateY(2px);
-}
-button[type='submit'] {
-    /* font-size: 20px; */
 }
 
 @keyframes shake {

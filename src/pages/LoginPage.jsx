@@ -26,7 +26,6 @@ export default function Login() {
                 <h2 className="text-opaque">Welcome back!</h2>
                 <Group>
                     <Input
-                        className={'primary'}
                         name={'email'}
                         type={'email'}
                         placeholder={'Email'}
@@ -44,11 +43,17 @@ export default function Login() {
                     <ErrorDisplay message={errors?.password} />
                 </Group>
                 {status === STATUS.PENDING ? <LoaderOverlay /> : null}
-                <button type={'submit'} disabled={status === 'pending'}>
+                <button
+                    className="primary"
+                    type={'submit'}
+                    disabled={status === 'pending'}
+                >
                     Login
                 </button>
                 <hr />
-                <Link to={'/signup'}>Create an account</Link>
+                <Link className={'primary-button-border'} to={'/signup'}>
+                    Create an account
+                </Link>
             </form>
         </main>
     )

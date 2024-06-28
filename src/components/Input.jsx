@@ -5,7 +5,7 @@ export default function Input({
     label,
     name,
     hasError,
-    className,
+    className = '',
 }) {
     return (
         <>

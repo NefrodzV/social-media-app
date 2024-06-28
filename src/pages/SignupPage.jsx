@@ -41,7 +41,11 @@ export default function Signup() {
     }
     return (
         <main className="signin-page">
-            <form className="signin-form" noValidate onSubmit={signupHandler}>
+            <form
+                className="signin-form box-shadow"
+                noValidate
+                onSubmit={signupHandler}
+            >
                 <h1>Create an account</h1>
                 <Group>
                     <Input
@@ -88,11 +92,13 @@ export default function Signup() {
                 {status === 'pending' ? (
                     <Loader width={16} height={16} borderWidth={4} />
                 ) : null}
-                <button className="margin-tp-1r" type="submit">
+                <button className="primary margin-tp-1r " type="submit">
                     Submit
                 </button>
                 <hr />
-                <Link to={'/login'}>Go login</Link>
+                <Link className={'primary-button-border'} to={'/login'}>
+                    Go login
+                </Link>
             </form>
         </main>
     )
