@@ -6,7 +6,7 @@ export default function NavItem({ text, icon, onClickHandler, navigateTo }) {
             {onClickHandler && (
                 <button onClick={onClickHandler}>
                     <img
-                        className="icon"
+                        className="nav-icon"
                         src={icon}
                         alt="navigation item icon"
                     />
@@ -16,7 +16,7 @@ export default function NavItem({ text, icon, onClickHandler, navigateTo }) {
             {navigateTo && (
                 <Link to={navigateTo}>
                     <img
-                        className="icon"
+                        className="nav-icon"
                         src={icon}
                         alt="navigation item icon"
                     />
