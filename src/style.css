@@ -325,15 +325,25 @@ button.primary {
 button.primary:active {
     transform: translateY(2px);
 }
-
+/* post list */
+.post-list {
+    box-shadow: 0 0  3px var(--text) inset;
+    padding: var(--padding-small);
+    /* margin: var(--padding-small); */
+    position: relative;
+}
+.post-list > h1 {
+    position: fixed;
+    top: -100px;
+}
 /* post item */
 .post-item {
     /* margin-inline: 4px; */
     padding: var(--padding-big) var(--padding-medium);
     display: flex;
     flex-direction: column;
-    border: 1px 0px 0px 0px solid var(--accent)
-    /* box-shadow: 0px 0px 3px var(--accent); */
+    /* border: 1px 0px 0px 0px solid var(--accent); */
+    box-shadow: 0px 0px 1px var(--accent);
 }
 .post-item-body {
     display: flex;

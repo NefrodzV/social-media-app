@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 export default function PostList({ children }) {
     return (
-        <section>
+        <section className="post-list">
             <h1>Posts</h1>
             {children}
         </section>
