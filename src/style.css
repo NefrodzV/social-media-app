@@ -13,14 +13,6 @@
     --info: #54b4d3;
     --font: 'CustomFont';
 
-    /* heading size */
-    --heading-big: 2.125rem;
-    --heading-extra-large: 1.775rem;
-    --heading-large: 1.5rem;
-    --heading-medium: 1.25rem;
-    --heading-small: 1.125rem;
-    --heading-extra-small: 1rem;
-
     --padding-small: 8px;
     --padding-medium: 12px;
     --padding-big: 16px;
@@ -28,6 +20,19 @@
     --text-small: .8rem;
     --text-normal: 1rem;
     --text-big: 1.2rem;
+    
+    --heading-big: calc(var(--text-normal) * 1.3);
+    --heading-extra-large: calc(var(--text-normal) * 1.250);
+    --heading-large:calc(var(--text-normal) * 1.2);
+    --heading-medium: calc(var(--text-normal) * 1.175);
+    --heading-small:calc(var(--text-normal) * 1.150);
+    --heading-extra-small:  calc(var(--text-normal) * 1.1);
+    /* --heading-big: 2.125rem;
+    --heading-extra-large: 1.775rem;
+    --heading-large: 1.5rem;
+    --heading-medium: 1.25rem;
+    --heading-small: 1.125rem;
+    --heading-extra-small: 1rem; */
 }
 html, body, #root {
     height: 100%;
@@ -36,7 +41,7 @@ html, body, #root {
 h1,h2,h3,h4,h5,h6 {
     font-weight: bold;
 }
-h1 {
+ h1 {
     font-size: var(--heading-big);
     font-weight: bold;
 }
@@ -54,7 +59,7 @@ h5 {
 }
 h6 {
     font-size: var(--heading-extra-small);
-}
+} 
 
 
 body {
