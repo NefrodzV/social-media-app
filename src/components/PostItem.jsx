@@ -11,7 +11,7 @@ export default function PostItem({ post, likeHandler }) {
         user: { firstName, lastName, imgUrl },
     } = post
     const { showModal, showAlertDialog } = useDialog()
-    const { userSolidSvg } = useImages()
+    const { userSolidSvg, commentSvg, commentsSvg, likeSvg } = useImages()
     const [isCommentsOpen, setIsCommentsOpen] = useState(false)
     const { deletePost } = useDeletePost({ postId: post?._id })
     function showCommentForm() {
@@ -32,38 +32,67 @@ export default function PostItem({ post, likeHandler }) {
         <article
             // onMouseLeave={() => setIsCommentsOpen(false)}
             className="post-item"
-            data-id={post?._id}
         >
-            {post?.isMine && (
+            <div className="post-item-body">
+                <img
+                    className="post-item-icon"
+                    src={imgUrl || userSolidSvg}
+                    style={{ width: 50 }}
+                    alt="user profile image"
+                />
+                {/* {post?.isMine && (
                 <div className="controls">
                     <button onClick={editPostHandler}>Edit</button>
                     <button onClick={deletePostHandler}>Delete</button>
                 </div>
-            )}
-
-            {firstName && lastName && (
-                <div>
-                    <img
-                        src={imgUrl || userSolidSvg}
-                        style={{ width: 50 }}
-                        alt="user profile image"
-                    />
-                    {post?.user?.firstName + ' ' + post?.user?.lastName}
+            )} */}
+                <div className="content fullwidth">
+                    {firstName && lastName && (
+                        <div className="post-item-user">
+                            {post?.user?.firstName + ' ' + post?.user?.lastName}
+                        </div>
+                    )}
+                    <div>{post?.text}</div>{' '}
+                    <Group style={'post-item-controls'}>
+                        <button
+                            className="post-item-button"
+                            onClick={showCommentForm}
+                        >
+                            <img src={commentSvg} alt="comment icon" />
+                            <span>Comment</span>
+                        </button>
+                        {!post?.isMine && (
+                            <button
+                                className="post-item-button"
+                                onClick={() => likeHandler(post)}
+                            >
+                                <img src={likeSvg} alt="like post icon" />
+                                <span>Like</span>
+                            </button>
+                        )}
+                        {/* <button>Share</button> */}
+                        {!isCommentsOpen && (
+                            <button
+                                className="post-item-button"
+                                onClick={() => setIsCommentsOpen(true)}
+                            >
+                                <img
+                                    src={commentsSvg}
+                                    alt="view comments icon"
+                                />
+                                <span>Comments</span>
+                            </button>
+                        )}
+                    </Group>
                 </div>
-            )}
-            <div>{post?.text}</div>
-            <Group>
-                <button onClick={showCommentForm}>Comment</button>
-                {!post?.isMine && (
-                    <button onClick={() => likeHandler(post)}>Like</button>
-                )}
-                {/* <button>Share</button> */}
-                {!isCommentsOpen && (
-                    <button onClick={() => setIsCommentsOpen(true)}>
-                        Comments
-                    </button>
-                )}
-            </Group>
+            </div>
+            {/* {post?.isMine && (
+                <div className="controls">
+                    <button onClick={editPostHandler}>Edit</button>
+                    <button onClick={deletePostHandler}>Delete</button>
+                </div>
+            )} */}
+
             {isCommentsOpen && <CommentList postId={post?._id} />}
         </article>
     )

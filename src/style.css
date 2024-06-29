@@ -199,7 +199,7 @@ header > * {
 .nav-item button {
     text-transform: capitalize;
     padding: 0;
-    font-size: 100%;
+    font-size: var(--text-normal);
     height: 100%;
     display: flex;
     align-items: center;
@@ -215,7 +215,7 @@ header > * {
     display: flex;
     align-items: center;
     text-decoration: none;
-    font-size: 100%;
+    font-size: var(--text-normal);
 }
 .nav-item:hover > button, .nav-item:hover > a{
     background-color: var(--secondary);
@@ -223,7 +223,7 @@ header > * {
 }
 .nav-item a, .nav-item button {
     width: 100%;
-    gap: 16px;
+    gap: var(--padding-big);
     cursor: pointer;
     border-radius: 5px;
     padding: 8px;
@@ -267,7 +267,6 @@ header > * {
     height: min(500px, 90%);
     box-sizing: border-box;
     padding: var(--padding-big);
-   
 }
 hr {
     width: 100%;
@@ -327,6 +326,69 @@ button.primary:active {
     transform: translateY(2px);
 }
 
+/* post item */
+.post-item {
+    /* margin-inline: 4px; */
+    padding: var(--padding-big) var(--padding-medium);
+    display: flex;
+    flex-direction: column;
+    border: 1px 0px 0px 0px solid var(--accent)
+    /* box-shadow: 0px 0px 3px var(--accent); */
+}
+.post-item-body {
+    display: flex;
+}
+/* .post-item > * {
+    border:  1px solid black;
+} */
+.post-item-controls {
+    padding: var(--padding-small);
+    display: flex;height: 1rem;
+    justify-content: space-evenly;
+}
+
+.post-item-button {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    font-size: var(--text-small);
+    align-items: center;
+    border: none; background-color: var(--background);
+}
+
+
+.post-item-button > span {
+    position: absolute;
+    bottom: -17px;
+    left: 50%;
+    display: none;
+    background-color: var(--accent);
+    color: var(--background);
+    box-shadow: 0px 0px 3px var(--accent);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.post-item-button:hover {
+    color: var(--primary);
+}
+
+.post-item-button:hover > span {
+    display: block;
+    padding: 1px
+}
+.post-item-button > img {
+    height: 100%;
+}
+ .post-item-user {
+    font-size: var(--text-normal);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.post-item-icon {
+    height: 40px;
+    aspect-ratio: 1 /1 ;
+}
 @keyframes shake {
     10%,
     30%,
@@ -376,7 +438,9 @@ button.primary:active {
 }
 
 /* helpers */
-
+.fullwidth {
+    width: 100%;
+}
 .text-opaque {
     opacity: 0.6;
 }
@@ -400,7 +464,9 @@ button.primary:active {
 .box-shadow {
     box-shadow: 0px 0px 6px var(--text);
 }
-
+/* .border {
+    border-radius: 5px;
+} */
 .even-items {
     display: flex;
     gap: var(--padding-medium);
