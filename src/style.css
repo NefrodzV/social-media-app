@@ -261,12 +261,12 @@ header > * {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--padding-big);
     border-radius: 10px;
-    width: min(600px, 90%);
-    height: min(500px, 70%);
+    width: min(300px, 90%);
+    height: min(500px, 90%);
     box-sizing: border-box;
-    padding: 16px;
+    padding: var(--padding-big);
    
 }
 hr {
@@ -285,16 +285,18 @@ hr {
     font-size: var(--text-big);
     border: 3px solid var(--primary);
 }
-.signin-page {
+.signup-page {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.signin-form {
+.signup-form {
     border-radius:5px;
-    padding: 16px;
-    width: min(600px, 80%);
-    
+    padding: var(--padding-big);
+    width: min(300px, 80%);
+    display: flex;
+    gap: var(--padding-small);
+    flex-direction: column;
     background-color: var(--background);
 }
 .group {
@@ -303,8 +305,7 @@ hr {
 
 form label {
     font-size: var(--text-normal);
-    display: inline-block;
-    margin-block: 8px;
+    padding-block: var(--padding-small);
 }
 
 button {
@@ -400,18 +401,14 @@ button.primary:active {
     box-shadow: 0px 0px 6px var(--text);
 }
 
+.even-items {
+    display: flex;
+    gap: var(--padding-medium);
+}
 @media (max-width: 768px) {
-    input{
-        /* height: 1.5rem; */
-        font-size: 1rem;
-        padding: 12px 10px;
-    }
-
-    form label {
-        margin-block: 2px;
-    }
-
-    .margin-tp { 
-        margin-top: .5rem;
+    :root {
+        --padding-small: 4px;
+        --padding-medium: 8px;
+        --padding-big: 12px;
     }
 }

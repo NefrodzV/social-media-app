@@ -43,17 +43,19 @@ export default function Login() {
                     <ErrorDisplay message={errors?.password} />
                 </Group>
                 {status === STATUS.PENDING ? <LoaderOverlay /> : null}
-                <button
-                    className="primary"
-                    type={'submit'}
-                    disabled={status === 'pending'}
-                >
-                    Login
-                </button>
-                <hr />
-                <Link className={'primary-button-border'} to={'/signup'}>
-                    Create an account
-                </Link>
+                <Group>
+                    <button
+                        className="primary"
+                        type={'submit'}
+                        disabled={status === 'pending'}
+                    >
+                        Login
+                    </button>
+                    <hr />
+                    <Link className={'primary-button-border'} to={'/signup'}>
+                        Create an account
+                    </Link>
+                </Group>
             </form>
         </main>
     )

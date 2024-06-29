@@ -40,29 +40,33 @@ export default function Signup() {
         signup(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <main className="signin-page">
+        <main className="signup-page">
             <form
-                className="signin-form box-shadow"
+                className="signup-form box-shadow"
                 noValidate
                 onSubmit={signupHandler}
             >
                 <h1>Create an account</h1>
-                <Group>
-                    <Input
-                        name={'firstName'}
-                        label={'First name:'}
-                        type={'text'}
-                        hasError={errors?.firstName ? true : false}
-                    />
-                    <ErrorDisplay message={errors?.firstName} />
-                    <Input
-                        name={'lastName'}
-                        label={'Last name:'}
-                        type={'text'}
-                        hasError={errors?.lastName ? true : false}
-                    />
+                <Group style={'even-items'}>
+                    <Group>
+                        <Input
+                            name={'firstName'}
+                            label={'First name:'}
+                            type={'text'}
+                            hasError={errors?.firstName ? true : false}
+                        />
+                        <ErrorDisplay message={errors?.firstName} />
+                    </Group>
+                    <Group>
+                        <Input
+                            name={'lastName'}
+                            label={'Last name:'}
+                            type={'text'}
+                            hasError={errors?.lastName ? true : false}
+                        />
 
-                    <ErrorDisplay message={errors?.lastName} />
+                        <ErrorDisplay message={errors?.lastName} />
+                    </Group>
                 </Group>
                 <Group>
                     <Input
@@ -89,16 +93,18 @@ export default function Signup() {
                     />
                     <ErrorDisplay message={errors?.confirmPassword} />
                 </Group>
-                {status === 'pending' ? (
-                    <Loader width={16} height={16} borderWidth={4} />
-                ) : null}
-                <button className="primary margin-tp-1r " type="submit">
-                    Submit
-                </button>
-                <hr />
-                <Link className={'primary-button-border'} to={'/login'}>
-                    Go login
-                </Link>
+                <Group>
+                    {/* {status === 'pending' ? (
+                        <Loader width={16} height={16} borderWidth={4} />
+                    ) : null} */}
+                    <button className="primary margin-tp-1r " type="submit">
+                        Submit
+                    </button>
+                    <hr />
+                    <Link className={'primary-button-border'} to={'/login'}>
+                        Go login
+                    </Link>
+                </Group>
             </form>
         </main>
     )
