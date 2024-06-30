@@ -13,7 +13,7 @@ export default function Home() {
         <>
             {user ? (
                 <Layout>
-                    <PostList>
+                    <PostList style={'inset-box-shadow'}>
                         {posts.map((post) => (
                             <PostItem
                                 key={post?._id}

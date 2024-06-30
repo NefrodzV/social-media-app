@@ -23,7 +23,7 @@ export default function ProfilePage() {
         <>
             {user ? (
                 <Layout>
-                    <div>
+                    <section className="inset-box-shadow">
                         <div>
                             <h2>{user?.fullname}</h2>
                             <img
@@ -47,7 +47,7 @@ export default function ProfilePage() {
                                 <PostItem key={post?._id} post={post} />
                             ))}
                         </PostList>
-                    </div>
+                    </section>
                 </Layout>
             ) : (
                 <Loader />

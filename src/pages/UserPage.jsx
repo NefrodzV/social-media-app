@@ -13,7 +13,7 @@ export default function UserPage() {
         <>
             {user ? (
                 <Layout>
-                    <div>
+                    <section className="inset-box-shadow">
                         <div>
                             <button onClick={() => navigate(-1)}>
                                 go back
@@ -31,7 +31,7 @@ export default function UserPage() {
                                 <PostItem key={post?._id} post={post} />
                             ))}
                         </PostList>
-                    </div>
+                    </section>
                     <UserList
                         title={`${user.fullname} followers`}
                         followers={user?.followers}
