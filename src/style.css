@@ -336,6 +336,53 @@ button.primary:active {
     position: fixed;
     top: -100px;
 }
+
+.dropdown-menu {
+    position: absolute;
+    right: var(--padding-big);
+    top: var(--padding-big);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.dropdown-menu:hover .content {
+    display: flex;
+    border:  1px solid var(--accent);
+    transform: scale(1);
+}
+
+.dropdown-menu:hover .icon {
+    display: none;
+}
+
+.dropdown-menu .icon {
+    height: 1rem;
+    cursor: pointer;
+}
+.dropdown-menu .content {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    transform: scale(0);
+    transform-origin: top;
+    
+    
+}
+
+.dropdown-button {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background-color: var(--background);
+    font-size: var(--text-small);
+}
+
+.dropdown-button:not(:last-child) {
+    border-bottom: 1px solid var(--accent);
+}
+
+
 /* post item */
 .post-item {
     /* margin-inline: 4px; */

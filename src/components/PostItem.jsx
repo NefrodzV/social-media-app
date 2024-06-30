@@ -11,7 +11,8 @@ export default function PostItem({ post, likeHandler }) {
         user: { firstName, lastName, imgUrl },
     } = post
     const { showModal, showAlertDialog } = useDialog()
-    const { userSolidSvg, commentSvg, commentsSvg, likeSvg } = useImages()
+    const { userSolidSvg, commentSvg, commentsSvg, likeSvg, ellipsisSvg } =
+        useImages()
     const [isCommentsOpen, setIsCommentsOpen] = useState(false)
     const { deletePost } = useDeletePost({ postId: post?._id })
     function showCommentForm() {
@@ -40,8 +41,30 @@ export default function PostItem({ post, likeHandler }) {
                     style={{ width: 50 }}
                     alt="user profile image"
                 />
+                <div className="dropdown-menu">
+                    <img
+                        className="icon"
+                        src={ellipsisSvg}
+                        alt="dropdown icon"
+                    />
+                    <div className="content">
+                        <button
+                            className="dropdown-button"
+                            onClick={editPostHandler}
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            className="dropdown-button"
+                            onClick={deletePostHandler}
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
                 {/* {post?.isMine && (
-                <div className="controls">
+                <div className="dropdown-menu">
                     <button onClick={editPostHandler}>Edit</button>
                     <button onClick={deletePostHandler}>Delete</button>
                 </div>
