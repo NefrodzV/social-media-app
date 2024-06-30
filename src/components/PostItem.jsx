@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import Group from './Group'
-import { Link } from 'react-router-dom'
 import { useDeletePost, useDialog, useImages } from '../hooks'
 import CreateCommentForm from './CreateCommentForm'
 import CommentList from './CommentList'
@@ -41,34 +40,30 @@ export default function PostItem({ post, likeHandler }) {
                     style={{ width: 50 }}
                     alt="user profile image"
                 />
-                <div className="dropdown-menu">
-                    <img
-                        className="icon"
-                        src={ellipsisSvg}
-                        alt="dropdown icon"
-                    />
-                    <div className="content">
-                        <button
-                            className="dropdown-button"
-                            onClick={editPostHandler}
-                        >
-                            Edit
-                        </button>
+                {post?.isMine && (
+                    <div className="dropdown-menu">
+                        <img
+                            className="icon"
+                            src={ellipsisSvg}
+                            alt="dropdown icon"
+                        />
+                        <div className="content">
+                            <button
+                                className="dropdown-button"
+                                onClick={editPostHandler}
+                            >
+                                Edit
+                            </button>
 
-                        <button
-                            className="dropdown-button"
-                            onClick={deletePostHandler}
-                        >
-                            Delete
-                        </button>
+                            <button
+                                className="dropdown-button"
+                                onClick={deletePostHandler}
+                            >
+                                Delete
+                            </button>
+                        </div>
                     </div>
-                </div>
-                {/* {post?.isMine && (
-                <div className="dropdown-menu">
-                    <button onClick={editPostHandler}>Edit</button>
-                    <button onClick={deletePostHandler}>Delete</button>
-                </div>
-            )} */}
+                )}
                 <div className="content fullwidth">
                     {firstName && lastName && (
                         <div className="post-item-user">
@@ -94,28 +89,16 @@ export default function PostItem({ post, likeHandler }) {
                             </button>
                         )}
                         {/* <button>Share</button> */}
-                        {!isCommentsOpen && (
-                            <button
-                                className="post-item-button"
-                                onClick={() => setIsCommentsOpen(true)}
-                            >
-                                <img
-                                    src={commentsSvg}
-                                    alt="view comments icon"
-                                />
-                                <span>Comments</span>
-                            </button>
-                        )}
+                        <button
+                            className="post-item-button"
+                            onClick={() => setIsCommentsOpen(!isCommentsOpen)}
+                        >
+                            <img src={commentsSvg} alt="view comments icon" />
+                            <span>Comments</span>
+                        </button>
                     </Group>
                 </div>
             </div>
-            {/* {post?.isMine && (
-                <div className="controls">
-                    <button onClick={editPostHandler}>Edit</button>
-                    <button onClick={deletePostHandler}>Delete</button>
-                </div>
-            )} */}
-
             {isCommentsOpen && <CommentList postId={post?._id} />}
         </article>
     )
