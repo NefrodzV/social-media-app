@@ -327,6 +327,14 @@ button.primary:active {
 }
 /* post list */
 .post-list {
+    box-sizing: border-box;
+    height: 100vh;
+    min-height: 0;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
     /* box-shadow: 0 0  3px var(--text) inset; */
     padding: var(--padding-small);
     /* margin: var(--padding-small); */
@@ -366,8 +374,6 @@ button.primary:active {
     cursor: pointer;
     transform: scale(0);
     transform-origin: top;
-    
-    
 }
 
 .dropdown-button {
@@ -413,7 +419,6 @@ button.primary:active {
     border: none; background-color: var(--background);
 }
 
-
 .post-item-button > span {
     position: absolute;
     bottom: -17px;
@@ -445,6 +450,68 @@ button.primary:active {
 .post-item-icon {
     height: 40px;
     aspect-ratio: 1 /1 ;
+}
+
+/* Follower List */
+.follower-list {
+    margin: var(--padding-small);
+    padding-block: var(--padding-medium);
+    width: 200px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    box-shadow: 0px 0px 1px var(--accent);
+}
+
+.follower-list .title {
+    font-size: var(--text-normal);
+    padding-left: var(--padding-medium);
+}
+.follower-list .edit {
+    background-color: var(--background);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: var(--padding-medium);
+    right: 1px;
+    height: 1rem;
+}
+.follower-list .edit > img {
+    height: 100%;
+    aspect-ratio: 1 /1;
+}
+
+.follower {
+    padding: var(--padding-big) var(--padding-medium);
+    /* border: 1px solid black; */
+    display: flex;
+    position: relative;
+    gap: var(--padding-medium);
+}
+
+.follower:not(:last-child) {
+    border-bottom: 1px solid var(--accent);
+}
+.follower .username {
+    text-transform: capitalize;
+}
+
+.follower img {
+    height: 1rem;
+    aspect-ratio: 1 / 1;
+}
+.card-link {
+    overflow: hidden;
+    position: absolute;
+    inset: 0 0 0 0
+}
+
+.hidden-text {
+    position: absolute;
+    top: -100px
 }
 @keyframes shake {
     10%,

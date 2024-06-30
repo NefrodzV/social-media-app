@@ -5,18 +5,22 @@ export default function FollowerItem({ follower, deleteFollower, isEditing }) {
     const { user } = follower
     const { userSolidSvg } = useImages()
     return (
-        <article>
-            <Link to={`/${user?.fullname}`} state={{ id: user?._id }}>
-                Go view follower profile
+        <article className="follower">
+            <Link
+                className="card-link"
+                to={`/${user?.fullname}`}
+                state={{ id: user?._id }}
+            >
+                <span className="hidden-text">
+                    Go view {user?.fullname || 'follower'} profile
+                </span>
             </Link>
             <img
+                className="border"
                 src={user.imgUrl || userSolidSvg}
                 alt="user account image"
-                style={{
-                    width: 50,
-                }}
             />
-            {user?.fullname}
+            <span className="username">{user?.fullname}</span>
             {isEditing && (
                 <button onClick={deleteFollower?.bind('id', follower?._id)}>
                     Remove
