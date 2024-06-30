@@ -18,15 +18,18 @@ export default function FollowerList({ followers, deleteFollowerHandler }) {
                     <img src={penSvg} alt="edit icon" />
                 </button>
             )}
-            {followers?.length === 0 && <div> You have no followers</div>}
-            {followers?.map((follower) => (
-                <FollowerItem
-                    key={follower._id}
-                    follower={follower}
-                    deleteFollower={deleteFollowerHandler}
-                    isEditing={isEditing}
-                />
-            ))}
+
+            <div className="content">
+                {followers?.length === 0 && <div> You have no followers</div>}
+                {followers?.map((follower) => (
+                    <FollowerItem
+                        key={follower._id}
+                        follower={follower}
+                        deleteFollower={deleteFollowerHandler}
+                        isEditing={isEditing}
+                    />
+                ))}
+            </div>
         </section>
     )
 }
