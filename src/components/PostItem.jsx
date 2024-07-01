@@ -37,7 +37,6 @@ export default function PostItem({ post, likeHandler }) {
                 <img
                     className="post-item-icon"
                     src={imgUrl || userSolidSvg}
-                    style={{ width: 50 }}
                     alt="user profile image"
                 />
                 {post?.isMine && (
