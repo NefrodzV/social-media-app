@@ -41,7 +41,10 @@ export default function Layout({ children }) {
             <Header />
             <main>
                 {children}
-                <FollowerList followers={user?.followers} />
+                <FollowerList
+                    title={'My followers'}
+                    followers={user?.followers}
+                />
                 {dialog && dialogRenderHandler(dialog)}
                 {toasts.length !== 0 && <ToastContainer />}
             </main>

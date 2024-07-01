@@ -87,19 +87,16 @@ dialog::backdrop {
     background-color:rgba(0, 0, 0, 0.7) ;
 }
 .layout {
-    /* height: 100vh;
-    width: 100%; */
     display: grid;
     grid-template-columns: 1fr 3fr;
+    /** Need to set this if you want inner items to be scrollable */
+    grid-template-rows: 100vh; 
     max-width: 1280px;
     overflow: hidden;
 }
 
 main {
     display: grid;
-    width: 100%;
-
-    min-height: 100vh; /* need this to be able to scroll */
     grid-template-columns: 2fr 1fr;
     box-sizing: border-box;
 }
@@ -456,9 +453,9 @@ button.primary:active {
 
 /* Follower List */
 .follower-list {
-    position: relative;
+    /* position: relative;
     top: 0;
-    bottom: 0;
+    bottom: 0; */
     margin: var(--padding-small);
     padding-block: var(--padding-medium) 0;
     width: 200px;
@@ -492,11 +489,11 @@ button.primary:active {
 }
 
 .follower-list .content {
-    flex: 1;
+    /* flex: 1; */
     /* background-color: #005B41; */
     display: flex;
     flex-direction: column;
-    min-height: 0; 
+    /* min-height: 0;  */
     overflow-y: auto;
 }
 
