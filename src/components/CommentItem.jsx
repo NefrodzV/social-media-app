@@ -1,29 +1,32 @@
 import PropTypes from 'prop-types'
-import { useUtils } from '../hooks'
+import { useImages, useUtils } from '../hooks'
+import DropdownMenu from './DropdownMenu'
 export default function CommentItem({ comment, deleteHandler, updateHandler }) {
     const { formatFullname } = useUtils()
+    const { userSvg } = useImages()
+    const dropDownItems = [
+        {
+            text: 'update',
+            clickHandler: updateHandler.bind('comment', comment),
+        },
+        {
+            text: 'delete',
+            clickHandler: deleteHandler.bind('id', comment?._id),
+        },
+    ]
     return (
         <article className="comment">
-            <div>User: {formatFullname(comment?.user)}</div>
-            <div>{comment?.text}</div>
-            <div
-                style={{
-                    display: comment.mine ? '' : 'none',
-                }}
-            >
-                <button
-                    onClick={updateHandler.bind('comment', comment)}
-                    type="button"
-                >
-                    update
-                </button>
-                <button
-                    onClick={deleteHandler.bind('id', comment._id)}
-                    type="button"
-                >
-                    delete
-                </button>
+            <img
+                className="icon small-box-shadow-inset"
+                src={comment?.user.imgUrl || userSvg}
+                alt="user image"
+            />
+            <div className="content">
+                <div className="user">{formatFullname(comment?.user)}</div>
+                <div className="text">{comment?.text}</div>
             </div>
+
+            <DropdownMenu items={dropDownItems} />
         </article>
     )
 }

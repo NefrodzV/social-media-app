@@ -376,6 +376,7 @@ button.primary:active {
 }
 
 .dropdown-button {
+    text-transform: capitalize;
     cursor: pointer;
     width: 100%;
     border: none;
@@ -390,19 +391,16 @@ button.primary:active {
 
 /* post item */
 .post-item {
-    /* margin-inline: 4px; */
+    overflow: hidden;
     padding: var(--padding-big) var(--padding-medium);
     display: flex;
     flex-direction: column;
-    /* border: 1px 0px 0px 0px solid var(--accent); */
     box-shadow: 0px 0px 1px var(--accent);
 }
 .post-item-body {
     display: flex;
 }
-/* .post-item > * {
-    border:  1px solid black;
-} */
+
 .post-item-controls {
     padding: var(--padding-small);
     display: flex;height: 1rem;
@@ -451,6 +449,67 @@ button.primary:active {
     aspect-ratio: 1 /1 ;
 }
 
+/** Comment List **/
+.comments {
+    display: flex;
+    flex-direction: column;
+}
+.comments .content {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--padding-small);
+}
+.comments .content .comment:only-child
+{
+    background-color: #005B41;
+}
+.comment {
+    height: auto;
+    position: relative;
+    padding:  var(--padding-medium);
+    margin-inline: var(--padding-small);
+    display: flex;
+    box-shadow: 0 0 1px var(--accent);
+    gap: 4px;
+}
+
+.comment .content {
+    padding: 0;
+    display: block;
+    flex: 1;
+}
+
+.comment .content .user {
+    font-weight: bold;
+}
+
+.comment .content .text {
+    font-size: var(--text-small);
+}
+.comment .icon {
+    box-shadow: 0px 0px 3px var(--accent) inset;
+    height: 30px;
+    aspect-ratio: 1 /1;
+}
+
+.comment .dropdown-menu {
+    overflow:hidden ;
+    position:  absolute;
+    /* right: 0; */
+    /* top: 0; */
+} 
+.comment .dropdown-menu .content {
+    width: auto;
+    padding: 0;
+    gap: 0;
+}
+.comment .dropdown-menu .icon {
+    align-self: self-end;
+    height: 10px;
+    aspect-ratio: 1 /1;
+}
 /* Follower List */
 .follower-list {
     /* position: relative;
@@ -527,6 +586,15 @@ button.primary:active {
     position: absolute;
     top: -100px
 }
+
+.slide-down {
+    animation: slide-down 1s ease;
+    transform-origin: top;
+}
+
+.small-inset-shadow {
+    box-shadow: 0px 0px 1px var(--accent) inset;
+}
 @keyframes shake {
     10%,
     30%,
@@ -575,6 +643,17 @@ button.primary:active {
     }
 }
 
+@keyframes slide-down {
+    from {
+        transform: scaleY(0);
+    }
+
+    to {
+        transform: scaleY(1);
+    }
+    
+}
+
 /* helpers */
 .fullwidth {
     width: 100%;
@@ -601,6 +680,10 @@ button.primary:active {
 
 .box-shadow {
     box-shadow: 0px 0px 6px var(--text);
+}
+
+.small-box-shadow {
+    box-shadow: 0px 0px 1px var(--accent);
 }
 /* .border {
     border-radius: 5px;
