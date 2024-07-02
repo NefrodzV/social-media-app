@@ -5,6 +5,7 @@ import CreateCommentForm from './CreateCommentForm'
 import CommentList from './CommentList'
 import { useState } from 'react'
 import EditPostForm from './EditPostForm'
+import DropdownMenu from './DropdownMenu'
 export default function PostItem({ post, likeHandler }) {
     const {
         user: { firstName, lastName, imgUrl },
@@ -40,28 +41,18 @@ export default function PostItem({ post, likeHandler }) {
                     alt="user profile image"
                 />
                 {post?.isMine && (
-                    <div className="dropdown-menu">
-                        <img
-                            className="icon"
-                            src={ellipsisSvg}
-                            alt="dropdown icon"
-                        />
-                        <div className="content">
-                            <button
-                                className="dropdown-button"
-                                onClick={editPostHandler}
-                            >
-                                Edit
-                            </button>
-
-                            <button
-                                className="dropdown-button"
-                                onClick={deletePostHandler}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
+                    <DropdownMenu
+                        items={[
+                            {
+                                text: 'Edit',
+                                clickHandler: editPostHandler,
+                            },
+                            {
+                                text: 'Delete',
+                                clickHandler: deletePostHandler,
+                            },
+                        ]}
+                    />
                 )}
                 <div className="content fullwidth">
                     {firstName && lastName && (
@@ -98,7 +89,9 @@ export default function PostItem({ post, likeHandler }) {
                     </Group>
                 </div>
             </div>
-            {isCommentsOpen && <CommentList postId={post?._id} />}
+            {isCommentsOpen && (
+                <CommentList classes="small-inset-shadow" postId={post?._id} />
+            )}
         </article>
     )
 }
