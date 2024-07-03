@@ -327,16 +327,13 @@ button.primary:active {
 /* post list */
 .post-list {
     box-sizing: border-box;
-    height: 100vh;
     min-height: 0;
     scrollbar-width: none;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: .4rem;
-    /* box-shadow: 0 0  3px var(--text) inset; */
     padding: var(--padding-small);
-    /* margin: var(--padding-small); */
     position: relative;
 }
 .post-list > h1 {
@@ -391,7 +388,6 @@ button.primary:active {
 
 /* post item */
 .post-item {
-    overflow: hidden;
     padding: var(--padding-big) var(--padding-medium);
     display: flex;
     flex-direction: column;
@@ -451,11 +447,14 @@ button.primary:active {
 
 /** Comment List **/
 .comments {
+    padding: var(--padding-small);
     display: flex;
     flex-direction: column;
+    
 }
 .comments .content {
-    
+    max-height: 300px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -489,7 +488,7 @@ button.primary:active {
     font-size: var(--text-small);
 }
 .comment .icon {
-    box-shadow: 0px 0px 3px var(--accent) inset;
+    /* box-shadow: 0px 0px 3px var(--accent) inset; */
     height: 30px;
     aspect-ratio: 1 /1;
 }
@@ -497,8 +496,8 @@ button.primary:active {
 .comment .dropdown-menu {
     overflow:hidden ;
     position:  absolute;
-    /* right: 0; */
-    /* top: 0; */
+    right: 4px;
+    top: 4px;
 } 
 .comment .dropdown-menu .content {
     width: auto;
@@ -685,9 +684,9 @@ button.primary:active {
 .small-box-shadow {
     box-shadow: 0px 0px 1px var(--accent);
 }
-/* .border {
-    border-radius: 5px;
-} */
+.inset-box-shadow-3 {
+    box-shadow: 0px 0px 3px var(--accent) inset;
+}
 .even-items {
     display: flex;
     gap: var(--padding-medium);

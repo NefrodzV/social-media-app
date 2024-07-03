@@ -36,7 +36,7 @@ export default function PostItem({ post, likeHandler }) {
         >
             <div className="post-item-body">
                 <img
-                    className="post-item-icon"
+                    className="post-item-icon inset-box-shadow-3"
                     src={imgUrl || userSolidSvg}
                     alt="user profile image"
                 />

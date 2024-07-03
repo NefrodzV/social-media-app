@@ -17,7 +17,7 @@ export default function CommentItem({ comment, deleteHandler, updateHandler }) {
     return (
         <article className="comment">
             <img
-                className="icon small-box-shadow-inset"
+                className="icon inset-box-shadow-3 "
                 src={comment?.user.imgUrl || userSvg}
                 alt="user image"
             />
