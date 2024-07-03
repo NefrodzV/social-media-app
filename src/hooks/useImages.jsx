@@ -14,8 +14,10 @@ import likeSvg from '../assets/svgs/thumbs-up-solid.svg'
 import logoutSvg from '../assets/svgs/right-from-bracket-solid.svg'
 import inboxSvg from '../assets/svgs/inbox-solid.svg'
 import ellipsisSvg from '../assets/svgs/ellipsis-vertical-solid.svg'
+import leftArrowSvg from '../assets/svgs/arrow-left-solid.svg'
 export default function useImages() {
     return {
+        leftArrowSvg,
         userSolidSvg,
         homeSvg,
         usersSvg,

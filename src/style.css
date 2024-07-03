@@ -577,6 +577,22 @@ button.primary:active {
     height: 1rem;
     aspect-ratio: 1 / 1;
 }
+
+button.back {
+    color: var(--accent);
+    background-color: var(--background);
+    border: none;
+    cursor: pointer;
+    align-self: self-start;
+}
+
+button.back svg {
+    height: 30px;
+}
+button.back img{
+    height: 25px;
+    aspect-ratio: 1 /1;
+}
 .card-link {
     overflow: hidden;
     position: absolute;

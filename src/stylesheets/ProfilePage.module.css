@@ -1,0 +1,20 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-medium);
+
+}
+.user {
+    padding: var(--padding-big);
+    display: flex;
+    gap: 8px;
+}
+
+.image {
+    height: 50px;
+    aspect-ratio: 1 / 1;
+}
+
+.posts {
+    flex: 1;
+}
