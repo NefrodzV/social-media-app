@@ -391,10 +391,12 @@ button.primary:active {
     padding: var(--padding-big) var(--padding-medium);
     display: flex;
     flex-direction: column;
+    
     box-shadow: 0px 0px 1px var(--accent);
 }
 .post-item-body {
     display: flex;
+    gap: 8px;
 }
 
 .post-item-controls {
