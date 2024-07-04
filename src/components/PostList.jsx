@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
-export default function PostList({ children, style }) {
+import style from '../stylesheets/PostList.module.css'
+export default function PostList({ children, classNames }) {
     return (
-        <section className={`post-list ${style || ''}`}>
+        <section className={style.list + ` ${classNames || ''}`}>
             <h1>Posts</h1>
-            {children}
+            <div className={style.container}>{children}</div>
         </section>
     )
 }

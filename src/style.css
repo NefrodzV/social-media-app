@@ -324,27 +324,11 @@ button.primary {
 button.primary:active {
     transform: translateY(2px);
 }
-/* post list */
-.post-list {
-    box-sizing: border-box;
-    min-height: 0;
-    scrollbar-width: none;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: .4rem;
-    padding: var(--padding-small);
-    position: relative;
-}
-.post-list > h1 {
-    position: fixed;
-    top: -100px;
-}
 
 .dropdown-menu {
     position: absolute;
-    right: var(--padding-big);
-    top: var(--padding-big);
+    right: 8px;
+    top: 8px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -385,13 +369,13 @@ button.primary:active {
     border-bottom: 1px solid var(--accent);
 }
 
-
 /* post item */
 .post-item {
+    position: relative;
     padding: var(--padding-big) var(--padding-medium);
     display: flex;
     flex-direction: column;
-    
+    gap: 4px;
     box-shadow: 0px 0px 1px var(--accent);
 }
 .post-item-body {
