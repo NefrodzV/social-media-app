@@ -1,0 +1,43 @@
+.dropdown {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.dropdown:hover .container {
+    display: flex;
+    border:  1px solid var(--accent);
+    transform: scale(1);
+}
+
+.dropdown:hover .icon {
+    display: none;
+}
+
+.dropdown .icon {
+    height: 1rem;
+    cursor: pointer;
+}
+.dropdown .container {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    transform: scale(0);
+    transform-origin: top;
+}
+
+.dropdown button {
+    text-transform: capitalize;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background-color: var(--background);
+    font-size: var(--text-small);
+}
+
+.dropdown button:not(:last-child) {
+    border-bottom: 1px solid var(--accent);
+}

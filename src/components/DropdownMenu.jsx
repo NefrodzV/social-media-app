@@ -1,33 +1,21 @@
 import { useImages } from '../hooks'
 import PropTypes from 'prop-types'
+import styles from '../stylesheets/Dropdown.module.css'
 export default function DropdownMenu({ items }) {
     const { ellipsisSvg } = useImages()
     return (
-        <div className="dropdown-menu">
-            <img className="icon" src={ellipsisSvg} alt="dropdown icon" />
-            <div className="content">
+        <div className={styles.dropdown}>
+            <img
+                className={styles.icon}
+                src={ellipsisSvg}
+                alt="dropdown icon"
+            />
+            <div className={styles.container}>
                 {items?.map((item) => (
-                    <button
-                        className={'dropdown-button'}
-                        key={item.text}
-                        onClick={item.clickHandler}
-                    >
+                    <button key={item.text} onClick={item.clickHandler}>
                         {item.text}
                     </button>
                 ))}
-                {/* <button
-                                className="dropdown-button"
-                                onClick={editPostHandler}
-                            >
-                                Edit
-                            </button>
-
-                            <button
-                                className="dropdown-button"
-                                onClick={deletePostHandler}
-                            >
-                                Delete
-                            </button> */}
             </div>
         </div>
     )
