@@ -1,0 +1,59 @@
+.post {
+    position: relative;
+    padding: var(--padding-big) var(--padding-medium);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0px 0px 1px var(--accent);
+}
+.body {
+    display: flex;
+    gap: 8px;
+}
+
+.controls {
+    padding: var(--padding-small);
+    display: flex;height: 1rem;
+    justify-content: space-evenly;
+}
+
+.controls button {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    font-size: var(--text-small);
+    border: none; background-color: var(--background);
+}
+
+.controls button > span {
+    position: absolute;
+    bottom: -17px;
+    left: 50%;
+    display: none;
+    background-color: var(--accent);
+    color: var(--background);
+    box-shadow: 0px 0px 3px var(--accent);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.controls button:hover {
+    color: var(--primary);
+}
+
+.controls button:hover > span {
+    display: block;
+    padding: 1px
+}
+.controls button > img {
+    height: 100%;
+}
+.post .user {
+    font-size: var(--text-normal);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.post .icon {
+    height: 40px;
+    aspect-ratio: 1 /1 ;
+}

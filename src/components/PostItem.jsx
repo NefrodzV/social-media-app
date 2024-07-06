@@ -6,6 +6,7 @@ import CommentList from './CommentList'
 import { useState } from 'react'
 import EditPostForm from './EditPostForm'
 import DropdownMenu from './DropdownMenu'
+import styles from '../stylesheets/PostItem.module.css'
 export default function PostItem({ post, likeHandler }) {
     const {
         user: { firstName, lastName, imgUrl },
@@ -32,11 +33,11 @@ export default function PostItem({ post, likeHandler }) {
     return (
         <article
             // onMouseLeave={() => setIsCommentsOpen(false)}
-            className="post-item"
+            className={styles.post}
         >
-            <div className="post-item-body">
+            <div className={styles.body}>
                 <img
-                    className="post-item-icon inset-box-shadow-3"
+                    className={`${styles.icon} inset-box-shadow-3`}
                     src={imgUrl || userSolidSvg}
                     alt="user profile image"
                 />
@@ -54,33 +55,26 @@ export default function PostItem({ post, likeHandler }) {
                         ]}
                     />
                 )}
-                <div className="content fullwidth">
+                <div className={`${styles.content} fullwidth`}>
                     {firstName && lastName && (
-                        <div className="post-item-user">
+                        <div className={styles.user}>
                             {post?.user?.firstName + ' ' + post?.user?.lastName}
                         </div>
                     )}
-                    <div>{post?.text}</div>{' '}
-                    <Group style={'post-item-controls'}>
-                        <button
-                            className="post-item-button"
-                            onClick={showCommentForm}
-                        >
+                    <div>{post?.text}</div>
+                    <Group style={styles.controls}>
+                        <button onClick={showCommentForm}>
                             <img src={commentSvg} alt="comment icon" />
                             <span>Comment</span>
                         </button>
                         {!post?.isMine && (
-                            <button
-                                className="post-item-button"
-                                onClick={() => likeHandler(post)}
-                            >
+                            <button onClick={() => likeHandler(post)}>
                                 <img src={likeSvg} alt="like post icon" />
                                 <span>Like</span>
                             </button>
                         )}
                         {/* <button>Share</button> */}
                         <button
-                            className="post-item-button"
                             onClick={() => setIsCommentsOpen(!isCommentsOpen)}
                         >
                             <img src={commentsSvg} alt="view comments icon" />
