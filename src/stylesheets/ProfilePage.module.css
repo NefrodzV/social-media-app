@@ -1,12 +1,12 @@
 .page {
     display: flex;
     flex-direction: column;
-    
-
+    padding: 2px 4px
 }
 
-
 .user {
+    border: 1px solid var(--accent);
+    position: relative;
     box-sizing: border-box;
     padding: var(--padding-big);
     display: flex;
@@ -20,8 +20,8 @@
     aspect-ratio: 1 / 1;
 }
 
-.posts {
+/* .posts {
     padding: none;
     flex: 1;
     gap:  8px;
-}
+} */

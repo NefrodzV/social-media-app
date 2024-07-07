@@ -1,10 +1,16 @@
 import { useImages } from '../hooks'
 import PropTypes from 'prop-types'
 import styles from '../stylesheets/Dropdown.module.css'
-export default function DropdownMenu({ items }) {
+export default function DropdownMenu({ items, top, right }) {
     const { ellipsisSvg } = useImages()
     return (
-        <div className={styles.dropdown}>
+        <div
+            className={styles.dropdown}
+            style={{
+                top,
+                right,
+            }}
+        >
             <img
                 className={styles.icon}
                 src={ellipsisSvg}

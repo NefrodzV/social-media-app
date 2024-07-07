@@ -5,24 +5,17 @@ import {
     PostItem,
     Loader,
     BackButton,
-    FollowerList,
 } from '../components'
 import styles from '../stylesheets/ProfilePage.module.css'
-import {
-    useAuth,
-    useAuthUser,
-    useAuthUserPosts,
-    useDialog,
-    useImages,
-} from '../hooks'
+import { useAuth, useAuthUser, useDialog, useImages } from '../hooks'
 import { useNavigate } from 'react-router-dom'
+import DropdownMenu from '../components/DropdownMenu'
 export default function ProfilePage() {
     const navigate = useNavigate()
     const { user } = useAuth()
     const { updateImage } = useAuthUser()
     const { showModal } = useDialog()
     const { userSolidSvg, leftArrowSvg } = useImages()
-    // const { posts } = useAuthUserPosts()
     return (
         <>
             {user ? (
@@ -36,16 +29,18 @@ export default function ProfilePage() {
                                 alt="user profile picture"
                             />
                             <h1>{user?.fullname}</h1>
+                            <DropdownMenu
+                                items={[
+                                    {
+                                        text: 'change image',
+                                        clickHandler: () =>
+                                            console.log(
+                                                'Opening change rpfile image from'
+                                            ),
+                                    },
+                                ]}
+                            />
                         </div>
-                        <button
-                            onClick={() => {
-                                showModal(
-                                    <ImageForm onSuccessHandler={updateImage} />
-                                )
-                            }}
-                        >
-                            Change image
-                        </button>
                         <PostList style={styles.posts}>
                             {user?.posts?.map((post) => (
                                 <PostItem key={post?._id} post={post} />
