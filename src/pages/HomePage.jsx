@@ -13,7 +13,9 @@ export default function Home() {
         <>
             {user ? (
                 <Layout>
-                    <PostList classNames={'inset-box-shadow'}>
+                    <PostList
+                        classNames={'inset-box-shadow small-container-padding '}
+                    >
                         {posts.map((post) => (
                             <PostItem
                                 key={post?._id}

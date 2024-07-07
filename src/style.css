@@ -551,6 +551,10 @@ button.back img{
 }
 
 /* helpers */
+
+.small-container-padding {
+    padding: 2px 4px;
+}
 .fullwidth {
     width: 100%;
 }
