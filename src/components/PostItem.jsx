@@ -1,20 +1,23 @@
 import PropTypes from 'prop-types'
 import Group from './Group'
-import { useDeletePost, useDialog, useImages } from '../hooks'
+import { useDeletePost, useDialog, useImages, useUtils } from '../hooks'
 import CreateCommentForm from './CreateCommentForm'
 import CommentList from './CommentList'
 import { useState } from 'react'
 import EditPostForm from './EditPostForm'
 import DropdownMenu from './DropdownMenu'
 import styles from '../stylesheets/PostItem.module.css'
+import { Link } from 'react-router-dom'
 export default function PostItem({ post, likeHandler }) {
     const {
         user: { firstName, lastName, imgUrl },
     } = post
+
+    console.log(post)
     const { showModal, showAlertDialog } = useDialog()
-    const { userSolidSvg, commentSvg, commentsSvg, likeSvg, ellipsisSvg } =
-        useImages()
+    const { userSolidSvg, commentSvg, commentsSvg, likeSvg } = useImages()
     const [isCommentsOpen, setIsCommentsOpen] = useState(false)
+    const { formatFullname } = useUtils()
     const { deletePost } = useDeletePost({ postId: post?._id })
     function showCommentForm() {
         showModal(<CreateCommentForm postId={post?._id} />)
@@ -58,7 +61,16 @@ export default function PostItem({ post, likeHandler }) {
                 <div className={`${styles.content} fullwidth`}>
                     {firstName && lastName && (
                         <div className={styles.user}>
-                            {post?.user?.firstName + ' ' + post?.user?.lastName}
+                            <Link
+                                className="card-link"
+                                to={`/${formatFullname(post?.user)}`}
+                                state={{ user: post?.user?._id }}
+                            >
+                                <span className="hidden-text">
+                                    Go to {formatFullname(post?.user)} profile
+                                </span>
+                            </Link>
+                            {formatFullname(post?.user)}
                         </div>
                     )}
                     <div>{post?.text}</div>

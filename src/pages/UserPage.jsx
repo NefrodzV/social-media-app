@@ -1,6 +1,14 @@
-import { Layout, PostList, PostItem, Loader, UserList } from '../components'
+import {
+    Layout,
+    PostList,
+    PostItem,
+    Loader,
+    UserList,
+    BackButton,
+} from '../components'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useUser, useUserPosts, useImages } from '../hooks'
+import { useUser, useUserPosts, useImages, useUtils } from '../hooks'
+import style from '../stylesheets/ProfilePage.module.css'
 export default function UserPage() {
     const navigate = useNavigate()
     const location = useLocation()
@@ -8,23 +16,22 @@ export default function UserPage() {
     // Update the api so the user returns their posts
     const { user } = useUser(id)
     const { posts } = useUserPosts(id)
+
     const { userSolidSvg } = useImages()
     return (
         <>
             {user ? (
                 <Layout>
                     <section className="inset-box-shadow">
+                        <BackButton />
                         <div>
-                            <button onClick={() => navigate(-1)}>
-                                go back
-                            </button>
-                            <h2>{user.fullname}</h2>
                             <img
                                 src={user?.imgUrl || userSolidSvg}
                                 alt="user profile picture"
                                 width={50}
                                 height={50}
                             />
+                            <h1>{user.fullname}</h1>
                         </div>
                         <PostList>
                             {posts.map((post) => (

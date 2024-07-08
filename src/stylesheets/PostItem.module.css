@@ -48,6 +48,8 @@
     height: 100%;
 }
 .post .user {
+    position: relative;
+    overflow: hidden;
     font-size: var(--text-normal);
     font-weight: bold;
     text-transform: capitalize;
