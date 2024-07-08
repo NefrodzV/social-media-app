@@ -25,7 +25,7 @@ export default function useUser(id) {
                 setUser(json.user)
             } catch (e) {
                 setStatus(ERROR)
-                throw new Error('GET User with id error: ' + e)
+                console.error('GET User with id error: ' + e)
             }
         }
         if (id) getUser()
