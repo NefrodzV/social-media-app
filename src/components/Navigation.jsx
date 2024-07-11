@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth, useDialog, useImages } from '../hooks'
 import Inbox from './Inbox'
 import NavItem from './NavItem'
+import PostForm from './PostForm'
 export default function Navigation() {
     // TODO IMPLEMENT LOGOUT HERE
     const { user, logout } = useAuth()
@@ -9,7 +10,12 @@ export default function Navigation() {
     function openInbox() {
         showModal(<Inbox />)
     }
-    const { homeSvg, usersSvg, inboxSvg, userSvg, logoutSvg } = useImages()
+
+    function openPost() {
+        showModal(<PostForm />)
+    }
+    const { homeSvg, usersSvg, inboxSvg, userSvg, logoutSvg, penSvg } =
+        useImages()
     return (
         <nav>
             <ul className="nav-list">
@@ -24,6 +30,11 @@ export default function Navigation() {
                     text={'profile'}
                     icon={userSvg}
                     navigateTo={'/profile'}
+                />
+                <NavItem
+                    text={'post'}
+                    icon={penSvg}
+                    onClickHandler={openPost}
                 />
                 <NavItem
                     text={'logout'}
