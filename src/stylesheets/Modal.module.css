@@ -1,0 +1,23 @@
+/* .modal {
+    display: flex;
+    flex-direction: column;
+} */
+.close {
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    border: none;
+    padding: 4px;
+    background-color: var(--background);
+    margin-bottom:  var(--x-large-space);
+}
+
+.close:hover {
+    box-shadow: 0px 0px 3px var(--accent);
+}
+
+.icon {
+    height: 12px;
+    aspect-ratio: 1;
+}
