@@ -26,6 +26,10 @@
     --heading-medium: calc(var(--text-normal) * 1.175);
     --heading-small:calc(var(--text-normal) * 1.150);
     --heading-extra-small:  calc(var(--text-normal) * 1.1);
+
+    --small-space: .6rem;
+    --medium-space: .8rem;
+    --large-space: 1rem;
     /* --heading-big: 2.125rem;
     --heading-extra-large: 1.775rem;
     --heading-large: 1.5rem;
