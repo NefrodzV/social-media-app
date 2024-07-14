@@ -10,7 +10,7 @@ export default function Modal({ children }) {
         dialog.showModal()
     }, [])
     return (
-        <dialog className={style.modal} ref={dialogRef}>
+        <dialog className={style.modal} ref={dialogRef} autoFocus={false}>
             <button className={style.close} onClick={closeDialog}>
                 <span className="hidden-text">close</span>
                 <img className={style.icon} src={xmarkSvg} alt="close icon" />

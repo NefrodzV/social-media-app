@@ -134,19 +134,19 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
 }
-input {
+/* input {
     font-size: var(--text-normal);
     box-sizing: border-box;
     padding: var(--padding-medium) var(--padding-small);
     width: 100%;
     border: 1px solid var(--text);
     border-radius: 5px;
-}
+} */
 
-input:focus {
+/* input:focus {
     outline: 3px solid var(--primary);
     border:none;
-}
+} */
 
 input.error {
     outline: 3px solid var(--error);;
@@ -306,15 +306,15 @@ hr {
     width: 100%;
 }
 
-form label {
+/* form label {
     font-size: var(--text-normal);
     padding-block: var(--padding-small);
-}
+} */
 
-button {
+/* button {
     font-family: var(--font);
     font-size: var(--text-big);
-}
+} */
 
 button.primary {
     padding-block: var(--padding-small);

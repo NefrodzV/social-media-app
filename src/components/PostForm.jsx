@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 import { STATUS } from '../constants'
 import PropTypes from 'prop-types'
 import { useDialog, useNotification } from '../hooks'
+import Group from '../components/Group'
+import styles from '../stylesheets/PostForm.module.css'
+import lockSvg from '../assets/svgs/lock-solid.svg'
 
 export default function PostForm() {
     const [status, setStatus] = useState(null)
     const [errors, setErrors] = useState(null)
     const { closeDialog } = useDialog()
     const { showToast } = useNotification()
-
     async function post(data) {
         try {
             setStatus(STATUS.PENDING)
@@ -43,32 +45,40 @@ export default function PostForm() {
         post(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <form noValidate onSubmit={onSubmitHandler}>
-            <h1>Make a new post</h1>
+        <form
+            className={styles.container}
+            noValidate
+            onSubmit={onSubmitHandler}
+        >
+            <h1 className="hidden-text">Make a new post</h1>
             <textarea
+                className={styles.textarea}
                 name="text"
                 id="text"
                 cols="30"
                 rows="10"
-                placeholder="What are you thinking about?"
+                placeholder="What are you going to write about?..."
+                maxLength={400}
             ></textarea>
-            <input
-                type="checkbox"
-                name="privatePost"
-                onClick={(e) => {
-                    const checkbox = e.target
-                    if (checkbox.checked === true) {
-                        checkbox.value = true
-                    } else {
-                        checkbox.value = false
-                    }
-                }}
-            />
-            <label htmlFor="private">Set post as private</label>
-            <button>submit</button>
-            <button type="button" onClick={closeDialog}>
-                cancel
-            </button>
+            <label className={styles.private} htmlFor="private">
+                <input
+                    id="private"
+                    type="checkbox"
+                    name="privatePost"
+                    onClick={(e) => {
+                        const checkbox = e.target
+                        if (checkbox.checked === true) {
+                            checkbox.value = true
+                        } else {
+                            checkbox.value = false
+                        }
+                    }}
+                />
+                <span className={styles.info}>Set as private</span>
+                <img src={lockSvg} />
+            </label>
+
+            <button className={`${styles.post}`}>Post</button>
         </form>
     )
 }

@@ -1,0 +1,58 @@
+.container {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium-space);
+}
+
+.post {
+    align-self: flex-end;
+}
+
+.private {
+    cursor: pointer;
+    display: flex;
+    gap: var(--space-small);
+    align-items: center;
+    height: 20px;
+    width: 40px;
+    position: relative;
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    transition: all .5s;
+}
+
+.private:hover .info {
+    width: max-content;
+    right: -2px;
+    transform: translate(100%);
+    position: absolute;
+    display: block;
+}
+
+.private input {
+    margin: 0;
+    appearance: none;
+}
+.private .info {
+    display: none;
+}
+
+.private img {
+    box-sizing: border-box;
+    padding: 2px;
+    height: 100%;
+    width: 50%;
+    transition:  transform 1s;
+}
+.private input:checked ~ img {
+    filter: drop-shadow(1px 1px  6px var(--primary));
+    height: 100%;
+    transform: translate(100%);
+}
+
+.textarea {
+    border: none;
+    outline: none;
+    resize: none;
+}

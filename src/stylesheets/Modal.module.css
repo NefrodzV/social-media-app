@@ -1,7 +1,7 @@
-/* .modal {
-    display: flex;
-    flex-direction: column;
-} */
+.modal {
+    border: none;
+    border-radius: 5px;
+}
 .close {
     display: flex;
     align-items: center;
