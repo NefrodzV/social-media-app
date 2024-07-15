@@ -9,50 +9,64 @@
     align-self: flex-end;
 }
 
-.private {
+.control {
     cursor: pointer;
     display: flex;
     gap: var(--space-small);
     align-items: center;
-    height: 20px;
-    width: 40px;
+    height: 1rem; 
+    aspect-ratio: 1 /1;
+    /* width: 40px;  */
     position: relative;
-    border: 1px solid var(--accent);
+    /* border: 1px solid var(--accent); */
     border-radius: 5px;
     transition: all .5s;
 }
 
-.private:hover .info {
-    width: max-content;
-    right: -2px;
-    transform: translate(100%);
+.control:hover .info {
+    padding: 2px;
+    background-color: var(--background);
+    box-shadow: 0 0 1px var(--accent);
+    font-size: .8rem;
+    width: 20ch;
     position: absolute;
+    top: 0;
+    transform: translate(0, -100%);
     display: block;
 }
-
-.private input {
+.controls {
+    display: flex;
+    gap: 4px;
+}
+.control input {
     margin: 0;
     appearance: none;
 }
-.private .info {
+
+.control input[type='file'] {
+    appearance: none;
+}
+.control .info {
     display: none;
 }
 
-.private img {
+.control svg {
     box-sizing: border-box;
-    padding: 2px;
     height: 100%;
-    width: 50%;
     transition:  transform 1s;
 }
-.private input:checked ~ img {
-    filter: drop-shadow(1px 1px  6px var(--primary));
+.control input:checked ~ svg {
+    color: var(--primary);
     height: 100%;
-    transform: translate(100%);
 }
 
 .textarea {
     border: none;
     outline: none;
     resize: none;
+    box-shadow: 0px 0px 1px var(--accent);
+}
+
+.footer {
+    display: flex;
 }
