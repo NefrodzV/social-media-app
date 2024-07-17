@@ -168,16 +168,6 @@ input.error {
     bottom: 1rem;
 }
 
-.toast {
-    box-sizing: border-box;
-    transition: all 0.5s ease-in-out ;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    color: black;
-    width: 300px;
-    padding: 16px;
-    box-shadow: 0 0 3px black;
-}
 
 /* Styling header */
 header {

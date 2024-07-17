@@ -1,0 +1,51 @@
+.toast {
+    box-sizing: border-box;
+    transition: all 0.5s ease-in-out ;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    color: black;
+    height: 50px;
+    width: min(300px, 90%);
+    padding: 8px;
+    box-shadow: 0 0 3px black;
+    gap: 8px;
+}
+
+.toast .icon {
+    height: 75%;
+    aspect-ratio: 1 /1 ;
+    border-radius: 50%;
+    /* box-shadow: 0 0 1px rgba(0,0,0,.5); */
+}
+
+
+.toast .message {
+    white-space: nowrap;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    width: 70%;
+    overflow: hidden;
+}
+.toast button  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    aspect-ratio: 1 /1;
+    border-radius: 70%;
+    padding: none;
+    border: none;
+    background-color: var(--background);
+    margin-inline: auto 0;
+}
+
+.toast button:hover {
+    box-shadow: 0 0 1px rgba(0,0,0,.5);
+}
+
+.toast button img {
+    height: 100%;
+    aspect-ratio: 1 /1 ;
+}
