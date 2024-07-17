@@ -40,7 +40,7 @@ export default function PostItem({ post, likeHandler }) {
         >
             <div className={styles.body}>
                 <img
-                    className={`${styles.icon} inset-box-shadow-3`}
+                    className={`${styles.icon}`}
                     src={imgUrl || userSolidSvg}
                     alt="user profile image"
                 />
@@ -64,7 +64,7 @@ export default function PostItem({ post, likeHandler }) {
                             <Link
                                 className="card-link"
                                 to={`/${formatFullname(post?.user)}`}
-                                state={{ user: post?.user?._id }}
+                                state={{ userId: post?.user?._id }}
                             >
                                 <span className="hidden-text">
                                     Go to {formatFullname(post?.user)} profile
