@@ -1,0 +1,22 @@
+.login {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login form {
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 0px 6px var(--text);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--padding-big);
+    border-radius: 10px;
+    width: min(300px, 90%);
+    height: min(500px, 90%);
+    box-sizing: border-box;
+    padding: var(--padding-big);
+}

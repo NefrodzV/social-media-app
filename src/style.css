@@ -134,14 +134,14 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
 }
-/* input {
+ input.primary {
     font-size: var(--text-normal);
     box-sizing: border-box;
     padding: var(--padding-medium) var(--padding-small);
     width: 100%;
     border: 1px solid var(--text);
     border-radius: 5px;
-} */
+} 
 
 /* input:focus {
     outline: 3px solid var(--primary);
@@ -241,33 +241,15 @@ header > * {
     height: 100%;
 }
 
-.login-page {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-form {
-    position: relative;
-    background-color: white;
-    box-shadow: 0px 0px 6px var(--text);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: var(--padding-big);
-    border-radius: 10px;
-    width: min(300px, 90%);
-    height: min(500px, 90%);
-    box-sizing: border-box;
-    padding: var(--padding-big);
-}
 hr {
     width: 100%;
     color: var(--accent);
     background-color: var(--accent);
 }
-.primary-button-border {
+a.secondary{
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: bold;
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
@@ -275,7 +257,7 @@ hr {
     text-decoration: none;
     color: var(--secondary);
     padding-block: var(--padding-small);
-    font-size: var(--text-big);
+    /* font-size: var(--text-big); */
     border: 3px solid var(--primary);
 }
 .signup-page {
@@ -307,6 +289,9 @@ hr {
 } */
 
 button.primary {
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-size: 1rem;
     padding-block: var(--padding-small);
     cursor: pointer;
     background-color: var(--secondary);

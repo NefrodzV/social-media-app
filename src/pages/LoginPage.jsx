@@ -3,6 +3,7 @@ import { STATUS } from '../constants'
 import { Input, Group, ErrorDisplay, LoaderOverlay } from '../components/index'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth, useImages } from '../hooks'
+import style from '../stylesheets/Login.module.css'
 
 export default function Login() {
     const { user, status, errors, login, resetErrors } = useAuth()
@@ -20,8 +21,8 @@ export default function Login() {
         login(Object.fromEntries(new FormData(e.target)))
     }
     return (
-        <main className="fullscreen login-page">
-            <form className="login-form" onSubmit={loginHandler} noValidate>
+        <main className={style.login}>
+            <form onSubmit={loginHandler} noValidate>
                 <h1>Login</h1>
                 <h2 className="text-opaque">Welcome back!</h2>
                 <Group>
@@ -49,11 +50,11 @@ export default function Login() {
                         type={'submit'}
                         disabled={status === 'pending'}
                     >
-                        Login
+                        sign in
                     </button>
                     <hr />
-                    <Link className={'primary-button-border'} to={'/signup'}>
-                        Create an account
+                    <Link className={'secondary'} to={'/signup'}>
+                        sign up
                     </Link>
                 </Group>
             </form>
