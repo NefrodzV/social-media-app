@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { STATUS } from '../constants'
-import PropTypes from 'prop-types'
 import { useDialog, useNotification } from '../hooks'
 import Group from '../components/Group'
 import styles from '../stylesheets/PostForm.module.css'
-import lockSvg from '../assets/svgs/lock-solid.svg'
 
 export default function PostForm() {
     const [status, setStatus] = useState(null)
@@ -135,7 +133,7 @@ export default function PostForm() {
                         <div className={styles.info}>Upload image</div>
                     </label>
                 </Group>
-                <button className={`${styles.post}`}>Post</button>
+                <button className={` ${styles.post}`}>Post</button>
             </Group>
         </form>
     )

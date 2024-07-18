@@ -262,7 +262,6 @@ a.secondary{
     text-decoration: none;
     color: var(--accent);
     padding-block: var(--padding-small);
-    /* font-size: var(--text-big); */
     border: 3px solid var(--accent);
 }
 .signup-page {

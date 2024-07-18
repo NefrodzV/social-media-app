@@ -6,7 +6,16 @@
 }
 
 .post {
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    background-color: var(--accent);
+    width: auto;
     align-self: flex-end;
+    border: none;
+    color: var(--background);
+    width: min-content;
+    border-radius: 5px;
 }
 
 .control {
