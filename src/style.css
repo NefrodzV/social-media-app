@@ -168,8 +168,6 @@ input.error {
     bottom: 1rem;
 }
 
-
-
 /* Styling header */
 header {
     border-right: 1px solid black;
@@ -262,10 +260,10 @@ a.secondary{
     display: flex;
     justify-content: center;
     text-decoration: none;
-    color: var(--secondary);
+    color: var(--accent);
     padding-block: var(--padding-small);
     /* font-size: var(--text-big); */
-    border: 3px solid var(--primary);
+    border: 3px solid var(--accent);
 }
 .signup-page {
     display: flex;
@@ -300,7 +298,7 @@ button.primary {
     font-size: 1rem;
     padding-block: var(--padding-small);
     cursor: pointer;
-    background-color: var(--secondary);
+    background-color: var(--accent);
     color: var(--background);
     border: none;
     width: 100%;
