@@ -169,8 +169,10 @@ input.error {
 }
 
 
+
 /* Styling header */
 header {
+    border-right: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -191,6 +193,8 @@ header > * {
 }
 
 .nav-item button {
+    color: var(--accent);
+    letter-spacing: 1px;
     text-transform: capitalize;
     padding: 0;
     font-size: var(--text-normal);
@@ -201,18 +205,21 @@ header > * {
     width: auto;
     background-color: none;
     background: none;
-    font-weight: normal;
+    font-weight: bold;
 }
 .nav-item a {
+    color: var(--accent);
+    letter-spacing: 1px;
     width: min-content;
-    color: var(--text);
+    
     display: flex;
     align-items: center;
     text-decoration: none;
     font-size: var(--text-normal);
+    font-weight: bold;
 }
-.nav-item:hover > button, .nav-item:hover > a{
-    background-color: var(--secondary);
+.nav-item:hover > button, .nav-item:hover > a, .nav-icon:hover{
+    background-color: var(--accent);
     color: var(--background);
 }
 .nav-item a, .nav-item button {
@@ -283,10 +290,9 @@ a.secondary{
     padding-block: var(--padding-small);
 } */
 
-/* button {
+button {
     font-family: var(--font);
-    font-size: var(--text-big);
-} */
+}
 
 button.primary {
     text-transform: capitalize;
@@ -372,17 +378,15 @@ button.primary:active {
 }
 /* Follower List */
 .follower-list {
-    /* position: relative;
-    top: 0;
-    bottom: 0; */
-    margin: var(--padding-small);
+   
+    border-left: 1px solid black;
+    /* margin: var(--padding-small); */
     padding-block: var(--padding-medium) 0;
     width: 200px;
     box-sizing: border-box;
     display: flex;
     position: relative;
     flex-direction: column;
-    box-shadow: 0px 0px 1px var(--accent);
     min-height: 0;
 }
 

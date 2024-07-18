@@ -5,21 +5,18 @@ export default function NavItem({ text, icon, onClickHandler, navigateTo }) {
         <li className="nav-item">
             {onClickHandler && (
                 <button onClick={onClickHandler}>
-                    <img
-                        className="nav-icon"
-                        src={icon}
-                        alt="navigation item icon"
-                    />
+                    {icon}
                     {text}
                 </button>
             )}
             {navigateTo && (
                 <Link to={navigateTo}>
-                    <img
+                    {/* <img
                         className="nav-icon"
                         src={icon}
                         alt="navigation item icon"
-                    />
+                    /> */}
+                    {icon}
                     {text}
                 </Link>
             )}
