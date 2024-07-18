@@ -1,0 +1,39 @@
+.alertDialog {
+    padding-block: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.alertDialog .title {
+    text-transform: capitalize;
+}
+.alertDialog .content {
+    padding-block: 8px;
+}
+.alertDialog .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.alertDialog .container > *  {
+    flex: 1;
+}
+
+.cancel {
+    background-color: var(--background);
+}
+
+.ok {
+    background-color: var(--accent);
+    color: var(--background);
+    border-radius: 2px;
+}
+.ok, .cancel {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    
+    border: none;
+}

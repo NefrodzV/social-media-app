@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import style from '../stylesheets/AlertDialog.module.css'
 export default function AlertDialog({ title, text, onSubmit, onCancel }) {
     const dialogRef = useRef()
 
@@ -9,15 +10,20 @@ export default function AlertDialog({ title, text, onSubmit, onCancel }) {
     }, [])
 
     return (
-        <dialog ref={dialogRef}>
-            <h1>{title}</h1>
-            <p>{text}</p>
-            <button onClick={onSubmit}>Ok</button>
-            <button onClick={onCancel}>Cancel</button>
+        <dialog className={style.alertDialog} ref={dialogRef}>
+            <h1 className={style.title}>{title}</h1>
+            <p className={style.content}>{text}</p>
+            <div className={style.container}>
+                <button className={style.cancel} onClick={onCancel}>
+                    Cancel
+                </button>
+                <button className={style.ok} onClick={onSubmit}>
+                    Ok
+                </button>
+            </div>
         </dialog>
     )
 }
-
 AlertDialog.propTypes = {
     title: PropTypes.string,
     text: PropTypes.string,
