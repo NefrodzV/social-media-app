@@ -7,6 +7,7 @@
 }
 
 .login form {
+    overflow: hidden;
     position: relative;
     background-color: white;
     box-shadow: 0px 0px 6px var(--text);

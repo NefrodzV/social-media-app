@@ -1,21 +1,22 @@
 import Loader from './Loader'
-
-export default function LoaderOverlay() {
+import style from '../stylesheets/LoaderOverlay.module.css'
+export default function LoaderOverlay({ message }) {
     return (
         <div
-            style={{
-                position: 'absolute',
-                inset: '0 0 0 0',
-                backgroundColor: 'rgba(255,255,255,0.8)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                animation: 'fade-in 0.5s',
-            }}
+            className={style.overlay}
+            // style={{
+            //     position: 'absolute',
+            //     inset: '0 0 0 0',
+            //     backgroundColor: 'rgba(255,255,255,0.8)',
+            //     display: 'flex',
+            //     justifyContent: 'center',
+            //     alignItems: 'center',
+            //     flexDirection: 'column',
+            //     animation: 'fade-in 0.5s',
+            // }}
         >
             <Loader />
-            Logging in please wait...
+            <p className={style.message}>{message}</p>
         </div>
     )
 }

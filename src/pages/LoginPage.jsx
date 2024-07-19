@@ -43,7 +43,9 @@ export default function Login() {
                     />
                     <ErrorDisplay message={errors?.password} />
                 </Group>
-                {status === STATUS.PENDING ? <LoaderOverlay /> : null}
+                {status === STATUS.PENDING ? (
+                    <LoaderOverlay message={'Signing in please wait...'} />
+                ) : null}
                 <Group>
                     <button
                         className="primary"

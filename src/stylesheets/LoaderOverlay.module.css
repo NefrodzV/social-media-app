@@ -1,0 +1,15 @@
+.overlay {
+    position: absolute;
+    inset: 0 0 0 0;
+    background-color: rgba(251, 251, 254,0.7) ;
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    letter-spacing: 1px;
+    font-weight: bold;
+}
