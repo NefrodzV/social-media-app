@@ -17,7 +17,7 @@
     gap: var(--padding-big);
     border-radius: 10px;
     width: min(300px, 90%);
-    height: min(500px, 90%);
+    max-height: 90%;
     box-sizing: border-box;
     padding: var(--padding-big);
 }

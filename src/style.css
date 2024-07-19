@@ -96,7 +96,8 @@ dialog::backdrop {
     grid-template-columns: 1fr 3fr;
     /** Need to set this if you want inner items to be scrollable */
     grid-template-rows: 100vh; 
-    max-width: 1280px;
+    max-width: 1920px;
+    width: 1280px;
     overflow: hidden;
 }
 

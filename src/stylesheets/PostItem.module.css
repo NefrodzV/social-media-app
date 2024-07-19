@@ -1,4 +1,6 @@
 .post {
+    
+    
     position: relative;
     padding: var(--padding-big) var(--padding-medium);
     display: flex;
@@ -6,11 +8,22 @@
     gap: 4px;
     box-shadow: 0px 0px 1px var(--accent);
 }
-.body {
+.container {
     display: flex;
     gap: 8px;
 }
 
+.content .text {
+    /* max-width: 50ch; */
+    /* overflow: hidden; */
+    word-wrap: break-word;
+}
+
+.container .content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 .controls {
     padding: var(--padding-small);
     display: flex;height: 1rem;
@@ -48,13 +61,16 @@
     height: 100%;
 }
 .post .user {
+    text-transform: capitalize;
     position: relative;
     overflow: hidden;
     font-size: var(--text-normal);
     font-weight: bold;
-    text-transform: capitalize;
 }
 
+.name {
+    text-transform: capitalize;
+}
 .post .icon {
     border-radius: 50%;
     box-shadow: 0 0 1px rgba(0,0,0, 0.7);
