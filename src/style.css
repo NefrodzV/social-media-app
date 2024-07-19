@@ -4,7 +4,7 @@
 }
 :root {
     --text: #0f0f0f;
-    --background: #fbfbfe;
+    --background: rgb(251, 251, 254);
     --primary: #005B41;
     --secondary: #008170;
     --accent: #232d3f;
@@ -252,7 +252,6 @@ hr {
     background-color: var(--accent);
 }
 a.secondary{
-    text-transform: capitalize;
     letter-spacing: 1px;
     font-weight: bold;
     border-radius: 5px;

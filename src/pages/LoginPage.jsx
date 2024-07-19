@@ -56,7 +56,7 @@ export default function Login() {
                     </button>
                     <hr />
                     <Link className={'secondary'} to={'/signup'}>
-                        sign up
+                        Go to sign up
                     </Link>
                 </Group>
             </form>

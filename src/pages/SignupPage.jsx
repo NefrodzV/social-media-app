@@ -98,11 +98,11 @@ export default function Signup() {
                         <Loader width={16} height={16} borderWidth={4} />
                     ) : null} */}
                     <button className="primary margin-tp-1r " type="submit">
-                        Submit
+                        Sign up
                     </button>
                     <hr />
-                    <Link className={'primary-button-border'} to={'/login'}>
-                        Go login
+                    <Link className={'secondary'} to={'/login'}>
+                        Go to sign in
                     </Link>
                 </Group>
             </form>
