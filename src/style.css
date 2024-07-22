@@ -97,7 +97,7 @@ dialog::backdrop {
     /** Need to set this if you want inner items to be scrollable */
     grid-template-rows: 100vh; 
     max-width: 1920px;
-    width: 1280px;
+    width: 960px;
     overflow: hidden;
 }
 
@@ -439,6 +439,7 @@ button.primary:active {
 }
 
 button.back {
+    margin: 2px 0 0 2px;
     color: var(--accent);
     background-color: var(--background);
     border: none;

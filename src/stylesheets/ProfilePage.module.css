@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 2px 4px
+    
 }
 
 .user {
-    border: 1px solid var(--accent);
+    border-top: 1px solid var(--accent);
     position: relative;
     box-sizing: border-box;
     padding: var(--padding-big);
@@ -20,6 +20,18 @@
     height: 50px;
     aspect-ratio: 1 / 1;
 }
+
+/* .posts {
+    
+   border-top: 1px solid black;
+    
+} */
+
+/* .posts > h1 { 
+    padding:  .5rem;
+} */
+
+
 
 /* .posts {
     padding: none;

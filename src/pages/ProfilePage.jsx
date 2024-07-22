@@ -41,7 +41,7 @@ export default function ProfilePage() {
                                 ]}
                             />
                         </div>
-                        <PostList style={styles.posts}>
+                        <PostList classNames={styles.posts}>
                             {user?.posts?.map((post) => (
                                 <PostItem key={post?._id} post={post} />
                             ))}

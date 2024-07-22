@@ -13,7 +13,7 @@ export default function Home() {
         <>
             {user ? (
                 <Layout>
-                    <PostList classNames={'small-container-padding '}>
+                    <PostList>
                         {posts.map((post) => (
                             <PostItem
                                 key={post?._id}
