@@ -1,12 +1,13 @@
 .page {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    
     
 }
 
 .user {
     border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
     position: relative;
     box-sizing: border-box;
     padding: var(--padding-big);
@@ -15,26 +16,10 @@
 }
 
 .image {
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
     box-sizing: border-box;
     padding:  3px;
     height: 50px;
     aspect-ratio: 1 / 1;
 }
-
-/* .posts {
-    
-   border-top: 1px solid black;
-    
-} */
-
-/* .posts > h1 { 
-    padding:  .5rem;
-} */
-
-
-
-/* .posts {
-    padding: none;
-    flex: 1;
-    gap:  8px;
-} */
