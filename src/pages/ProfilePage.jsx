@@ -24,7 +24,7 @@ export default function ProfilePage() {
                         <BackButton />
                         <div className={styles.user}>
                             <img
-                                className={`${styles.image} inset-box-shadow-3`}
+                                className={`${styles.image}`}
                                 src={user?.imgUrl || userSolidSvg}
                                 alt="user profile picture"
                             />
