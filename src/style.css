@@ -311,6 +311,7 @@ button.primary:active {
 
 /** Comment List **/
 .comments {
+    border-radius: 5px;
     /* padding: var(--padding-small); */
     display: flex;
     flex-direction: column;
