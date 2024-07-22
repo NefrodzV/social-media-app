@@ -36,9 +36,7 @@ export default function CommentList({ postId, classes }) {
         )
     }
     return (
-        <section
-            className={`comments ${classes || ''} slide-down inset-box-shadow-3`}
-        >
+        <section className={`comments ${classes || ''}`}>
             <h2 className="title">Comments</h2>
             <div className="content">
                 {loading && <Loader />}

@@ -77,9 +77,9 @@ export default function PostItem({ post, likeHandler }) {
                         </div>
                     )}
                     <p className={styles.text}>
-                        {/* Discover our new app! Go to sign up today and explore
+                        Discover our new app! Go to sign up today and explore
                         exclusive features designed just for you. Don't miss out
-                        on this exciting opportunity! */}
+                        on this exciting opportunity!
                     </p>
                     <Group style={styles.controls}>
                         <button onClick={showCommentForm}>
@@ -102,9 +102,7 @@ export default function PostItem({ post, likeHandler }) {
                     </Group>
                 </div>
             </div>
-            {isCommentsOpen && (
-                <CommentList classes="small-inset-shadow" postId={post?._id} />
-            )}
+            {isCommentsOpen && <CommentList postId={post?._id} />}
         </article>
     )
 }
