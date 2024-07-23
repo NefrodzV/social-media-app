@@ -315,15 +315,16 @@ button.primary:active {
     /* padding: var(--padding-small); */
     display: flex;
     flex-direction: column;
-
-    border: 1px solid black
+    box-shadow: 0 0 2px rgba(0,0,0) inset;
+    
     
 }
 
 .comments .title {
-    padding: .2rem;
+    padding: .4rem;
 }
 .comments .content {
+   
     max-height: 300px;
     overflow-y: auto;
     display: flex;

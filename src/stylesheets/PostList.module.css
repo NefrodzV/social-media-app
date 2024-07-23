@@ -9,9 +9,11 @@
 }
 
 .list .title {
-    padding: .2rem;
+    padding: .4rem;
+    border-bottom: 1px solid black;
 }
 .container {
+    
     flex: 1;
     overflow-y: auto;
 }
