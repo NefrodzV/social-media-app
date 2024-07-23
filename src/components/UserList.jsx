@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 import UserItem from './UserItem'
+import style from '../stylesheets/UserList.module.css'
 export default function UserList({ users, sendRequest }) {
     return (
-        <section>
-            <h1>Users</h1>
+        <section className={style.list}>
+            <h1 className={style.title}>Users</h1>
             {!users && <div>No users</div>}
             {users?.map((user) => (
                 <UserItem

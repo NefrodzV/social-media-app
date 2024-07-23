@@ -1,0 +1,54 @@
+.card {
+    box-shadow: 0 0 1px rgba(0, 0, 0 ,0.7) ;
+    border-radius: 5px;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.img {
+    height: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    box-shadow: 0 0 1px rgba(0, 0, 0 ,0.7);
+}
+
+.name {
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    flex: 1;
+}
+
+.request {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: min-content;
+    height: 25px;
+    border: none;
+    background-color: var(--background);
+}
+
+.request img {
+    height: 100%;
+}
+
+.request span {
+    display: none;
+    color: var(--background);
+    box-shadow: 0 0 1px rgba(0, 0, 0 ,0.7);
+    background-color: var(--accent);
+    border-radius: 2px;
+    padding: .2rem;
+    transform: translateY(100%);
+    position: absolute;
+    width: max-content;
+    bottom: 0;
+}
+
+.request:hover span {
+    display: block;
+    z-index: 1;
+}
