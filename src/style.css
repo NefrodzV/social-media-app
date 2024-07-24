@@ -321,6 +321,7 @@ button.primary:active {
 }
 
 .comments .title {
+    font-size: 1.1rem;
     padding: .4rem;
 }
 .comments .content {
