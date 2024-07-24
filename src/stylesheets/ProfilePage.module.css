@@ -1,13 +1,16 @@
 .page {
     display: flex;
     flex-direction: column;
-    
+   
     
 }
 
 .user {
-    border-top: 1px solid var(--accent);
-    border-bottom: 1px solid var(--accent);
+    box-shadow: 0 0 2px rgba(0,0,0,0.7);
+    
+    border-radius: 3px;
+    margin: .2rem;
+    
     position: relative;
     box-sizing: border-box;
     padding: var(--padding-big);
