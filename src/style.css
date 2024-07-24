@@ -386,53 +386,9 @@ button.primary:active {
     height: 10px;
     aspect-ratio: 1 /1;
 }
-/* Follower List */
-.follower-list {
-   
-    border-left: 1px solid black;
-    /* margin: var(--padding-small); */
-    padding-block: var(--padding-medium) 0;
-    width: 200px;
-    box-sizing: border-box;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    min-height: 0;
-}
-
-.follower-list .title {
-    font-size: var(--text-normal);
-    padding-left: var(--padding-medium);
-}
-.follower-list .edit {
-    background-color: var(--background);
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: absolute;
-    top: var(--padding-medium);
-    right: 1px;
-    height: 1rem;
-}
-.follower-list .edit > img {
-    height: 100%;
-    aspect-ratio: 1 /1;
-}
-
-.follower-list .content {
-    /* flex: 1; */
-    /* background-color: #005B41; */
-    display: flex;
-    flex-direction: column;
-    /* min-height: 0;  */
-    overflow-y: auto;
-}
 
 .follower {
     padding: var(--padding-big) var(--padding-medium);
-    /* border: 1px solid black; */
     display: flex;
     position: relative;
     gap: var(--padding-medium);

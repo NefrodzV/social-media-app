@@ -1,0 +1,35 @@
+.list {
+    margin: .5rem;
+    width: 200px;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    min-height: 0;
+    box-shadow: 0 0 2px rgba(0,0,0) inset;
+    border-radius: 5px;
+}
+
+.list .title {
+    font-size: var(--text-normal);
+    padding: .4rem;
+    border-bottom: 1px solid black;
+}
+.list .edit {
+    background-color: var(--background);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: var(--padding-medium);
+    right: 1px;
+    height: 1rem;
+}
+
+.list .container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
