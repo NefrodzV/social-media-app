@@ -1,0 +1,59 @@
+.item {
+    padding: var(--padding-big) var(--padding-medium);
+    display: flex;
+    position: relative;
+    gap: var(--padding-medium);
+    box-shadow: 0 0 1px var(--accent);
+    border-bottom: 1px solid black;
+    align-items: center;
+    
+}
+
+.item:not(:last-child) {
+    border-bottom: 1px solid var(--accent);
+}
+.item .username {
+    flex: 1;
+    text-transform: capitalize;
+}
+
+.item img {
+    box-shadow: 0 0 2px var(--accent);
+    border-radius: 50%;
+    height:1.8rem;
+    aspect-ratio: 1 / 1;
+}
+
+.delete {
+    position: relative;
+    background-color: var(--background);
+    border: none;
+    height: 1.5rem;
+    aspect-ratio:  1 /1;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    border-radius: 50%;
+}
+.delete:hover {
+    
+    box-shadow: 0 0 3px red;
+}
+
+.delete svg {
+    height: 100%;
+    aspect-ratio: 1 /1;
+}
+
+/* .delete span {
+    padding-inline: 1px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: var(--background);
+    z-index: 2;
+    background-color: red;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+} */
