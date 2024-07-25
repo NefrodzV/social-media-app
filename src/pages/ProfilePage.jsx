@@ -41,7 +41,10 @@ export default function ProfilePage() {
                                 ]}
                             />
                         </div>
-                        <PostList classNames={styles.posts}>
+                        <PostList
+                            classNames={styles.posts}
+                            emptyListError={'You have no posts'}
+                        >
                             {user?.posts?.map((post) => (
                                 <PostItem key={post?._id} post={post} />
                             ))}
