@@ -3,11 +3,12 @@
     display: flex;
     position: relative;
     gap: var(--padding-medium);
-    box-shadow: 0 0 1px var(--accent);
-    border-bottom: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 0 0 2px var(--accent);
     align-items: center;
-    
+    margin-top: .4rem;
 }
+
 
 .item:not(:last-child) {
     border-bottom: 1px solid var(--accent);
