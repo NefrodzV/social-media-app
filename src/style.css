@@ -442,6 +442,11 @@ button.back img{
 .small-inset-shadow {
     box-shadow: 0px 0px 1px var(--accent) inset;
 }
+
+.container-center-items {
+    display: flex;
+    justify-content: center;
+}
 @keyframes shake {
     10%,
     30%,

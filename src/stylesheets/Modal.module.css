@@ -1,8 +1,13 @@
 .modal {
+    width: min(350px, 90%);
+    aspect-ratio:  1 / 1;
     border: none;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 .close {
+    align-self: flex-start;
     display: flex;
     align-items: center;
     border-radius: 50%;
