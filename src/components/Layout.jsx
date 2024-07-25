@@ -6,7 +6,7 @@ import {
     FollowerList,
 } from '../components'
 import { useDialog, useNotification, useAuthUser } from '../hooks'
-export default function Layout({ children }) {
+export default function Layout({ children, followers }) {
     // This is the main layout for the pages
     const { toasts } = useNotification()
     const { dialog, DIALOG_TYPE } = useDialog()
@@ -41,10 +41,12 @@ export default function Layout({ children }) {
             <Header />
             <main>
                 {children}
-                <FollowerList
-                    title={'My followers'}
-                    followers={user?.followers}
-                />
+                {followers || (
+                    <FollowerList
+                        title={'My followers'}
+                        followers={user?.followers}
+                    />
+                )}
                 {dialog && dialogRenderHandler(dialog)}
                 {toasts.length !== 0 && <ToastContainer />}
             </main>
