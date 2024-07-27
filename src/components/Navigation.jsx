@@ -5,6 +5,7 @@ import NavItem from './NavItem'
 import PostForm from './PostForm'
 import { useState } from 'react'
 import barsSvg from '../assets/svgs/bars-solid.svg'
+import xmarkSvg from '../assets/svgs/xmark-solid.svg'
 export default function Navigation() {
     const [show, setShow] = useState(false)
     // TODO IMPLEMENT LOGOUT HERE
@@ -97,11 +98,14 @@ export default function Navigation() {
     }
     return (
         <nav>
-            <button className="menu-button" onClick={() => setShow(true)}>
-                <img src={barsSvg} alt="open menu icon" />
+            <button className="menu-button" onClick={() => setShow(!show)}>
+                <img src={show ? xmarkSvg : barsSvg} alt="open menu icon" />
                 <span className="hidden-text">{`${show ? 'close' : 'open'} menu`}</span>
             </button>
-            <ul className="nav-list">
+            <ul
+                className={`nav-list ${show ? 'translate-in-right' : ''}`}
+                onClick={() => setShow(false)}
+            >
                 <NavItem text={'home'} navigateTo={`/`} icon={navIcons.home} />
                 <NavItem
                     text={'users'}

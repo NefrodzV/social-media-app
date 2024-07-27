@@ -154,9 +154,9 @@ input.error {
     animation: shake 1s;
 }
 
-.show {
+/* .show {
     display: block;
-}
+} */
 .comment {
     position: relative;
     height: 5rem;
@@ -596,6 +596,8 @@ button {
     }
 
     .menu-button {
+        background-color: var(--background);
+        border: none;
         height: 90%;
         margin: .4rem   .4rem  .4rem 0;
 
@@ -606,19 +608,31 @@ button {
         width: auto;
     }
     .nav-list {
-        
+        transform: translate(calc(100% + 5px));
         right: 5px;
         left: 5px;
         top: 52px;
         bottom: 5px;
-    
-        box-shadow: 0 0 3px var(--accent);
+        border: 1px solid var(--accent);
         border-radius: 3px;
         z-index: 2;
         background-color: var(--background);
         position: fixed;
+        transition: transform .5s;
         
     }
+
+    .translate-in-right {
+        transform: translate(calc(0%));
+    }
+
+
+
+    /* .show {
+        transform: translate(calc(-100% + 5px));
+        
+        
+    } */
 
 
 }
