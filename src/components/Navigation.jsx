@@ -3,7 +3,10 @@ import { useAuth, useDialog, useImages } from '../hooks'
 import Inbox from './Inbox'
 import NavItem from './NavItem'
 import PostForm from './PostForm'
+import { useState } from 'react'
+import barsSvg from '../assets/svgs/bars-solid.svg'
 export default function Navigation() {
+    const [show, setShow] = useState(false)
     // TODO IMPLEMENT LOGOUT HERE
     const navIcons = {
         home: (
@@ -94,6 +97,10 @@ export default function Navigation() {
     }
     return (
         <nav>
+            <button className="menu-button" onClick={() => setShow(true)}>
+                <img src={barsSvg} alt="open menu icon" />
+                <span className="hidden-text">{`${show ? 'close' : 'open'} menu`}</span>
+            </button>
             <ul className="nav-list">
                 <NavItem text={'home'} navigateTo={`/`} icon={navIcons.home} />
                 <NavItem

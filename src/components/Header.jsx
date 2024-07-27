@@ -9,7 +9,7 @@ export default function Header() {
     }
     return (
         <header>
-            <span>Logo</span>
+            <span className="logo">Logo</span>
             <Navigation>
                 <NavItem>
                     <button onClick={openCreateDialog}>Post</button>

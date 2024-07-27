@@ -557,9 +557,68 @@ button {
 }
 
 @media (max-width: 768px) {
-    :root {
+    /* :root {
         --padding-small: 4px;
         --padding-medium: 8px;
         --padding-big: 12px;
+    } */
+
+    .layout {
+        grid-template-columns: 100vw;
+        grid-template-rows: 50px 3fr;
     }
+
+    header {
+        
+        flex-direction: row;
+        
+        
+    }
+
+    header > * {
+        width: auto;
+    }
+
+    .logo {
+        background-color: antiquewhite;
+        align-self: center;
+        
+        
+    }
+
+    nav {
+        position: relative;
+        margin-inline: auto 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        
+    }
+
+    .menu-button {
+        height: 90%;
+        margin: .4rem   .4rem  .4rem 0;
+
+    }
+
+    .menu-button img {
+        height: 100%;
+        width: auto;
+    }
+    .nav-list {
+        
+        right: 5px;
+        left: 5px;
+        top: 52px;
+        bottom: 5px;
+    
+        box-shadow: 0 0 3px var(--accent);
+        border-radius: 3px;
+        z-index: 2;
+        background-color: var(--background);
+        position: fixed;
+        
+    }
+
+
 }
