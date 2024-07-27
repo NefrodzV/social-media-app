@@ -1,4 +1,11 @@
-import { Layout, PostList, PostItem, Loader, BackButton } from '../components'
+import {
+    Layout,
+    PostList,
+    PostItem,
+    Loader,
+    BackButton,
+    FollowerList,
+} from '../components'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useUser, useUserPosts } from '../hooks'
 import userSvg from '../assets/svgs/user-solid.svg'
@@ -6,11 +13,12 @@ import style from '../stylesheets/UserPage.module.css'
 export default function UserPage() {
     //
     const location = useLocation()
-    console.log(location)
+
     const { id } = location.state
     // Update the api so the user returns their posts
     const { user } = useUser(id)
     const { posts } = useUserPosts(id)
+
     /** TODO: Update the backend to contain:
      * 1- User followers
      * 2- Totals posts
@@ -20,7 +28,14 @@ export default function UserPage() {
     return (
         <>
             {user ? (
-                <Layout>
+                <Layout
+                    followers={
+                        <FollowerList
+                            title={`${user?.fullname} followers`}
+                            followers={user?.followers}
+                        />
+                    }
+                >
                     <section className={style.page}>
                         <BackButton />
                         <div className={style.user}>

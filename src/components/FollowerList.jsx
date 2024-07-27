@@ -19,19 +19,25 @@ export default function FollowerList({
         >
             <h1 className={style.title}>{title}</h1>
 
-            <DropdownMenu
-                top={'.4rem'}
-                right={'.4rem'}
-                items={[
-                    {
-                        text: 'edit',
-                        clickHandler: () => setIsEditing(true),
-                    },
-                ]}
-            />
+            {deleteFollowerHandler && (
+                <DropdownMenu
+                    top={'.4rem'}
+                    right={'.4rem'}
+                    items={[
+                        {
+                            text: 'edit',
+                            clickHandler: () => setIsEditing(true),
+                        },
+                    ]}
+                />
+            )}
 
             <div className={style.container}>
-                {followers?.length === 0 && <div> You have no followers</div>}
+                {(followers?.length === 0 || followers === undefined) && (
+                    <div className="container-center-items">
+                        There are no followers
+                    </div>
+                )}
                 {followers?.map((follower) => (
                     <FollowerItem
                         key={follower._id}
