@@ -1,48 +1,44 @@
-import {
-    Layout,
-    PostList,
-    PostItem,
-    Loader,
-    UserList,
-    BackButton,
-} from '../components'
+import { Layout, PostList, PostItem, Loader, BackButton } from '../components'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useUser, useUserPosts, useImages, useUtils } from '../hooks'
-import style from '../stylesheets/ProfilePage.module.css'
+import { useUser, useUserPosts } from '../hooks'
+import userSvg from '../assets/svgs/user-solid.svg'
+import style from '../stylesheets/UserPage.module.css'
 export default function UserPage() {
-    const navigate = useNavigate()
+    //
     const location = useLocation()
+    console.log(location)
     const { id } = location.state
     // Update the api so the user returns their posts
     const { user } = useUser(id)
     const { posts } = useUserPosts(id)
-
-    const { userSolidSvg } = useImages()
+    /** TODO: Update the backend to contain:
+     * 1- User followers
+     * 2- Totals posts
+     * 3- Total followers
+     * 4-Update list when there are no posts
+     */
     return (
         <>
             {user ? (
                 <Layout>
-                    <section className="inset-box-shadow">
+                    <section className={style.page}>
                         <BackButton />
-                        <div>
+                        <div className={style.user}>
                             <img
-                                src={user?.imgUrl || userSolidSvg}
+                                className={style.image}
+                                src={user?.imgUrl || userSvg}
                                 alt="user profile picture"
                                 width={50}
                                 height={50}
                             />
                             <h1>{user.fullname}</h1>
                         </div>
-                        <PostList>
-                            {posts.map((post) => (
+                        <PostList emptyListError={"User doesn't have posts"}>
+                            {posts?.map((post) => (
                                 <PostItem key={post?._id} post={post} />
                             ))}
                         </PostList>
                     </section>
-                    <UserList
-                        title={`${user.fullname} followers`}
-                        followers={user?.followers}
-                    />
                 </Layout>
             ) : (
                 <Loader />
