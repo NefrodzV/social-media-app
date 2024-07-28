@@ -556,6 +556,10 @@ button {
     cursor: pointer;
 }
 
+.menu-button {
+    display: none;
+}
+
 @media (max-width: 768px) {
     /* :root {
         --padding-small: 4px;
@@ -569,10 +573,7 @@ button {
     }
 
     header {
-        
         flex-direction: row;
-        
-        
     }
 
     header > * {
