@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { useAuth, useDialog, useImages } from '../hooks'
+import { useAuth, useDialog } from '../hooks'
 import Inbox from './Inbox'
 import NavItem from './NavItem'
 import PostForm from './PostForm'
