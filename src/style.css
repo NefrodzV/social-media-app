@@ -608,6 +608,7 @@ button {
         width: auto;
     }
     .nav-list {
+        padding: .1rem;
         transform: translate(calc(100% + 5px));
         right: 5px;
         left: 5px;
@@ -622,17 +623,15 @@ button {
         
     }
 
+    .nav-item button {
+        justify-content: center;
+    }
+
+    .nav-item a {
+        justify-content: center;
+    }
+
     .translate-in-right {
         transform: translate(calc(0%));
     }
-
-
-
-    /* .show {
-        transform: translate(calc(-100% + 5px));
-        
-        
-    } */
-
-
 }
