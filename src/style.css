@@ -565,7 +565,7 @@ button {
 
     .layout {
         grid-template-columns: 100vw;
-        grid-template-rows: 50px 3fr;
+        grid-template-rows: 50px calc(100vh - 50px);
     }
 
     header {
@@ -642,5 +642,6 @@ button {
     main {
         position: relative;
         grid-template-columns: 1fr;
+        grid-row: 100%;
     }
 }
