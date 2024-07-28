@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Loader, PostList, PostItem, Layout } from '../components'
+import { Loader, PostList, PostItem, Layout, FollowerList } from '../components'
 import { useAuth, usePosts } from '../hooks'
 import { useNavigate } from 'react-router-dom'
 export default function Home() {
@@ -22,6 +22,10 @@ export default function Home() {
                             />
                         ))}
                     </PostList>
+                    <FollowerList
+                        title={'My followers'}
+                        followers={user?.followers}
+                    />
                 </Layout>
             ) : (
                 <Loader width={16} height={16} borderWidth={4} />

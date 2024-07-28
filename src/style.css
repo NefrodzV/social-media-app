@@ -608,6 +608,7 @@ button {
         width: auto;
     }
     .nav-list {
+        opacity:  0;
         padding: .1rem;
         transform: translate(calc(100% + 5px));
         right: 5px;
@@ -632,6 +633,14 @@ button {
     }
 
     .translate-in-right {
+        opacity:  1;
         transform: translate(calc(0%));
+    }
+
+    /** Main content **/
+
+    main {
+        position: relative;
+        grid-template-columns: 1fr;
     }
 }

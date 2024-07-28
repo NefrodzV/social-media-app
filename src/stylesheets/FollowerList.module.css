@@ -36,3 +36,16 @@
     flex-direction: column;
     overflow-y: auto;
 }
+
+@media (max-width: 768px) {
+    .list {
+        padding: .1rem;
+        margin: 0;
+        width: 100%;
+        background-color: var(--background);
+        position: fixed;
+        top:52px;
+        bottom: 0;
+        transform: translate(100%);
+    }
+}
