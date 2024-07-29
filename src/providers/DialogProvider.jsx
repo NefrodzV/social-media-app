@@ -4,13 +4,14 @@ import { DIALOG_TYPE } from '../constants'
 export function DialogProvider({ children }) {
     const [dialog, setDialog] = useState(null)
     const { MODAL, ALERT_DIALOG } = DIALOG_TYPE
-    function showModal(component) {
+    function showModal(component, height) {
         if (!component || component === undefined) {
             throw new Error('showModal doesnt have a component is ' + component)
         }
         const dialog = {
             type: MODAL,
             component,
+            height,
         }
 
         setDialog(dialog)

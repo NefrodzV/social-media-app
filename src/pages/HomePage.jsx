@@ -22,6 +22,11 @@ export default function Home() {
                             />
                         ))}
                     </PostList>
+
+                    <FollowerList
+                        followers={user?.followers}
+                        title={'My followers'}
+                    />
                 </Layout>
             ) : (
                 <Loader width={16} height={16} borderWidth={4} />

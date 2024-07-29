@@ -28,7 +28,9 @@ export default function Layout({ children, followers }) {
                 break
 
             case MODAL:
-                component = <Modal>{dialog.component}</Modal>
+                component = (
+                    <Modal height={dialog.height}>{dialog.component}</Modal>
+                )
                 break
             default:
                 throw new Error('DIALOG TYPE NOT HANDLED' + type)
@@ -41,12 +43,6 @@ export default function Layout({ children, followers }) {
             <Header />
             <main>
                 {children}
-                {/* {followers || (
-                    <FollowerList
-                        title={'My followers'}
-                        followers={user?.followers}
-                    />
-                )} */}
                 {dialog && dialogRenderHandler(dialog)}
                 {toasts.length !== 0 && <ToastContainer />}
             </main>

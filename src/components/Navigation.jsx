@@ -90,7 +90,7 @@ export default function Navigation() {
     const { user, logout } = useAuth()
     const { showModal } = useDialog()
     function openInbox() {
-        showModal(<Inbox />)
+        showModal(<Inbox />, 350)
     }
     function openPost() {
         showModal(<PostForm />)
