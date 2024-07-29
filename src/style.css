@@ -7,7 +7,7 @@
     --background: rgb(251, 251, 254);
     --primary: #005B41;
     --secondary: #008170;
-    --accent: #232d3f;
+    --accent: rgb(35, 45, 63);
     --error: #ff0000;
     --success: 	#89ff77;
     --info: #54b4d3;
@@ -171,6 +171,7 @@ input.error {
 
 /* Styling header */
 header {
+    background-color: hsl(219, 30%, 80%);
     box-shadow:  0 0 2px var(--accent);
     display: flex;
     flex-direction: column;
@@ -592,7 +593,7 @@ button {
 
     .menu-button {
         display: block;
-        background-color: var(--background);
+        background-color:transparent;
         border: none;
         height: 90%;
         margin: .4rem   .4rem  .4rem 0;
