@@ -561,12 +561,6 @@ button {
 }
 
 @media (max-width: 768px) {
-    /* :root {
-        --padding-small: 4px;
-        --padding-medium: 8px;
-        --padding-big: 12px;
-    } */
-
     .layout {
         grid-template-columns: 100vw;
         grid-template-rows: 50px calc(100vh - 50px);
@@ -597,6 +591,7 @@ button {
     }
 
     .menu-button {
+        display: block;
         background-color: var(--background);
         border: none;
         height: 90%;
@@ -616,9 +611,9 @@ button {
         left: 5px;
         top: 52px;
         bottom: 5px;
-        border: 1px solid var(--accent);
         border-radius: 3px;
         z-index: 2;
+        box-shadow: 0 0 1px var(--accent);
         background-color: var(--background);
         position: fixed;
         transition: transform .5s;
@@ -634,6 +629,7 @@ button {
     }
 
     .translate-in-right {
+        transition: transform .5s;
         opacity:  1;
         transform: translate(calc(0%));
     }
