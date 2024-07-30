@@ -28,16 +28,8 @@ export default function UserPage() {
     return (
         <>
             {user ? (
-                <Layout
-                    followers={
-                        <FollowerList
-                            title={`${user?.fullname} followers`}
-                            followers={user?.followers}
-                        />
-                    }
-                >
+                <Layout>
                     <section className={style.page}>
-                        <BackButton />
                         <div className={style.user}>
                             <img
                                 className={style.image}

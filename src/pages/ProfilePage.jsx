@@ -21,7 +21,6 @@ export default function ProfilePage() {
             {user ? (
                 <Layout>
                     <section className={`${styles.page}`}>
-                        <BackButton />
                         <div className={styles.user}>
                             <img
                                 className={`${styles.image}`}

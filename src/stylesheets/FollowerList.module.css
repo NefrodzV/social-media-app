@@ -37,7 +37,7 @@
     overflow-y: auto;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .list {
         padding: .1rem;
         margin: 0;
@@ -48,4 +48,4 @@
         bottom: 0;
         transform: translate(100%);
     }
-}
+} */
