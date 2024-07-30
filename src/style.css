@@ -266,11 +266,6 @@ a.secondary{
     width: 100%;
 }
 
-/* form label {
-    font-size: var(--text-normal);
-    padding-block: var(--padding-small);
-} */
-
 button {
     font-family: var(--font);
 }
@@ -300,8 +295,6 @@ button.primary:active {
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 2px rgba(0,0,0) inset;
-    
-    
 }
 
 .comments .title {
@@ -323,13 +316,10 @@ button.primary:active {
 }
 .comment {
     border-top: 1px solid black;
-
     height: auto;
     position: relative;
     padding:  var(--padding-medium);
-    /* margin-inline: var(--padding-small); */
     display: flex;
-    
     gap: 4px;
 }
 
@@ -347,7 +337,6 @@ button.primary:active {
     font-size: var(--text-small);
 }
 .comment .icon {
-    /* box-shadow: 0px 0px 3px var(--accent) inset; */
     height: 30px;
     aspect-ratio: 1 /1;
     border-radius: 50%;
@@ -561,8 +550,6 @@ button {
     .logo {
         background-color: antiquewhite;
         align-self: center;
-        
-        
     }
 
     nav {
@@ -588,7 +575,6 @@ button {
         width: auto;
     }
     .nav-list {
-        
         opacity:  0;
         padding: .1rem;
         transform: translate(calc(100% + 5px));
@@ -601,8 +587,7 @@ button {
         box-shadow: 0 0 1px var(--accent);
         background-color: var(--background);
         position: fixed;
-        transition: transform .5s;
-        
+        transition: transform .5s; 
     }
 
     .nav-item button {
@@ -620,7 +605,6 @@ button {
     }
 
     /** Main content **/
-
     main {
         position: relative;
         grid-template-columns: 1fr;
