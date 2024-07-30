@@ -31,12 +31,6 @@
     --medium-space: .8rem;
     --large-space: 1rem;
     --x-large-space: 1.2rem;
-    /* --heading-big: 2.125rem;
-    --heading-extra-large: 1.775rem;
-    --heading-large: 1.5rem;
-    --heading-medium: 1.25rem;
-    --heading-small: 1.125rem;
-    --heading-extra-small: 1rem; */
 }
 html, body, #root {
     height: 100%;
@@ -65,16 +59,14 @@ h6 {
     font-size: var(--heading-extra-small);
 } 
 
-
 body {
     position: relative;
     font-family:var(--font);
     background-color: var(--background);
 }
 #root {
+    background-color: hsl(219, 29%, 70%);
     color: var(--text);
-    display: flex;
-    justify-content: center;
 }
 
 dialog { 
@@ -90,16 +82,17 @@ dialog::backdrop {
     background-color:rgba(0, 0, 0, 0.7) ;
 }
 .layout {
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 3fr;
     /** Need to set this if you want inner items to be scrollable */
     grid-template-rows: 100vh; 
-    max-width: 1920px;
-    width: 960px;
+    
     
 }
 
 main {
+    background-color: var(--background);
     display: grid;
     grid-template-columns: 2fr 1fr;
     box-sizing: border-box;
@@ -109,7 +102,7 @@ main {
     border-style: solid;
     border-top-style: solid;
     border-color: lightgray;
-    border-top-color: black;
+    border-top-color: var(--accent);
     border-radius: 50%;
     animation: loading 2s linear infinite;
 }
@@ -142,19 +135,11 @@ select:-webkit-autofill:focus {
     border-radius: 5px;
 } 
 
-/* input:focus {
-    outline: 3px solid var(--primary);
-    border:none;
-} */
-
 input.error {
     outline: 3px solid var(--error);;
     animation: shake 1s;
 }
 
-/* .show {
-    display: block;
-} */
 .comment {
     position: relative;
     height: 5rem;
@@ -169,7 +154,8 @@ input.error {
 
 /* Styling header */
 header {
-    box-shadow:  0 0 3px var(--accent);
+    background-color: hsl(219, 29%, 70%);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -558,7 +544,7 @@ button {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .layout {
         grid-template-columns: 100vw;
         grid-template-rows: 50px calc(100vh - 50px);
@@ -602,6 +588,7 @@ button {
         width: auto;
     }
     .nav-list {
+        
         opacity:  0;
         padding: .1rem;
         transform: translate(calc(100% + 5px));
@@ -637,6 +624,6 @@ button {
     main {
         position: relative;
         grid-template-columns: 1fr;
-        grid-row: 100%;
+
     }
 }
