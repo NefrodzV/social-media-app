@@ -10,7 +10,6 @@ export default function FollowerList({
 }) {
     const [isEditing, setIsEditing] = useState(false)
     const sectionRef = useRef(null)
-    // const { penSvg } = useImages()
     return (
         <section
             className={style.list}
