@@ -6,7 +6,7 @@ import {
     FollowerList,
 } from '../components'
 import { useDialog, useNotification, useAuthUser } from '../hooks'
-export default function Layout({ children, followers }) {
+export default function Layout({ children }) {
     // This is the main layout for the pages
     const { toasts } = useNotification()
     const { dialog, DIALOG_TYPE } = useDialog()
