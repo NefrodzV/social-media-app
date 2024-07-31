@@ -1,6 +1,4 @@
 .list {
-    margin: .5rem;
-    
     box-sizing: border-box;
     display: flex;
     position: relative;
@@ -11,7 +9,7 @@
 
 .list .title {
     text-transform: capitalize;
-    margin-inline: .1rem;
+    margin: .4rem;
     border-radius: 3px;
     box-shadow: 0 0 2px var(--accent);
     font-size: var(--text-normal);
@@ -31,7 +29,6 @@
 }
 
 .list .container {
-    padding: .1rem;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
