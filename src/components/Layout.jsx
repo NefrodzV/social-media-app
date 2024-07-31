@@ -1,10 +1,4 @@
-import {
-    Header,
-    ToastContainer,
-    AlertDialog,
-    Modal,
-    FollowerList,
-} from '../components'
+import { Header, ToastContainer, AlertDialog, Modal } from '../components'
 import { useDialog, useNotification, useAuthUser } from '../hooks'
 export default function Layout({ children }) {
     // This is the main layout for the pages
