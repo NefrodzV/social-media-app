@@ -6,6 +6,7 @@ import {
     UserPage,
     ProfilePage,
     UsersPage,
+    FollowersPage,
 } from './pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 function Router() {
@@ -36,6 +37,10 @@ function Router() {
         {
             path: '/users',
             element: <UsersPage />,
+        },
+        {
+            path: '/followers',
+            element: <FollowersPage />,
         },
     ])
 

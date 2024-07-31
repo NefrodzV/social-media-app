@@ -122,6 +122,11 @@ export default function Navigation() {
                     navigateTo={'/profile'}
                 />
                 <NavItem
+                    text={'followers'}
+                    icon={navIcons.users}
+                    navigateTo={'/followers'}
+                />
+                <NavItem
                     text={'post'}
                     icon={navIcons.post}
                     onClickHandler={openPost}
