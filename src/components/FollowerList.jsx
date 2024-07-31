@@ -20,8 +20,8 @@ export default function FollowerList({
 
             {deleteFollowerHandler && (
                 <DropdownMenu
-                    top={'.4rem'}
-                    right={'.4rem'}
+                    top={'.8rem'}
+                    right={'.8rem'}
                     items={[
                         {
                             text: 'edit',
