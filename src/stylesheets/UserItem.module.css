@@ -9,7 +9,7 @@
 }
 
 .img {
-    height: 50px;
+    height: 1.8rem;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     box-shadow: 0 0 1px rgba(0, 0, 0 ,0.7);
@@ -24,6 +24,7 @@
 .request {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
     width: min-content;
     height: 25px;
@@ -32,7 +33,7 @@
 }
 
 .request img {
-    height: 100%;
+    height: 1rem;
 }
 
 .request span {
