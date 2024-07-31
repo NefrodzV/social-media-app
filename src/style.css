@@ -4,7 +4,7 @@
 }
 :root {
     --text: #0f0f0f;
-    --background: rgb(251, 251, 254);
+    --background: #fbfbfe;
     --primary: #005B41;
     --secondary: #008170;
     --accent: rgb(35, 45, 63);
@@ -65,7 +65,7 @@ body {
     background-color: var(--background);
 }
 #root {
-    background-color: hsl(219, 29%, 70%);
+    background-color: #9cacc9;
     color: var(--text);
 }
 
@@ -94,7 +94,7 @@ dialog::backdrop {
 main {
     background-color: var(--background);
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(300px,500px) 1fr;
     box-sizing: border-box;
 }
 
